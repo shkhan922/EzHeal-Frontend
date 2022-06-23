@@ -11,14 +11,14 @@ import '../assets/css/magnific-popup.min.css'
 import '../assets/css/meanmenu.css'
 import '../assets/css/nice-select.min.css'
 import '../assets/css/odometer.min.css'
-import '../assets/css/owl.carousel.min.css'
-import '../assets/css/owl.theme.default.min.css'
+// import '../assets/css/owl.carousel.min.css'
+// import '../assets/css/owl.theme.default.min.css'
 import '../assets/css/responsive.css'
 // import '../assets/css/responsive.css.map'
 import '../assets/css/responsive.scss'
 import '../assets/css/style.css'
 // import '../assets/css/style.css.map'
-import '../assets/css/style.scss'
+// import '../assets/css/style.scss'
 
 
 function MyApp({ Component, pageProps }) {

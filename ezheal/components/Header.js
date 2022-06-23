@@ -69,13 +69,13 @@ const Header = () => {
             </div>
            
             <div className="navbar-area navbar-two ">
-                <div class="main-responsive-nav">
-                    <div class="container">
-                        <div class="main-responsive-menu">
-                            <div class="logo">
+                <div className="main-responsive-nav">
+                    <div className="container">
+                        <div className="main-responsive-menu">
+                            <div className="logo">
                                 <Link href="https://ezheal.ai/">
                                     <a >
-                                <Image src={blackLogo} class="black-logo" alt="image" width={'200px'} height={'80px'}/>
+                                <Image src={blackLogo} className="black-logo" alt="image"/>
                                 </a>      
                             </Link>
                             </div>
@@ -85,7 +85,7 @@ const Header = () => {
 
                 <div className="main-navbar">
                     <div className="container">
-                        <nav className="navbar navbar-expand-md navbar-light align-items-start">
+                        <nav className="navbar navbar-expand-md navbar-light align-items-center">
                             <Link href="https://ezheal.ai/">
                                 <a>
                                 <Image src={blackLogo} className="black-logo" alt="image" width={'200px'} height={'80px'}/>
@@ -148,7 +148,7 @@ const Header = () => {
 
                                     <div className="others-options">
                                     <Link href="https://ezheal.ai/appointment1" >
-                                        <a className="default-btn-two st">
+                                        <a className="default-btn-two st me-1">
                                             Clinician Appointment
                                         <span></span>
                                         </a>
@@ -168,14 +168,37 @@ const Header = () => {
             </div>
             
         </header>
-        <div className="main-banner bg-two">
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div className="main-banner bg-two">
       <div className="d-table">
         <div className="d-table-cell">
           <div className="container">
             <div className="row align-items-center">
               <div className="col-lg-7">
                 <div className="main-banner-content">
+                                       
                 
+              <h1>Faster, Accurate Convenient, Safe</h1>
+                  <p style={{backgroundColor:'#00beff'}}></p><p>EZheal&nbsp;provides Easy, Safe, Convenient, Accurate and Novel treatment and scanning solutions. We focus on back pain, knee pain, physical trauma, neuro diseases which requires faster response for treatment and continuum care at home. We connect Physicians, Imaging centers, Physiotherapy and Dieticians on a single platform.&nbsp; We pioneered fast scanning in MRI for your convenience, AI analysis for scans and treatment</p>
+
+<p>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;</p>
+                  <p></p>
+            
+              
+               
+                  
                 </div>
 
                 <div className="banner-form">
@@ -183,29 +206,29 @@ const Header = () => {
                     <div className="row align-items-center">
                          <div className="col-lg-3 col-md-6">
                        <div className="form-group">
-                          <select>
+                          <select style={{display: "none"}}>
                             <option>Category</option>
                             <option value="">Cardiologists</option>
                             <option value="">Dermatologists</option>
                             <option value="">Endocrinologists</option>
-                          </select>
+                          </select><div className="nice-select" tabindex="0"><span className="current">Category</span><ul className="list"><li data-value="Category" className="option selected">Category</li><li data-value="" className="option">Cardiologists</li><li data-value="" className="option">Dermatologists</li><li data-value="" className="option">Endocrinologists</li></ul></div>
                         </div>
 
                       </div>
                       <div className="col-lg-3 col-md-6">
                         <div className="form-group">
-                          <select>
+                          <select style={{display: "none"}}>
                             <option>Specialist</option>
                             <option value="">Dr. James Adult</option>
                             <option value="">Dr. James Alison</option>
                             <option value="">Dr. Peter Adlock</option>
-                          </select>
+                          </select><div className="nice-select" tabindex="0"><span className="current">Specialist</span><ul className="list"><li data-value="Specialist" className="option selected">Specialist</li><li data-value="" className="option">Dr. James Adult</li><li data-value="" className="option">Dr. James Alison</li><li data-value="" className="option">Dr. Peter Adlock</li></ul></div>
                         </div>
                       </div>
                      
                       <div className="col-lg-3 col-md-6">
                         <div className="form-group">
-                          <input type="date" className="form-control" />
+                          <input type="date" className="form-control"/>
                         </div>
                       </div>
                       <div className="col-lg-3 col-md-6">
@@ -241,116 +264,7 @@ const Header = () => {
 
 
 
-
-
-    <section class="partner-area pt-100 pb-70">
-      <div class="container">
-        <div class="section-title">
-          <h2>Consult top doctors online for any health concern</h2>
-          <p>
-            Private online consultations with verified doctors in all
-            specialists
-          </p>
-        </div>
-        <div class="row">
-          <div class="col-lg-2 col-md-2 col-sm-3">
-            <div class="partner-item" style={{textAlign: "center" }}>
-              <a href="#">
-                <img
-                  src="assets/img/client/Acne.png"
-                  alt="image"
-                  style={{width: '125px', height: '100px' , alignSelf: 'center'}}
-                />
-                <p class="matx"
-                  style={{fontSize: '13px' ,fontWeight: '600' ,textAlign: 'center'}}
-                >
-                  Joint Pain
-                </p>
-                <h5 style={{fontSize: '15px', textAlign: 'center'}}>CONSULT NOW</h5>
-              </a>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-2 col-sm-3 ">
-            <div class="partner-item" style={{textAlign: 'center'}}>
-              <a href="#">
-                 <img
-                src="assets/img/client/irregular-painful+period.png"
-                alt="image"
-                style={{width: '125px',height:"100px"}}
-              />
-              <p class="matx" style={{fontSize: '13px', fontWeight: '600',textAlign: "center"}}>
-                Knee Pain
-              </p>
-              <h5 style={{fontSize: '15px',textAlign: 'center'}}>CONSULT NOW</h5>
-            </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-2 col-sm-3">
-            <div class="partner-item" style={{textAlign: 'center'}}>
-              <a href="#">
-                 <img
-                src="assets/img/client/top-speciality-sexology-svg.png"
-                alt="image"
-                style={{width: '125px' ,height:'100px'}}
-              />
-              <p class="matx" style={{fontSize: '13px', fontWeight: '600', textAlign: 'center'}}>
-               Muscle Pain
-              </p>
-              <h5 style={{fontSize: '15px',textAlign: 'center'}}>CONSULT NOW</h5>
-            </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-2 col-sm-3">
-            <div class="partner-item" style={{textAlign: 'center'}}>
-              <a href="#">
-                 <img
-                src="assets/img/client/coughing.png"
-                alt="image"
-                style={{width: '125px' ,height:'100px'}}
-              />
-              <p class="matx" style={{fontSize: '13px', fontWeight: '600',textAlign: 'center'}}>
-              Tendon and Ligament Pain
-              </p>
-              <h5 style={{fontSize: '15px',textAlign: 'center'}}>CONSULT NOW</h5>
-            </a>
-              </div>
-            </div>
-         
-          <div class="col-lg-2 col-md-2 col-sm-3">
-            <div class="partner-item" style={{textAlign: "center"}}>
-              <a href="#">
-                 <img
-                src="assets/img/client/top-speciality-pediatric-svg.png"
-                alt="image"
-                style={{width: '125px', height: '100px'}}
-              />
-              <p class="matx" style={{fontSize: '13px', fontWeight: '600', textAlign: 'center'}}>
-               Back Pain
-              </p>
-              <h5 style={{fontSize: '15px', textAlign: 'center'}}>CONSULT NOW</h5>
-            </a>
-              
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-2 col-sm-3">
-            <div class="partner-item" style={{textAlign: 'center'}}>
-              <a href="#">
-                 <img
-                src="assets/img/client/12-mental-wellness.png"
-                alt="image"
-                style={{width: '125px',height:'100px'}}
-              />
-              <p class="matx" style={{fontSize: '13px' ,fontWeight: '600', textAlign: 'center'}}>
-               Neck Pain
-              </p>
-              <h5 style={{fontSize: '15px' ,textAlign: 'center'}}>CONSULT NOW</h5>
-            </a>
-             
-            </div>
-            </div>
-    </section>
+ 
         </>
 
 

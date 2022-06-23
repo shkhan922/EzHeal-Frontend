@@ -1,15 +1,16 @@
-const nextSettings = {
-  optimizeFonts: false,
-  // disable eslint
-  eslint: {
-      ignoreDuringBuilds: true,
+module.exports = {
+  webpack: (config, options) => {
+    config.module.rules.push({
+      test: /\.mdx/,
+      use: [
+        options.defaultLoaders.babel,
+        {
+          loader: '@mdx-js/loader',
+          
+        },
+      ],
+    })
+
+    return config
   },
-  // Change your site title here
-  env: {
-      title: 'EzHeal',
-      titleDescription: 'EzHeal',
-  },
-};
-const withImages = require('next-images')
-module.exports = withImages();
-module.exports = nextSettings;
+}
