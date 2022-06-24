@@ -1,11 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
-import Backpain from '../../assets/img/partner/BackPain.png'
-import Jointpain from '../../assets/img/partner/jointpain.png'
-import Kneepain from '../../assets/img/partner/Kneepain.png'
-import MusclePain from '../../assets/img/partner/MusclePain.png'
-import NeckPain from '../../assets/img/partner/NeckPain.png'
-import TendonPain from '../../assets/img/partner/TendonPain.png'
+import Backpain from '../../public/static/img/partner/BackPain.png'
+import jointpain from '../../public/static/img/partner/jointpain.png'
+import Kneepain from '../../public/static/img/partner/Kneepain.png'
+import MusclePain from '../../public/static/img/partner/MusclePain.png'
+import NeckPain from '../../public/static/img/partner/NeckPain.png'
+import TendonPain from '../../public/static/img/partner/TendonPain.png'
 
 const PartnerSection = () => {
   return (
@@ -34,7 +34,7 @@ const PartnerSection = () => {
           <div className="col-lg-2 col-md-2 col-sm-3 ">
             <div className="partner-item" style={{textAlign: "center"}}>
               <a href="#">
-                 <Image src={Jointpain} alt="image"  width= {125} height={100} />
+                 <Image src={jointpain} alt="image"  width= {125} height={100} />
               <p className="matx" style={{fontSize: '13px' ,fontWeight: '600' ,textAlign: "center"}}>
                 Knee Pain
               </p>
