@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react';
-import MobileImg from '../../assets/img/mobile.png';
-import PlayStoreImg from "../../assets/img/play-store.png"
+import MobileImg from '../../public/static/img/mobile.png';
+import PlayStoreImg from "../../public/static/img/play-store.png"
 
 const DownloadAppSection = () => {
     return (

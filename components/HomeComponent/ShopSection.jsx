@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link';
 import React from 'react';
-import P1 from '../../assets/img/products/p1.png';
-import P2 from '../../assets/img/products/p2.png';
-import P3 from '../../assets/img/products/p3.png'
+import P1 from '../../public/static/img/products/p1.png';
+import P2 from '../../public/static/img/products/p2.png';
+import P3 from '../../public/static/img/products/p3.png'
 
 const ShopSection = () => {
     return (

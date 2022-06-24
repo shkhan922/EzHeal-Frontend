@@ -1,7 +1,7 @@
 import React from "react"
 import Link from 'next/link'
 import Image from "next/image"
-import Logo from '../../assets/img/Ezheal_logo.png'
+import Logo from '../../public/static/img/Ezheal_logo.png'
 
 const Header = () => {
     return (

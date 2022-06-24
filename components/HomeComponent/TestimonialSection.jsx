@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import React from 'react'
-import TestimonialImg from '../../assets/img/testimonials.jpg';
-import Client1 from '../../assets/img/client/1.jpg'
-import Client2 from '../../assets/img/client/2.jpg'
-import Client3 from '../../assets/img/client/3.jpg'
+import TestimonialImg from '../../public/static/img/testimonials.jpg';
+import Client1 from '../../public/static/img/client/1.jpg'
+import Client2 from '../../public/static/img/client/2.jpg'
+import Client3 from '../../public/static/img/client/3.jpg'
 
 const TestimonialSection = () => {
     return (

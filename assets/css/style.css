@@ -888,7 +888,7 @@ h6:last-child {
 .main-banner {
     position: relative;
     z-index: 1;
-    background-image: url(../../assets/img/banner-bg2.jpg);
+    background-image: url(../../public/static/img/banner-bg2.jpg);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -904,7 +904,7 @@ h6:last-child {
 .main-banner.bg-two {
     position: relative;
     z-index: 1;
-    background-image: url(../../assets/img/banner-bg2.jpg);
+    background-image: url(../../public/static/img/banner-bg2.jpg);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -915,7 +915,7 @@ h6:last-child {
 .main-banner.bg-three {
     position: relative;
     z-index: 1;
-    background-image: url(../../assets/img/banner-bg3.jpg);
+    background-image: url(../../public/static/img/banner-bg3.jpg);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1554,7 +1554,7 @@ h6:last-child {
 }
 
 .main-banner-item {
-    background-image: url(../../assets/img/banner-bg4.jpg);
+    background-image: url(../../public/static/img/banner-bg4.jpg);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1564,7 +1564,7 @@ h6:last-child {
 }
 
 .main-banner-item.item-two {
-    background-image: url(../../assets/img/banner-bg5.jpg)
+    background-image: url(../../public/static/img/banner-bg5.jpg)
 }
 
 .main-banner-item .main-banner-content {
@@ -1790,7 +1790,7 @@ h6:last-child {
 }
 
 .about-wrap {
-    background-image: url(../../assets/img/about-4.jpg);
+    background-image: url(../../public/static/img/about-4.jpg);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1864,7 +1864,7 @@ h6:last-child {
 .services-area {
     position: relative;
     z-index: 1;
-    background-image: url(../../assets/img/services-bg.jpg);
+    background-image: url(../../public/static/img/services-bg.jpg);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1886,7 +1886,7 @@ h6:last-child {
 .services-area.two {
     position: relative;
     z-index: 1;
-    background-image: url(../../assets/img/services-bg-2.jpg);
+    background-image: url(../../public/static/img/services-bg-2.jpg);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1946,7 +1946,7 @@ h6:last-child {
 }
 
 .services-item.bg-1 {
-    background-image: url(../../assets/img/services/image1.jpg)
+    background-image: url(../../public/static/img/services/image1.jpg)
 }
 
 .services-item .icon {
@@ -2270,7 +2270,7 @@ h6:last-child {
 }
 
 .services-image {
-    background-image: url(../../assets/img/services/woman.jpg);
+    background-image: url(../../public/static/img/services/woman.jpg);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -2352,7 +2352,7 @@ h6:last-child {
 }
 
 .solutions-area {
-    background-image: url(../../assets/img/solutions-bg.jpg);
+    background-image: url(../../public/static/img/solutions-bg.jpg);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -2652,7 +2652,7 @@ h6:last-child {
 .appointment-area {
     position: relative;
     z-index: 1;
-    background-image: url(../../assets/img/appointment-bg.jpg);
+    background-image: url(../../public/static/img/appointment-bg.jpg);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -4513,7 +4513,7 @@ h6:last-child {
 .projects-area {
     position: relative;
     z-index: 1;
-    background-image: url(../../assets/img/projects-bg.jpg);
+    background-image: url(../../public/static/img/projects-bg.jpg);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -5457,27 +5457,27 @@ h6:last-child {
 }
 
 .page-title-area.item-bg-1 {
-    background-image: url(../../assets/img/page-title/bg-1.jpg)
+    background-image: url(../../public/static/img/page-title/bg-1.jpg)
 }
 
 .page-title-area.item-bg-2 {
-    background-image: url(../../assets/img/page-title/bg-2.jpg)
+    background-image: url(../../public/static/img/page-title/bg-2.jpg)
 }
 
 .page-title-area.item-bg-3 {
-    background-image: url(../../assets/img/page-title/bg-3.jpg)
+    background-image: url(../../public/static/img/page-title/bg-3.jpg)
 }
 
 .page-title-area.item-bg-4 {
-    background-image: url(../../assets/img/page-title/bg-4.jpg)
+    background-image: url(../../public/static/img/page-title/bg-4.jpg)
 }
 
 .page-title-area.item-bg-5 {
-    background-image: url(../../assets/img/page-title/bg-5.jpg)
+    background-image: url(../../public/static/img/page-title/bg-5.jpg)
 }
 
 .page-title-area.item-bg-6 {
-    background-image: url(../../assets/img/page-title/bg-6.jpg)
+    background-image: url(../../public/static/img/page-title/bg-6.jpg)
 }
 
 .page-title-area::before {
@@ -5692,7 +5692,7 @@ h6:last-child {
 }
 
 .faq-image {
-    background-image: url(../../assets/img/faq.jpg);
+    background-image: url(../../public/static/img/faq.jpg);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -5988,7 +5988,7 @@ h6:last-child {
     height: 400px;
     text-align: center;
     margin-top: 30px;
-    background-image: url(../../assets/img/projects-details/emergency-bg.jpg);
+    background-image: url(../../public/static/img/projects-details/emergency-bg.jpg);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat
@@ -7303,15 +7303,15 @@ h6:last-child {
 }
 
 .widget-area .widget_tinzer_posts_thumb .item .thumb .fullimage.bg1 {
-    background-image: url(../../assets/img/blog/image1.jpg)
+    background-image: url(../../public/static/img/blog/image1.jpg)
 }
 
 .widget-area .widget_tinzer_posts_thumb .item .thumb .fullimage.bg2 {
-    background-image: url(../../assets/img/blog/image2.jpg)
+    background-image: url(../../public/static/img/blog/image2.jpg)
 }
 
 .widget-area .widget_tinzer_posts_thumb .item .thumb .fullimage.bg3 {
-    background-image: url(../../assets/img/blog/image3.jpg)
+    background-image: url(../../public/static/img/blog/image3.jpg)
 }
 
 .widget-area .widget_tinzer_posts_thumb .item .info {
