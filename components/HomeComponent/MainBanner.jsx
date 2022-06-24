@@ -33,7 +33,7 @@ const MainBanner = () => {
                             <option value="">Cardiologists</option>
                             <option value="">Dermatologists</option>
                             <option value="">Endocrinologists</option>
-                          </select><div className="nice-select" tabindex="0"><span className="current">Category</span><ul className="list"><li data-value="Category" className="option selected">Category</li><li data-value="" className="option">Cardiologists</li><li data-value="" className="option">Dermatologists</li><li data-value="" className="option">Endocrinologists</li></ul></div>
+                          </select><div className="nice-select" tabIndex="0"><span className="current">Category</span><ul className="list"><li data-value="Category" className="option selected">Category</li><li data-value="" className="option">Cardiologists</li><li data-value="" className="option">Dermatologists</li><li data-value="" className="option">Endocrinologists</li></ul></div>
                         </div>
 
                       </div>
@@ -44,7 +44,7 @@ const MainBanner = () => {
                             <option value="">Dr. James Adult</option>
                             <option value="">Dr. James Alison</option>
                             <option value="">Dr. Peter Adlock</option>
-                          </select><div className="nice-select" tabindex="0"><span className="current">Specialist</span><ul className="list"><li data-value="Specialist" className="option selected">Specialist</li><li data-value="" className="option">Dr. James Adult</li><li data-value="" className="option">Dr. James Alison</li><li data-value="" className="option">Dr. Peter Adlock</li></ul></div>
+                          </select><div className="nice-select" tabIndex="0"><span className="current">Specialist</span><ul className="list"><li data-value="Specialist" className="option selected">Specialist</li><li data-value="" className="option">Dr. James Adult</li><li data-value="" className="option">Dr. James Alison</li><li data-value="" className="option">Dr. Peter Adlock</li></ul></div>
                         </div>
                       </div>
                      
