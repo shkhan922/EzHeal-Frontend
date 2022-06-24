@@ -4,17 +4,17 @@ import About2 from '../../assets/img/about-2.png'
 
 const AboutSection = () => {
   return (
-    <section class="about-area ptb-100">
-    <div class="container-fluid">
-      <div class="row align-items-center">
-        <div class="col-lg-6">
-          <div class="about-image">
+    <section className="about-area ptb-100">
+    <div className="container-fluid">
+      <div className="row align-items-center">
+        <div className="col-lg-6">
+          <div className="about-image">
             <Image src={About2} alt="image" layout='responsive'/>
           </div>
         </div>
 
-        <div class="col-lg-6">
-          <div class="about-content">
+        <div className="col-lg-6">
+          <div className="about-content">
             <span>About Us <span style={{color: "#1e5799"}}>EZscan</span></span>
             <h3>Connect to a Call Doctor by Video or Audio.</h3>
             <p>
@@ -25,28 +25,28 @@ const AboutSection = () => {
               to you through our partner network.
             </p>
 
-            <ul class="about-features two">
+            <ul className="about-features two">
               <li>
                 <span>
-                  <i class="flaticon-doctor"></i>
+                  <i className="flaticon-doctor"></i>
                   Faster Scanning
                 </span>
               </li>
               <li>
                 <span>
-                  <i class="flaticon-worm"></i>
+                  <i className="flaticon-worm"></i>
                   Convenient Process
                 </span>
               </li>
               <li>
                 <span>
-                  <i class="flaticon-cough"></i>
+                  <i className="flaticon-cough"></i>
                   Accurate Reporting
                 </span>
               </li>
               <li>
                 <span>
-                  <i class="flaticon-blood-test"></i>
+                  <i className="flaticon-blood-test"></i>
                   Advanced Technology
                 </span>
               </li>
