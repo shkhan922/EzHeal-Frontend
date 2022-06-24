@@ -63,8 +63,7 @@ const PartnerSection = () => {
               Tendon and Ligament Pain
               </p>
               <h5 style={{fontSize: '15px',textAlign: "center"}}>CONSULT NOW</h5>
-            </a>
-              
+            </a>        
             </div>
           </div>
           <div className="col-lg-2 col-md-2 col-sm-3">
@@ -75,11 +74,10 @@ const PartnerSection = () => {
                Back Pain
               </p>
               <h5 style={{fontSize: '15px', textAlign: "center"}}>CONSULT NOW</h5>
-            </a>
-              
+            </a>  
             </div>
           </div>
-          <div className="col-lg-2 col-md-2 col-sm-3">
+          <div className="col-lg-2 col-md-2 col-sm-3"> 
             <div className="partner-item" style={{textAlign: "center"}}>
               <a href="#">
                  <Image src={TendonPain} alt="image" width= {125} height={100}/>
