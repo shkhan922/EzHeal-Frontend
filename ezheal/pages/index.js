@@ -1,17 +1,27 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Header from '../components/Header'
+
+import AboutSection from '~/components/HomeComponent/AboutSection'
+import DoctorArea from '~/components/HomeComponent/DoctorArea'
+import DownloadAppSection from '~/components/HomeComponent/DownloadAppSection'
+import MainBanner from '~/components/HomeComponent/MainBanner'
+import PartnerSection from '~/components/HomeComponent/PartnerSection'
+import ServicesSection from '~/components/HomeComponent/ServicesSection'
+import ShopSection from '~/components/HomeComponent/ShopSection'
+import TestimonialSection from '~/components/HomeComponent/TestimonialSection'
+import Header from '../components/ReusableComponent/Header'
+
 
 export default function Home() {
   return (
     <>
-    {/* <div className="preloader">
-      <div className="spinner"></div>
-    </div> */}
      <Header/>
-    </>
-     
-    
+     <MainBanner/>
+     <PartnerSection/>
+     <AboutSection/>
+     <ServicesSection/>
+     <DoctorArea/>
+     <ShopSection/>
+     <TestimonialSection/>
+     <DownloadAppSection/>
+    </> 
   )
 }
