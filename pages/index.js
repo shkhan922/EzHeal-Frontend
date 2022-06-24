@@ -7,6 +7,7 @@ import PartnerSection from '~/components/HomeComponent/PartnerSection'
 import ServicesSection from '~/components/HomeComponent/ServicesSection'
 import ShopSection from '~/components/HomeComponent/ShopSection'
 import TestimonialSection from '~/components/HomeComponent/TestimonialSection'
+import Footer from '~/components/ReusableComponent/Footer'
 import Header from '../components/ReusableComponent/Header'
 
 
@@ -22,6 +23,7 @@ export default function Home() {
      <ShopSection/>
      <TestimonialSection/>
      <DownloadAppSection/>
+     <Footer/>
     </> 
   )
 }
