@@ -18,7 +18,12 @@ import '../assets/css/responsive.css'
 import '../assets/css/responsive.scss'
 import '../assets/css/style.css'
 // import '../assets/css/style.css.map'
-import '../assets/css/style.scss'
+// import '../assets/css/style.scss'
+
+
+// javascript 
+
+
 
 
 function MyApp({ Component, pageProps }) {
