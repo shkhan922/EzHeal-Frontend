@@ -901,6 +901,25 @@ h6:last-child {
     margin: auto
 }
 
+.carousel-indicators{
+    position: asolute !important;
+    bottom: -65px !important;
+}
+
+.carousel-indicators .carousel-item{
+    float: none !important;
+}
+
+.carousel-indicators button{ 
+    background-color: #224e77 !important;
+    border-radius: 50%;
+    height: 15px !important;
+    width: 15px !important;
+}
+
+   
+
+
 .main-banner.bg-two {
     position: relative;
     z-index: 1;

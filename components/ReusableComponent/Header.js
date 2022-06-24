@@ -1,7 +1,7 @@
 import React from "react"
 import Link from 'next/link'
 import Image from "next/image"
-import Logo from '../../public/static/img/Ezheal_logo.png'
+import Logo from '../../public/static/img/logo-white.png'
 
 const Header = () => {
     return (
@@ -71,8 +71,8 @@ const Header = () => {
                         <div className="main-responsive-menu">
                             <div className="logo">
                                 <Link href="https://ezheal.ai/">
-                              <a> <Image src={Logo} className="black-logo" alt="image" height={100} width={200}/>
-                                <Image src={Logo} className="white-logo" alt="image" height={100} width={200}/></a>    
+                              <Image src={Logo} className="white-logo" alt="image" height={100} width={200}/>
+                                  
                             </Link>
                             </div>
                         </div>
@@ -83,8 +83,8 @@ const Header = () => {
                     <div className="container">
                         <nav className="navbar navbar-expand-md navbar-light">
                             <Link href="https://ezheal.ai/">
-                                <a><Image src={Logo} className="black-logo" alt="image" height={100} width={200}/>
-                                <Image src={Logo} className="white-logo" alt="image" height={100} width={200}/></a>    
+                                <Image src={Logo} className="white-logo" alt="image" width={200} height={80}/>
+                                
                             </Link>
 
                             <div className="collapse navbar-collapse mean-menu" id="navbarSupportedContent" style={{display: "block"}}>
@@ -144,7 +144,7 @@ const Header = () => {
                                         
                                     </Link>
                                      <Link href="#">
-                                       <a  className="default-btn-two st">Diagnostic Booking   <span></span></a> 
+                                       <a  className="default-btn-two st ms-1">Diagnostic Booking   <span></span></a> 
                                       
                                     </Link>
                                 </div>
