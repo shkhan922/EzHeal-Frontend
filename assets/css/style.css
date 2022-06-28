@@ -75,7 +75,7 @@ img {
 }
 
 .pb-70 {
-    padding-bottom: 15px;
+    padding-bottom: 70px;
 }
 
 .ptb-50 {
@@ -2476,11 +2476,10 @@ h6:last-child {
     z-index: 1
 }
 
-.doctor-item .image img {
+.doctor-item .image .img {
     transition: .5s;
-    border: 8px solid #fff;
-    border-radius: 10px;
-    border-bottom: none
+    border: 8px solid #fff !important;
+    border-bottom: none !important;
 }
 
 .doctor-item .content {
@@ -2556,9 +2555,11 @@ h6:last-child {
 }
 
 .doctor-item:hover .image img {
-    transition: .5s;
-    border: 8px solid #d3ecfe;
-    border-bottom: none
+    transition: .5s !important;
+    height: 100%;
+    border: 8px solid #d3ecfe !important;
+    border-bottom: none !important;
+    border-radius: 10px;
 }
 
 .team-item {

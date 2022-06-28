@@ -70,7 +70,7 @@ const Header = () => {
                     <div className="container">
                         <div className="main-responsive-menu">
                             <div className="logo">
-                                <Link href="https://ezheal.ai/">
+                                <Link href="/">
                               <Image src={Logo} className="white-logo" alt="image" height={100} width={200}/>
                                   
                             </Link>
@@ -82,7 +82,7 @@ const Header = () => {
                 <div className="main-navbar">
                     <div className="container">
                         <nav className="navbar navbar-expand-md navbar-light">
-                            <Link href="https://ezheal.ai/">
+                            <Link href="/">
                                 <Image src={Logo} className="white-logo" alt="image" width={200} height={80}/>
                                 
                             </Link>
@@ -90,19 +90,19 @@ const Header = () => {
                             <div className="collapse navbar-collapse mean-menu" id="navbarSupportedContent" style={{display: "block"}}>
                                 <ul className="navbar-nav">
                                     <li className="nav-item">
-                                        <Link href="https://ezheal.ai/">
+                                        <Link href="/">
                                           <a  className="nav-link"> Home </a> 
                                         </Link>
                                     </li>
 
                                     <li className="nav-item">
-                                        <Link href="https://ezheal.ai/about1">
+                                        <Link href="/about">
                                             <a className="nav-link">About</a>
                                         </Link>
                                     </li>
 
                                     <li className="nav-item">
-                                        <Link href="https://ezheal.ai/service1">
+                                        <Link href="/services">
                                            <a className="nav-link"> Services </a>
                                         </Link>
                                     </li>
