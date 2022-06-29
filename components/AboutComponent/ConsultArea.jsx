@@ -18,7 +18,7 @@ const ConsultArea = () => {
                         <div className="consult-content">
                             <span>Online Consult</span>
                             <h3>Get 24/7 Care Right From Your Phone</h3>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy</p>
 
                             <ul className="list">
                                 <li>

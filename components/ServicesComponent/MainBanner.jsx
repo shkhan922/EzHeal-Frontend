@@ -3,11 +3,11 @@ import React from 'react'
 const MainBanner = () => {
   return (
     <>
-        <div class="page-title-area item-bg-6">
-            <div class="d-table">
-                <div class="d-table-cell">
-                    <div class="container">
-                        <div class="page-title-content">
+        <div className="page-title-area item-bg-6">
+            <div className="d-table">
+                <div className="d-table-cell">
+                    <div className="container">
+                        <div className="page-title-content">
                             <h2>Services</h2>
                             <ul>
                                 <li><a href="index.html">Home</a></li>
