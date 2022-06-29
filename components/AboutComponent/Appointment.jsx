@@ -89,7 +89,7 @@ const Appointment = () => {
                                                 <option value="">Gastroenterologists</option>
                                                 <option value="">Allergists</option>
                                                 <option value="">Immunologists</option>
-                                            </select><div className="nice-select" tabindex="0"><span className="current">Select Category</span><ul className="list"><li data-value="" className="option selected">Select Category</li><li data-value="" className="option">Cardiologists</li><li data-value="" className="option">Dermatologists</li><li data-value="" className="option">Endocrinologists</li><li data-value="" className="option">Gastroenterologists</li><li data-value="" className="option">Allergists</li><li data-value="" className="option">Immunologists</li></ul></div>	
+                                            </select><div className="nice-select" tabIndex=""><span className="current">Select Category</span><ul className="list"><li data-value="" className="option selected">Select Category</li><li data-value="" className="option">Cardiologists</li><li data-value="" className="option">Dermatologists</li><li data-value="" className="option">Endocrinologists</li><li data-value="" className="option">Gastroenterologists</li><li data-value="" className="option">Allergists</li><li data-value="" className="option">Immunologists</li></ul></div>	
                                         </div>
                                     </div>
 
@@ -103,7 +103,7 @@ const Appointment = () => {
                                                 <option value="">Dr. Jelin Alis</option>
                                                 <option value="">Dr. Josh Taylor</option>
                                                 <option value="">Dr. Steven Smith</option>
-                                            </select><div className="nice-select" tabindex="0"><span className="current">Select Doctor</span><ul className="list"><li data-value="" className="option selected">Select Doctor</li><li data-value="" className="option">Dr. James Adult</li><li data-value="" className="option">Dr. James Alison</li><li data-value="" className="option">Dr. Peter Adlock</li><li data-value="" className="option">Dr. Jelin Alis</li><li data-value="" className="option">Dr. Josh Taylor</li><li data-value="" className="option">Dr. Steven Smith</li></ul></div>	
+                                            </select><div className="nice-select" tabIndex=""><span className="current">Select Doctor</span><ul className="list"><li data-value="" className="option selected">Select Doctor</li><li data-value="" className="option">Dr. James Adult</li><li data-value="" className="option">Dr. James Alison</li><li data-value="" className="option">Dr. Peter Adlock</li><li data-value="" className="option">Dr. Jelin Alis</li><li data-value="" className="option">Dr. Josh Taylor</li><li data-value="" className="option">Dr. Steven Smith</li></ul></div>	
                                         </div>
                                     </div>
 
