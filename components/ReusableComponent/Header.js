@@ -108,7 +108,7 @@ const Header = () => {
                                     </li>
                                    
                                     <li className="nav-item">
-                                        <Link href="https://ezheal.ai/contact1">
+                                        <Link href="/contact">
                                           <a  className="nav-link">Contact</a>
                                         </Link>
                                     </li>
@@ -117,19 +117,19 @@ const Header = () => {
                                         <Link href="#"><a className="nav-link"> Dashboard </a></Link>
                                         <ul className="dropdown-menu">
                                           <li className="nav-item">
-                                              <Link href="https://ezheal.ai/doclogin">
+                                              <Link href="doctor-login">
                                                   
                                                <a className="nav-link"> Doctor Panel</a>
                                               </Link>
                                           </li>
                     
                                           <li className="nav-item">
-                                              <Link href="https://ezheal.ai/dialogin">
+                                              <Link href="diagnostic-login">
                                               <a className="nav-link">Diagnoistic Panel</a> 
                                               </Link>
                                           </li>
                                           <li className="nav-item">
-                                            <Link href="#">
+                                            <Link href="pharma-login">
                                              <a className="nav-link">Pharma Panel</a> 
                                             </Link>
                                           </li>
@@ -139,11 +139,11 @@ const Header = () => {
                                 </ul>
 
                                     <div className="others-options">
-                                    <Link href="https://ezheal.ai/appointment1">
+                                    <Link href="/">
                                         <a className="default-btn-two st">Clinician Appointment <span></span></a>
                                         
                                     </Link>
-                                     <Link href="#">
+                                     <Link href="/">
                                        <a  className="default-btn-two st ms-1">Diagnostic Booking   <span></span></a> 
                                       
                                     </Link>
