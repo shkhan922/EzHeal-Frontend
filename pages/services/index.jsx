@@ -1,17 +1,17 @@
 import React from 'react'
 import Header from '~/components/ReusableComponent/Header'
-import MainBanner from '~/components/ServicesComponent/MainBanner'
 import ServicesSection from '~/components/ServicesComponent/ServicesSection'
 import StepThree from '~/components/ServicesComponent/StepThree'
 import Appointment from '~/components/AboutComponent/Appointment';
 import ConsultArea from '~/components/AboutComponent/ConsultArea';
 import Footer from '~/components/ReusableComponent/Footer';
+import Hero from '~/components/ReusableComponent/Hero'
 
 const index = () => {
   return (
     <>
         <Header/>
-        <MainBanner/>
+        <Hero bg='item-bg-6' title='Services'/>
         <ServicesSection/>
         <StepThree/>
         <Appointment/>

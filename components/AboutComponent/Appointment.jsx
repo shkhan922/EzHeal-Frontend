@@ -1,5 +1,6 @@
 import React from 'react';
 import CountUp from 'react-countup';
+import VisibilitySensor from 'react-visibility-sensor';
 
 const Appointment = () => {
     return (
@@ -17,11 +18,18 @@ const Appointment = () => {
                                                     <span className="odometer-digit">
                                                         <CountUp
                                                             start={0}
-                                                            end={2700}
+                                                            end={2.700}
+                                                            decimal=","
+                                                            decimals={3}
                                                             duration={3}
-                                                        />
+                                                        >{({ countUpRef, start }) => (
+                                                            <VisibilitySensor onChange={start} delayedCall>
+                                                                <span ref={countUpRef} />
+                                                            </VisibilitySensor>
+                                                        )}
+                                                        </CountUp>
                                                     </span>
-                                                   
+
                                                 </div>
                                             </span>
                                             <span className="sign-icon ms-2">+</span>
@@ -34,13 +42,20 @@ const Appointment = () => {
                                     <div className="single-fun-fact">
                                         <h3>
                                             <span className="odometer odometer-auto-theme" data-count="2.7"><div className="odometer-inside"><span className="odometer-digit">
-                                            <CountUp
-                                                            start={0}
-                                                            end={2.5}
-                                                            decimal={2}
-                                                            duration={3}
-                                                        />
-                                                </span></div></span>
+                                                <CountUp
+                                                    start={0}
+                                                    end={2.7}
+                                                    decimals={2}
+                                                    duration={3}
+
+                                                >
+                                                    {({ countUpRef, start }) => (
+                                                        <VisibilitySensor onChange={start} delayedCall>
+                                                            <span ref={countUpRef} />
+                                                        </VisibilitySensor>
+                                                    )}
+                                                </CountUp>
+                                            </span></div></span>
                                             <span className="sign-icon ms-2">K</span>
                                         </h3>
                                         <p>Virtual Care Solutions</p>
@@ -51,12 +66,20 @@ const Appointment = () => {
                                     <div className="single-fun-fact">
                                         <h3>
                                             <span className="odometer odometer-auto-theme" data-count="99.60"><div className="odometer-inside"><span className="odometer-digit">
-                                            <CountUp
-                                                            start={0}
-                                                            end={2700}
-                                                            duration={3}
-                                                        />
-                                                </span></div></span>
+                                                <CountUp
+                                                    start={0}
+                                                    end={99.6}
+                                                    decimals={1}
+                                                    duration={3}
+
+                                                >
+                                                    {({ countUpRef, start }) => (
+                                                        <VisibilitySensor onChange={start} delayedCall>
+                                                            <span ref={countUpRef} />
+                                                        </VisibilitySensor>
+                                                    )}
+                                                </CountUp>
+                                            </span></div></span>
                                             <span className="sign-icon ms-2">%</span>
                                         </h3>
                                         <p>Connections Success Rate</p>
@@ -67,12 +90,19 @@ const Appointment = () => {
                                     <div className="single-fun-fact">
                                         <h3>
                                             <span className="odometer odometer-auto-theme" data-count="30"><div className="odometer-inside"><span className="odometer-digit">
-                                            <CountUp
-                                                            start={0}
-                                                            end={2700}
-                                                            duration={3}
-                                                        />
-                                                </span></div></span>
+                                                <CountUp
+                                                    start={0}
+                                                    end={30}
+                                                    duration={3}
+
+                                                >
+                                                    {({ countUpRef, start }) => (
+                                                        <VisibilitySensor onChange={start} delayedCall>
+                                                            <span ref={countUpRef} />
+                                                        </VisibilitySensor>
+                                                    )}
+                                                </CountUp>
+                                            </span></div></span>
                                             <span className="sign-icon ms-2">+</span>
                                         </h3>
                                         <p>Award Winning</p>

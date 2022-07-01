@@ -50,12 +50,12 @@ const Header = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="https://ezheal.ai/signin">
-                                       <a className="log-in"> Sign In</a>
+                                    <Link href="signIn">
+                                       <a className="log-in" style={{color:'white'}}>Sign In</a>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="https://ezheal.ai/signup">
+                                    <Link href="/signUp">
                                        <a className="sign-in">Sign Up</a> 
                                     </Link>
                                 </li>
@@ -139,11 +139,11 @@ const Header = () => {
                                 </ul>
 
                                     <div className="others-options">
-                                    <Link href="/">
+                                    <Link href="/signIn">
                                         <a className="default-btn-two st">Clinician Appointment <span></span></a>
                                         
                                     </Link>
-                                     <Link href="/">
+                                     <Link href="/signIn">
                                        <a  className="default-btn-two st ms-1">Diagnostic Booking   <span></span></a> 
                                       
                                     </Link>

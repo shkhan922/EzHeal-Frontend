@@ -320,6 +320,13 @@ h6:last-child {
     }
 }
 
+/* .header-area{
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  box-shadow: 0px -2px 6px 1px;
+} */
+
 .top-header {
     background-color: #224e77;
     padding-top: 10px;
@@ -2478,8 +2485,9 @@ h6:last-child {
 
 .doctor-item .image .img {
     transition: .5s;
-    border: 8px solid #fff !important;
-    border-bottom: none !important;
+    border: 8px solid white !important;
+    border-radius: 10px;
+    /* border-bottom: white !important; */
 }
 
 .doctor-item .content {
@@ -2556,9 +2564,8 @@ h6:last-child {
 
 .doctor-item:hover .image img {
     transition: .5s !important;
-    height: 100%;
     border: 8px solid #d3ecfe !important;
-    border-bottom: none !important;
+    /* border-bottom: black !important; */
     border-radius: 10px;
 }
 
