@@ -17,20 +17,20 @@ const SignInForm = () => {
 
                                     <div className="form-group">
                                         <label>Username or Email</label>
-                                        <input type="text" id="login-username" autofocus="" className="form-control" name="email" placeholder="email" value="" required="" />
+                                        <input type="text" id="login-username" autoFocus="" className="form-control" name="email" placeholder="email" value="" required="" />
                                     </div>
                                 </div>
                             </div>
                             <div className="col-lg-12">
                                 <div className="form-group">
                                     <label>Password</label>
-                                    <input type="password" name="password" autofocus="" className="form-control" placeholder="Password" value="" required="" />
+                                    <input type="password" name="password" autoFocus="" className="form-control" placeholder="Password" value="" required="" />
                                 </div>
                             </div>
                             <div className="col-lg-12">
                                 <div className="form-check">
                                     <input type="checkbox" className="form-check-input" id="checkme" />
-                                    <label className="form-check-label" for="checkme">Keep me Log In</label>
+                                    <label className="form-check-label" htmlFor="checkme">Keep me Log In</label>
                                 </div>
                             </div>
 
