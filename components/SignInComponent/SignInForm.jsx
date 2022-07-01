@@ -44,7 +44,7 @@ const SignInForm = () => {
                                     <button type="submit" name="login" value="Login" className="default-btn">                                        Log In Now
                                     </button>
                                     <br />
-                                    <span>Don't have account? <Link href='/signUp'>Signup!</Link></span>
+                                    <span>Don't have an account? <Link href='/signUp'>Signup!</Link></span>
                                 </div>
                             </div>
                         </form>
