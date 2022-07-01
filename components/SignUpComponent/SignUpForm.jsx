@@ -8,7 +8,7 @@ const SignUpForm = () => {
                 <div className="container">
                     <div className="signup-form">
                         <h3>Create your Account</h3>
-                        <form className="login-form" enctype="multipart/form-data" method="post" action="">
+                        <form className="login-form" encType="multipart/form-data" method="post" action="">
                             <div className="row">
                                 <div className="col-lg-12">
                                     <div className="form-group">
