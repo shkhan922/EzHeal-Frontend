@@ -833,63 +833,9 @@ h6:last-child {
 }
 
 @media only screen and (max-width: 991px) {
-    .main-responsive-nav {
-        display: block
-    }
+    
 
-    .main-responsive-nav .main-responsive-menu {
-        position: relative
-    }
-
-    .main-responsive-nav .main-responsive-menu.mean-container .mean-nav ul {
-        font-size: 15px
-    }
-
-    .main-responsive-nav .main-responsive-menu.mean-container .mean-nav ul li a.active {
-        color: #224e77
-    }
-
-    .main-responsive-nav .main-responsive-menu.mean-container .mean-nav ul li a i {
-        display: none
-    }
-
-    .main-responsive-nav .main-responsive-menu.mean-container .mean-nav ul li li a {
-        font-size: 14px
-    }
-
-    .main-responsive-nav .main-responsive-menu.mean-container .navbar-nav {
-        overflow-y: scroll;
-        height: 336px;
-        box-shadow: 0 7px 13px 0 rgba(0, 0, 0, .1)
-    }
-
-    .main-responsive-nav .mean-container a.meanmenu-reveal {
-        color: #0f123b
-    }
-
-    .main-responsive-nav .mean-container a.meanmenu-reveal span {
-        background: #0f123b
-    }
-
-    .main-responsive-nav .mean-container .others-options {
-        display: none
-    }
-
-    .main-responsive-nav .logo {
-        position: relative;
-        width: 50%;
-        z-index: 999
-    }
-
-    .navbar-area {
-        background-color: #fff;
-        padding-top: 15px;
-        padding-bottom: 15px
-    }
-
-    .main-navbar {
-        display: none
-    }
+    
 }
 
 .main-banner {
