@@ -464,7 +464,7 @@
         }
     }
     .page-title-area {
-        height: 230px;
+        height: 230px !important;
     }
     .page-title-content {
         margin-top: 0;
@@ -792,8 +792,13 @@
     }
 }
 
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-
+@media only screen and (max-width: 991px) {
+    .top-header {
+        .top-social {
+            text-align: center !important;
+            margin-top: 16px;
+        }
+    }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -811,11 +816,9 @@
         padding-bottom: 80px;
     }
     .top-header {
-        .top-list {
-            text-align: center;
-        }
+        
         .top-social {
-            text-align: center;
+            text-align: center !important;
             margin-top: 16px;
         }
     }

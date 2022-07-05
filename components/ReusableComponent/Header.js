@@ -16,9 +16,32 @@ import {
     DropdownItem
 } from 'reactstrap';
 
+//   stickyElem = document.querySelector(".sticky-div");
+     
+//     /* Gets the amount of height
+//     of the element from the
+//     viewport and adds the
+//     pageYOffset to get the height
+//     relative to the page */
+//     currStickyPos = stickyElem.getBoundingClientRect().top + window.pageYOffset;
+//     window.onscroll = function() {
+         
+//         /* Check if the current Y offset
+//         is greater than the position of
+//         the element */
+//         if(window.pageYOffset > currStickyPos) {
+//             stickyElem.style.position = "fixed";
+//             stickyElem.style.top = "0px";
+//         } else {
+//             stickyElem.style.position = "relative";
+//             stickyElem.style.top = "initial";
+//         }
+//     }
+
 const Header = () => {
 
     const [isOpen, setIsOpen] = React.useState(false);
+
 
     return (
         <>
@@ -80,11 +103,14 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
+                <div className=" sticky-top">
+
+               
                 <div className="main-navbar">
                     <Navbar color="light" light expand="md" className="navbar">
-                        <NavbarBrand href="/"><Link href="/">
+                        <Link href="/" className="p-0">
                             <Image src={Logo} className="white-logo" alt="image" width={200} height={80} />
-                        </Link></NavbarBrand>
+                        </Link>
                         <NavbarToggler onClick={() => { setIsOpen(!isOpen) }} />
                         <Collapse isOpen={isOpen} navbar>
                             <Nav className="mr-auto" navbar>
@@ -117,18 +143,17 @@ const Header = () => {
                                     <DropdownMenu right>
                                         <DropdownItem>
                                             <Link href="/">
-                                                <a className="nav-link">Docter Panel</a>
+                                                <a className="nav-link p-0">Docter Panel</a>
                                             </Link>
                                         </DropdownItem>
                                         <DropdownItem>
                                             <Link href="/">
-                                                <a className="nav-link">Diognoistic Panel</a>
+                                                <a className="nav-link p-0">Diognoistic Panel</a>
                                             </Link>
                                         </DropdownItem>
-                                        <DropdownItem/>
                                         <DropdownItem>
                                             <Link href="/">
-                                                <a className="nav-link">Pharma Panel</a>
+                                                <a className="nav-link p-0">Pharma Panel</a>
                                             </Link>
                                         </DropdownItem>
                                     </DropdownMenu>
@@ -145,7 +170,7 @@ const Header = () => {
                         </Collapse>
                     </Navbar>
                 </div>
-
+                </div>
 
 
 

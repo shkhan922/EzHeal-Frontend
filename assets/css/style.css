@@ -181,11 +181,6 @@ h6:last-child {
     opacity: 1;
     margin-left: 14px;
     font-weight: 400;
-    font-size: 15px;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 14px;
-    padding-bottom: 14px
 }
 
 .default-btn-two span {
@@ -516,8 +511,8 @@ h6:last-child {
     text-transform: capitalize;
     padding-left: 0;
     padding-right: 0;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    /* padding-top: 25px;
+    padding-bottom: 25px; */
     font-weight: 500;
     margin-left: 14px;
     margin-right: 14px
@@ -542,9 +537,9 @@ h6:last-child {
     margin-right: 0
 }
 
-.main-navbar .navbar .navbar-nav .nav-item:first-child a {
+/* .main-navbar .navbar .navbar-nav .nav-item:first-child a {
     margin-left: 0
-}
+} */
 
 .main-navbar .navbar .navbar-nav .nav-item:hover a,
 .main-navbar .navbar .navbar-nav .nav-item.active a {
@@ -590,26 +585,31 @@ h6:last-child {
     font-weight: 400
 }
 
-.main-navbar .navbar .navbar-nav .nav-item .dropdown-menu li a:hover,
-.main-navbar .navbar .navbar-nav .nav-item .dropdown-menu li a:focus,
-.main-navbar .navbar .navbar-nav .nav-item .dropdown-menu li a.active {
+.main-navbar .navbar .navbar-nav .nav-item .dropdown-menu .dropdown-item:hover{
+    background: none;
+}
+
+.main-navbar .navbar .navbar-nav .nav-item .dropdown-menu .dropdown-item a:hover,
+.main-navbar .navbar .navbar-nav .nav-item .dropdown-menu .dropdown-item a:focus,
+.main-navbar .navbar .navbar-nav .nav-item .dropdown-menu .dropdown-item a.active {
     color: #224e77;
+    background: none;
     letter-spacing: 1px
 }
 
-.main-navbar .navbar .navbar-nav .nav-item .dropdown-menu li a:hover::before,
-.main-navbar .navbar .navbar-nav .nav-item .dropdown-menu li a:focus::before,
-.main-navbar .navbar .navbar-nav .nav-item .dropdown-menu li a.active::before {
+.main-navbar .navbar .navbar-nav .nav-item .dropdown-menu .dropdown-item a:hover::before,
+.main-navbar .navbar .navbar-nav .nav-item .dropdown-menu .dropdown-item a:focus::before,
+.main-navbar .navbar .navbar-nav .nav-item .dropdown-menu .dropdown-item a.active::before {
     display: none
 }
 
-.main-navbar .navbar .navbar-nav .nav-item .dropdown-menu li a i {
+.main-navbar .navbar .navbar-nav .nav-item .dropdown-menu .dropdown-item a i {
     position: absolute;
     right: 16px;
     top: 12px
 }
 
-.main-navbar .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu {
+.main-navbar .navbar .navbar-nav .nav-item .dropdown-menu .dropdown-item .dropdown-menu {
     left: -255px;
     top: 0;
     opacity: 0;
@@ -778,9 +778,9 @@ h6:last-child {
     margin-top: 0
 }
 
-.main-navbar .navbar .others-options {
+/* .main-navbar .navbar .others-options {
     margin-left: 50px
-}
+} */
 
 .main-navbar .navbar .others-options .default-btn {
     border-radius: 10px;
@@ -829,7 +829,7 @@ h6:last-child {
 }
 
 .navbar-two .main-navbar .navbar .others-options .default-btn-two {
-    padding: 16px 30px
+    padding: 9px !important;
 }
 
 @media only screen and (max-width: 991px) {
@@ -7938,6 +7938,6 @@ ul.ulright li {
 
 /*header btn*/
 a.default-btn-two.st {
-    padding: 12px !important;
+    padding: 9px 12px !important;
     font-size: 12px !important;
 }
