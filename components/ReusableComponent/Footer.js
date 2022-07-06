@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
+import Link from 'next/link'
 import FooterShape from '../../public/static/img/footer-shape.png'
 
 function Footer() {
@@ -55,22 +56,22 @@ function Footer() {
 
               <ul className="footer-quick-links">
                 <li>
-                  <a href="https://ezheal.ai/welcome">Home</a>
+                  <Link href="/">Home</Link>
                 </li>
                 <li>
-                  <a href="https://ezheal.ai/about1">About</a>
+                  <Link href="/about">About</Link>
                 </li>
                 <li>
-                  <a href="https://ezheal.ai/service1">Services</a>
+                  <Link href="services">Services</Link>
                 </li>
                 <li>
-                  <a href="https://ezheal.ai/contact1">Contact</a>
+                  <Link href="contact">Contact</Link>
                 </li>
                 <li>
-                  <a href="https://ezheal.ai/policy1">Privacy Policy</a>
+                  <Link href="privacypolicy">Privacy Policy</Link>
                 </li>
                 <li>
-                  <a href="https://ezheal.ai/termscondition1">Terms and Condition</a>
+                  <Link href="termsconditions">Terms and Condition</Link>
                 </li>
               </ul>
             </div>
