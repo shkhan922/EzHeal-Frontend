@@ -5,8 +5,8 @@ import videoThumbnail1 from '../../public/static/img/conditions.jpg'
 const Content = () => {
   return (
     <>
-        <section class="conditions-area ptb-100">
-			<div class="container">
+        <section className="conditions-area ptb-100">
+			<div className="container">
 			    
 
                                     
@@ -113,15 +113,15 @@ TO BE BOUND BY ALL OF THE TERMS AND CONDITIONS OF THIS AGREEMENT.</p>
                     
                   
               
-                <div class="privacy-image">
+                <div className="privacy-image">
                     <Image src={videoThumbnail1} alt="image"/>
 
-                    <a href="https://www.youtube.com/watch?v=cOT6DjgER2Y" class="video-btn popup-youtube">
-                        <i class="fas fa-play"></i>
+                    <a href="https://www.youtube.com/watch?v=cOT6DjgER2Y" className="video-btn popup-youtube">
+                        <i className="fas fa-play"></i>
                     </a>
                 </div>
 
-				<div class="single-privacy">
+				<div className="single-privacy">
 					</div>
             </div>
 		</section>
