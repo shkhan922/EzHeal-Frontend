@@ -1,7 +1,7 @@
 
 import '../assets/css/all.min.css'
 import '../assets/css/animate.min.css'
-import '../assets/css/bootstrap.min.css'
+import "../assets/css/bootstrap.min.css"
 import '../assets/css/dark.css'
 //import '../assets/css/dark.css.map'
 import '../assets/css/dark.scss'

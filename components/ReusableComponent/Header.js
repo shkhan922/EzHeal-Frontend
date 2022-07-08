@@ -142,7 +142,7 @@ const Header = () => {
                                     </DropdownToggle>
                                     <DropdownMenu right>
                                         <DropdownItem>
-                                            <Link href="/">
+                                            <Link href="/doctor-login">
                                                 <a className="nav-link p-0">Docter Panel</a>
                                             </Link>
                                         </DropdownItem>
