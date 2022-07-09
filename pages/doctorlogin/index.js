@@ -1,11 +1,41 @@
 import React from 'react';
+import Link from 'next/link'
+import Image from "next/image"
+import Logo from '../../public/static/img/logo-white.png'
+import {
+    Navbar,
+    NavItem,
+    NavbarToggler,
+    Collapse,
+    NavLink,
+    Nav,
+    NavbarBrand,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem
+} from 'reactstrap';
+
+import Footer_copyright from '~/components/ReusableComponent/Footer_copyright';
 
 const index = () => {
     return (
         <>
+        <div className="main-navbar">
+        <Navbar color="light" light expand="md" className="navbar">
+        <Link href="/" className="p-0">
+                            <Image src={Logo} className="white-logo" alt="image" width={200} height={80} />
+                        </Link>
+        </Navbar>
+        </div>
+        <div>
+
+            <h2 style={{color: "#224e77",textAlign:"center"}}> Doctor Login </h2>
+        </div>
             <div className="container d-flex justify-content-center align-items-center">
                 <div className="card w-100 p-5" style={{marginTop:'70px'}}>
                     <div className="row">
+                    
                         <div className="col-md-6">
                             <div className="form">
 
@@ -43,6 +73,7 @@ const index = () => {
                     </div>
                 </div>
             </div>
+            <Footer_copyright/>
         </>
     )
 }

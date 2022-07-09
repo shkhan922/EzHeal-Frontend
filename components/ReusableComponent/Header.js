@@ -142,13 +142,13 @@ const Header = () => {
                                     </DropdownToggle>
                                     <DropdownMenu right>
                                         <DropdownItem>
-                                            <Link href="/doctor-login">
+                                            <Link href="/doctorlogin">
                                                 <a className="nav-link p-0">Docter Panel</a>
                                             </Link>
                                         </DropdownItem>
                                         <DropdownItem>
                                             <Link href="/">
-                                                <a className="nav-link p-0">Diognoistic Panel</a>
+                                                <a className="nav-link p-0">Diagnoistic Panel</a>
                                             </Link>
                                         </DropdownItem>
                                         <DropdownItem>
