@@ -58,10 +58,10 @@ const index = () => {
 
 
                                             </div>
-                                            <a href="https://ezheal.ai/diaregister" className="login" style={{color:'#f50057'}}>Register</a>
+                                            <a href="/docregister" className="login" style={{color:'#f50057'}}>Register</a>
                                         </div>
 
-                                        <div className="form-check mt-2"> <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked="" /> <label className="form-check-label" for="flexCheckChecked"> I agree to the terms and conditions of <a href="" className="login" style={{color:'#f50057'}}>Privacy &amp; Policy</a> </label> </div>
+                                        <div className="form-check mt-2"> <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked="" /> <label className="form-check-label" for="flexCheckChecked"> I agree to the terms and conditions of <a href="/privacypolicy" className="login" style={{color:'#f50057'}}>Privacy &amp; Policy</a> </label> </div>
                                     </div></form>
                             </div>
 
