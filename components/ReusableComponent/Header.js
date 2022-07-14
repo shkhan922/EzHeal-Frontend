@@ -147,12 +147,12 @@ const Header = () => {
                                             </Link>
                                         </DropdownItem>
                                         <DropdownItem>
-                                            <Link href="/">
+                                            <Link href="/diologin">
                                                 <a className="nav-link p-0">Diagnoistic Panel</a>
                                             </Link>
                                         </DropdownItem>
                                         <DropdownItem>
-                                            <Link href="/">
+                                            <Link href="/pharmalogin">
                                                 <a className="nav-link p-0">Pharma Panel</a>
                                             </Link>
                                         </DropdownItem>
