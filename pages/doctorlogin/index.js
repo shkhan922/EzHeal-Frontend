@@ -26,10 +26,10 @@ const index = () => {
 
                                     <div className="inputbox mt-3">
                                         <span>Email</span>
-                                        <input type="text" id="login-username" autofocus="" className="form-control" name="email" placeholder="email" value="" required="" style={{ height: '50px', backgroundColor: '#eee !important', outline: '#f50057' }} />
+                                         <input type="text" id="login-username" autofocus="" className="form-control" name="email" placeholder="email" value="" required="" />
                                         <div className="inputbox mt-3">
                                             <span>Password</span>
-                                            <input type="password" name="password" autofocus="" className="form-control" placeholder="Password" value="" required="" style={{ height: '50px', backgroundColor: '#eee !important', outline: '#f50057' }}/>
+                                            <input type="password" name="password" autofocus="" className="form-control" placeholder="Password" value="" required=""/>
 
 
                                         </div>
