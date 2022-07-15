@@ -26,7 +26,7 @@ const index = () => {
                                     <div class="inputbox mt-3">
                                         <span>Doctor Type</span>
                                         <UncontrolledDropdown className='w-100'>
-                                            <DropdownToggle>
+                                             <DropdownToggle className=' form-control'>
                                               {doctorType}  <input value={doctorType} className='d-none'/>
                                             </DropdownToggle>
                                             <DropdownMenu>
@@ -40,7 +40,7 @@ const index = () => {
                                         <span>Category</span>
                                         <br />
                                         <UncontrolledDropdown className='w-100'>
-                                            <DropdownToggle>
+                                            <DropdownToggle className=' form-control'>
                                               {category}  <input value={category} className='d-none'/>
                                             </DropdownToggle>
                                             <DropdownMenu>
@@ -53,23 +53,23 @@ const index = () => {
                                     </div>
                                     <div class="inputbox mt-3">
                                         <span> Name</span>
-                                        <input type="text" class="form-control" placeholder="Username" name="clinician_name" value="" required="" />
+                                        <input type="text" class="form-control " placeholder="Username" name="clinician_name" value="" required="" />
                                     </div>
                                     <div class="inputbox mt-3">
                                         <span>Email</span>
-                                        <input type="text" class="form-control" placeholder="email" name="email_id" value="" required="" />
+                                        <input type="text" class="form-control " placeholder="email" name="email_id" value="" required="" />
                                     </div>
                                     <div class="inputbox mt-3">
                                         <span>Password</span>
-                                        <input type="text" class="form-control" placeholder="password" name="password" value="" required="" />
+                                        <input type="text" class="form-control " placeholder="password" name="password" value="" required="" />
                                     </div>
-                                    <div class="inputbox mt-3">
+                                    <div class="inputbox mt-3 mb-3">
                                         <span>Phone</span>
-                                        <input type="text" class="form-control" placeholder="phone" name="phone" value="" required="" />
+                                        <input type="text" class="form-control " placeholder="phone" name="phone" value="" required="" />
                                     </div>
-                                    <div class="form-check mt-2"> <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked="" /> <label class="form-check-label" for="flexCheckChecked"> I agree to the terms and conditions of <a href="" class="login">Privacy &amp; Policy</a> </label> </div>
+                                    <div class="form-check mt-2 mb-1"> <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked="" /> <label class="form-check-label" for="flexCheckChecked"> I agree to the terms and conditions of <a href="" class="login text-pink">Privacy &amp; Policy</a> </label> </div>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <button class="btn btn-success register btn-block" type="submit" name="submit">Register</button>
+                                        <button class="btn bg-pink text-white register btn-block" type="submit" name="submit" style={{width:'200px',height:'50px'}}>Register</button>
                                     </div>
                                 </form>
                             </div>
