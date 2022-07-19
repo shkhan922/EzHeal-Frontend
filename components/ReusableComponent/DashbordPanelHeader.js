@@ -7,9 +7,9 @@ import { Navbar } from 'reactstrap';
 export const DashbordPanelHeader = () => {
   return (
     <Navbar color="light" light expand="md" className="navbar">
-    <Link href="/" className="p-0">
+      <a>
+    <Link href="/" className="p-0" >
                         <Image src={Logo} className="white-logo" alt="image" width={200} height={80} />
-                    </Link>
-    </Navbar>
-  )
+                    </Link></a> 
+    </Navbar> )
 }

@@ -67,7 +67,7 @@ const index = () => {
                                         <span>Phone</span>
                                         <input type="text" class="form-control " placeholder="phone" name="phone" value="" required="" />
                                     </div>
-                                    <div class="form-check mt-2 mb-1"> <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked="" /> <label class="form-check-label" for="flexCheckChecked"> I agree to the terms and conditions of <a href="" class="login text-pink">Privacy &amp; Policy</a> </label> </div>
+                                    <div class="form-check mt-2 mb-1 ps-0"> <input type="checkbox" value="" id="flexCheckChecked" /> <label class="form-check-label" for="flexCheckChecked"> I agree to the terms and conditions of <a href="" class="login text-pink">Privacy &amp; Policy</a> </label> </div>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <button class="btn bg-pink text-white register btn-block" type="submit" name="submit" style={{width:'200px',height:'50px'}}>Register</button>
                                     </div>

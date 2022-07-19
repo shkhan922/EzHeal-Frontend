@@ -20,14 +20,20 @@ import '../assets/css/style.css'
 // import '../assets/css/style.css.map'
 // import '../assets/css/style.scss'
 
-
+import Image from 'next/image'
 // javascript 
 
 
 
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} suppressHydrationWarning/>
+
+  return <><Component {...pageProps} suppressHydrationWarning/>
+  {/* <div class="dark-version">
+
+  <a href="https://web.whatsapp.com/"><Image src="./public/static/img/whatsapp.png" alt="whatsapp" class="round" layout='fill'/></a>
+</div> */}
+</>
 }
 
 export default MyApp
