@@ -7962,12 +7962,15 @@ a.default-btn-two.st {
     height: 50px !important;
 }
 .form-control:focus{
-    border: 1px solid #f50057;
+    border: 1px solid #224e77;
     box-shadow: none;
 }
 .text-pink{
- color:#f50057;
+ color:#224e77;
 }
 .bg-pink{
-    background-color: #f50057;
+    background-color: #224e77;
+}
+input[type='email']{
+    background-color: black !important;
 }

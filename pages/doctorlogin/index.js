@@ -35,17 +35,17 @@ const index = () => {
                                         </div>
                                         <div className="d-flex justify-content-between align-items-center">
                                             <div className="text-right">
-                                                <button type="submit" name="login" value="Login" className="btn register btn-block mt-3" style={{backgroundColor:'#f50057',borderColor:'#f50057', color:'white',height:'51px' ,width:'200px'}}>Login
+                                                <button type="submit" name="login" value="Login" className="btn register btn-block mt-3" style={{backgroundColor:'#224e77',borderColor:'#224e77', color:'white',height:'51px' ,width:'200px'}}>Login
                                                 </button>
 
 
                                             </div>
                                            <Link href="/doctorregister"> 
-                                             <a className="login" style={{color:'#f50057'}}>Register</a>
+                                             <a className="login" style={{color:'#224e77'}}>Register</a>
                                            </Link>
                                         </div>
 
-                                        <div className="form-check mt-2"> <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked="" /> <label className="form-check-label" for="flexCheckChecked"> I agree to the terms and conditions of <a href="/privacypolicy" className="login" style={{color:'#f50057'}}>Privacy &amp; Policy</a> </label> </div>
+                                        <div className="form-check mt-2 ps-0"> <input type="checkbox" value="" id="flexCheckChecked" /> <label className="form-check-label" for="flexCheckChecked"> I agree to the terms and conditions of <a href="/privacypolicy" className="login" style={{color:'#224e77'}}>Privacy &amp; Policy</a> </label> </div>
                                     </div></form>
                             </div>
 
