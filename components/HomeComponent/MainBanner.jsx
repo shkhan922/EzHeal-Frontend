@@ -1,28 +1,62 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import baseUrl from '../../lib/api'
+import Image from 'next/image'
+import index from '~/pages/about'
+
+
+
+
+
 
 const MainBanner = () => {
+   
+  const[titles, setTitles]= useState([])
+  
+
+  const fetchPromotionBanners = async () => {
+    const response = await fetch(`http://20.121.3.131:1337/api/home-banners?populate=deep`)
+    const data = await response.json()
+    const response1 = data
+    console.log(response1)
+    
+    console.log(response1.data[0])
+    setTitles(response1.data)
+  }
+
+  useEffect(() => {
+  
+    fetchPromotionBanners()
+  }, [])
+
+  titles.map(title => console.log(title.attributes.bg_banner.data[0].attributes.formats.large.url))
+  
+  
   return (
     <>
-         <div className="main-banner bg-two">
+    {titles.map(title => <div style={{
+    backgroundImage: `url(${`http://20.121.3.131:1337`+title.attributes.bg_banner.data[0].attributes.formats.large.url})`,
+    position: 'relative',
+    zIndex:'1',
+    backgroundPosition:'center center',
+    backgroundSize:'cover',
+    backgroundRepeat:'no-repeat',
+    backgroundAttachment:'fixed',
+    
+  }}>
+    
+     
       <div className="d-table">
         <div className="d-table-cell">
           <div className="container">
             <div className="row align-items-center">
               <div className="col-lg-7">
                 <div className="main-banner-content">
-                                       
                 
-              <h1>Faster, Accurate Convenient, Safe</h1>
-                  <p style={{backgroundColor:'#00beff'}}></p><p>EZheal&nbsp;provides Easy, Safe, Convenient, Accurate and Novel treatment and scanning solutions. We focus on back pain, knee pain, physical trauma, neuro diseases which requires faster response for treatment and continuum care at home. We connect Physicians, Imaging centers, Physiotherapy and Dieticians on a single platform.&nbsp; We pioneered fast scanning in MRI for your convenience, AI analysis for scans and treatment</p>
-
-<p>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;</p>
-                  <p></p>
-            
-              
-               
-                  
-                </div>
-
+                 
+                 <h1>{title.attributes.home_title}</h1>
+                 <p>{title.attributes.Description}</p>            
+               </div>
+    
                 <div className="banner-form">
                   <form>
                     <div className="row align-items-center">
@@ -81,8 +115,25 @@ const MainBanner = () => {
         </div>
       </div>
     </div>
+)}
     </>
   )
 }
 
+
 export default MainBanner
+
+// export async function getStaticProps() {
+//   // Call an external API endpoint to get posts.
+//   // You can use any data fetching library
+//   const res = await fetch('https://pokeapi.co/api/v2/pokemon/');
+//   const posts = await res.json();
+//   console.log(posts);
+//   // By returning { props: { posts } }, the Blog component
+//   // will receive `posts` as a prop at build time
+//   return {
+//     props: {
+//       posts,
+//     },
+//   }
+// }

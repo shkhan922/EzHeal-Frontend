@@ -876,7 +876,6 @@ h6:last-child {
 .main-banner.bg-two {
     position: relative;
     z-index: 1;
-    background-image: url(../../public/static/img/banner-bg2.jpg);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -934,7 +933,10 @@ h6:last-child {
 }
 
 .main-banner-content {
-    margin-top: 50px
+    margin-top: 50px;
+    max-width: 650px;
+    background: #0f123b94;
+    padding: 30px;
 }
 
 .main-banner-content h1 {

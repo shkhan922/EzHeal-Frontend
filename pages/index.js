@@ -14,7 +14,7 @@ import Header from '../components/ReusableComponent/Header'
 export default function Home() {
   return (
     <>
-     <Header/>
+     <Header />
      <MainBanner/>
      <PartnerSection/>
      <AboutSection/>
