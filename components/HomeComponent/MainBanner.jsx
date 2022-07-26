@@ -14,7 +14,7 @@ const MainBanner = () => {
   
 
   const fetchPromotionBanners = async () => {
-    const response = await fetch(`http://20.121.3.131:1337/api/home-banners?populate=deep`)
+    const response = await fetch(`https://ezheal.in/api/home-banners?populate=deep`)
     const data = await response.json()
     const response1 = data
     console.log(response1)
@@ -34,7 +34,7 @@ const MainBanner = () => {
   return (
     <>
     {titles.map(title => <div style={{
-    backgroundImage: `url(${`http://20.121.3.131:1337`+title.attributes.bg_banner.data[0].attributes.formats.large.url})`,
+    backgroundImage: `url(${`https://ezheal.in`+title.attributes.bg_banner.data[0].attributes.formats.large.url})`,
     position: 'relative',
     zIndex:'1',
     backgroundPosition:'center center',

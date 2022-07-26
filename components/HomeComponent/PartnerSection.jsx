@@ -14,7 +14,7 @@ const PartnerSection = () => {
   
 
   const fetchPromotionServices = async () => {
-    const response = await fetch(`http://20.121.3.131:1337/api/consult-sections?populate=deep`)
+    const response = await fetch(`https://ezheal.in/api/consult-sections?populate=deep`)
     const data = await response.json()
     const response1 = data.data
     console.log(response1)
