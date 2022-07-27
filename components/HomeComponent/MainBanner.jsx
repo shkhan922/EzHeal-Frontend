@@ -1,40 +1,38 @@
 import React, { useEffect, useState } from 'react'
-import baseUrl from '../../lib/api'
+
 import Image from 'next/image'
 import index from '~/pages/about'
+import { baseUrl,baseUrlImage } from '../../lib/api'
 
 
 
 
 
 
-const MainBanner = () => {
+const MainBanner = (props) => {
    
-  const[titles, setTitles]= useState([])
+  // const[titles, setTitles]= useState([])
   
 
-  const fetchPromotionBanners = async () => {
-    const response = await fetch(`https://ezheal.in/api/home-banners?populate=deep`)
-    const data = await response.json()
-    const response1 = data
-    console.log(response1)
-    
-    console.log(response1.data[0])
-    setTitles(response1.data)
-  }
+  // const fetchPromotionBanners = async () => {
+  //   const param = `home-pages?populate=deep`
+  //   const response = await fetch(`${baseUrl}/${param}`)
+  //   const data = await response.json()
+  //   const response1 = data
+  //   setTitles(response1.data)
+  // }
 
-  useEffect(() => {
+  // useEffect(() => {
   
-    fetchPromotionBanners()
-  }, [])
+  //   fetchPromotionBanners()
+  // }, [])
 
-  titles.map(title => console.log(title.attributes.bg_banner.data[0].attributes.formats.large.url))
   
   
   return (
     <>
-    {titles.map(title => <div style={{
-    backgroundImage: `url(${`https://ezheal.in`+title.attributes.bg_banner.data[0].attributes.formats.large.url})`,
+    <div style={{
+    backgroundImage: `url(${props.imgurl})`,
     position: 'relative',
     zIndex:'1',
     backgroundPosition:'center center',
@@ -53,8 +51,8 @@ const MainBanner = () => {
                 <div className="main-banner-content">
                 
                  
-                 <h1>{title.attributes.home_title}</h1>
-                 <p>{title.attributes.Description}</p>            
+                 <h1>{props.bannerh1}</h1>
+                 <p>{props.bannerpara}</p>            
                </div>
     
                 <div className="banner-form">
@@ -115,25 +113,10 @@ const MainBanner = () => {
         </div>
       </div>
     </div>
-)}
+
     </>
   )
 }
 
 
 export default MainBanner
-
-// export async function getStaticProps() {
-//   // Call an external API endpoint to get posts.
-//   // You can use any data fetching library
-//   const res = await fetch('https://pokeapi.co/api/v2/pokemon/');
-//   const posts = await res.json();
-//   console.log(posts);
-//   // By returning { props: { posts } }, the Blog component
-//   // will receive `posts` as a prop at build time
-//   return {
-//     props: {
-//       posts,
-//     },
-//   }
-// }

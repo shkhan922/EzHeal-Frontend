@@ -6,32 +6,33 @@ import Kneepain from '../../public/static/img/partner/Kneepain.png'
 import MusclePain from '../../public/static/img/partner/MusclePain.png'
 import NeckPain from '../../public/static/img/partner/NeckPain.png'
 import TendonPain from '../../public/static/img/partner/TendonPain.png'
+import { baseUrl,baseUrlImage } from '../../lib/api'
 
 
-const PartnerSection = () => {
+const PartnerSection = (props) => {
 
-  const[titles, setTitles]= useState([])
+  // const[titles, setTitles]= useState([])
   
 
-  const fetchPromotionServices = async () => {
-    const response = await fetch(`https://ezheal.in/api/consult-sections?populate=deep`)
-    const data = await response.json()
-    const response1 = data.data
-    console.log(response1)
+  // const fetchPromotionServices = async () => {
+  //   const param = `home-pages?populate=deep`
+  //   const response = await fetch(`${baseUrl}/${param}`)
+  //   const data = await response.json()
+  //   const response1 = data.data
     
-    setTitles(response1)
-    // const Backpain = 'http://localhost1337'+response1.attributes.image_item.image.data[0].attributes.format.small.url
-  }
+  //   setTitles(response1)
+  //   // const Backpain = 'http://localhost1337'+response1.attributes.image_item.image.data[0].attributes.format.small.url
+  // }
 
-  useEffect(() => {
+  // useEffect(() => {
   
-    fetchPromotionServices()
-  }, [])
+  //   fetchPromotionServices()
+  // }, [])
 
 
   return (
     <>
-    {titles.map(title =>
+    {/* {titles.map(title => */}
 
     
     <section className="partner-area pt-100 pb-70">
@@ -39,9 +40,9 @@ const PartnerSection = () => {
       <div className="container">
         <div className="section-title">
           
-          <h2>{title.attributes.heading}</h2>
+          <h2>{props.consulth1}</h2>
           <p>
-          {title.attributes.sub_heading}
+          {props.consult_subh2}
           </p>
         </div>
         <div className="row">
@@ -50,7 +51,7 @@ const PartnerSection = () => {
               <a href="#">
                 <Image src={Backpain} alt="image" width= {125}  height= {100}/>
                 <p className="matx mt-2" style={{fontSize: '13px', fontWeight: '600', textAlign: 'center'}}>
-                  Joint Pain
+                Joint Pain
                 </p>
                 <h5 style={{fontSize: '15px', textAlign: "center"}}>CONSULT NOW</h5>
               </a>
@@ -117,7 +118,7 @@ const PartnerSection = () => {
         </div>
       </div>
     </section>
-    )}
+    {/* )} */}
     </>
     
   )
