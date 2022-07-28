@@ -26,7 +26,7 @@ export default function Home({posts}) {
     <>
     
      <Header />
-     <MainBanner bannerh1={bannerh1} imgurl={imgurl} bannerpara={bannerpara} />
+     <MainBanner bannerh1={bannerh1} imgurl={imgurl} bannerpara={bannerpara}/>
      <PartnerSection consulth1={consulth1} consult_subh2={consult_subh2}/>
      <AboutSection aboutimg={aboutimg} abouth1={abouth1} aboutdescp={aboutdescp}/>
      <ServicesSection/>

@@ -10,9 +10,7 @@ const Index = () => {
        <div className="main-navbar">
        <DashbordPanelHeader/>
         </div>
-        <div>
-
-            <h2 className='mt-5' style={{color: "#224e77",textAlign:"center"}}> Diognostic Login </h2>
+        <div><h2 className='mt-5' style={{color: "#224e77",textAlign:"center"}}> Diagnostic Login </h2>
         </div>
             <div className="container d-flex justify-content-center align-items-center">
                 <div className="card w-100 my-5 p-5">
@@ -40,9 +38,7 @@ const Index = () => {
 
 
                                             </div>
-                                           <Link href="/dioregister"> 
-                                             <a className="login" style={{color:'#224e77'}}>Register</a>
-                                           </Link>
+                                           <Link href="/dioregister"><a className="login" style={{color:'#224e77'}}>Register</a></Link>
                                         </div>
 
                                         <div className="form-check mt-2 ps-0"> <input type="checkbox" value="" id="flexCheckChecked"/> <label className="form-check-label" htmlFor="flexCheckChecked"> I agree to the terms and conditions of <Link href="/privacypolicy"> <a className="login" style={{color:'#224e77'}}>Privacy &amp; Policy</a></Link></label> </div>
@@ -59,7 +55,7 @@ const Index = () => {
             </div>
             <Footer_copyright/>
     </>
-    )
+)
 }
 
 export default Index
