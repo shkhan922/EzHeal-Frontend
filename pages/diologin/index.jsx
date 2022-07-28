@@ -34,14 +34,11 @@ const Index = () => {
                                         <div className="d-flex justify-content-between align-items-center">
                                             <div className="text-right">
                                                 <button type="submit" name="login" value="Login" className="btn register btn-block mt-3" style={{backgroundColor:'#224e77',borderColor:'#224e77', color:'white',height:'51px' ,width:'200px'}}>Login
-                                                </button>
-
-
-                                            </div>
+                                                </button></div>
                                            <Link href="/dioregister"><a className="login" style={{color:'#224e77'}}>Register</a></Link>
                                         </div>
 
-                                        <div className="form-check mt-2 ps-0"> <input type="checkbox" value="" id="flexCheckChecked"/> <label className="form-check-label" htmlFor="flexCheckChecked"> I agree to the terms and conditions of <Link href="/privacypolicy"> <a className="login" style={{color:'#224e77'}}>Privacy &amp; Policy</a></Link></label> </div>
+                                        <div className="form-check mt-2 ps-0"> <input type="checkbox" value="" id="flexCheckChecked"/> <label className="form-check-label" htmlFor="flexCheckChecked"> I agree to the terms and conditions of <Link href="/privacypolicy"><a className="login" style={{color:'#224e77'}}>Privacy &amp; Policy</a></Link></label> </div>
                                     </div></form>
                             </div>
 
