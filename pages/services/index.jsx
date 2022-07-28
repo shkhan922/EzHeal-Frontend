@@ -7,7 +7,7 @@ import ConsultArea from '~/components/AboutComponent/ConsultArea';
 import Footer from '~/components/ReusableComponent/Footer';
 import Hero from '~/components/ReusableComponent/Hero'
 
-const index = () => {
+const Index = () => {
   return (
     <>
         <Header/>
@@ -21,4 +21,4 @@ const index = () => {
   ) 
 }
 
-export default index
+export default Index

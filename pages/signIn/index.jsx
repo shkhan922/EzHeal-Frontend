@@ -4,7 +4,7 @@ import Header from '~/components/ReusableComponent/Header'
 import Hero from '~/components/ReusableComponent/Hero'
 import SignInForm from '~/components/SignInComponent/SignInForm'
 
-const index = () => {
+const Index = () => {
   return (
     <>
         <Header/>
@@ -15,4 +15,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Index

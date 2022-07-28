@@ -4,7 +4,7 @@ import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from
 import Footer_copyright from '~/components/ReusableComponent/Footer_copyright';
 import { DashbordPanelHeader } from '~/components/ReusableComponent/DashbordPanelHeader';
 
-const index = () => {
+const Index = () => {
     
     const [doctorType, setDoctorType] = useState('select')
     const [category, setCategory] = useState('select')
@@ -22,8 +22,8 @@ const index = () => {
                         <div className="col-md-6">
                             <div className="form">
                                 <h2>Register</h2>
-                                <form class="signup-form" enctype="multipart/form-data" method="post" action="">
-                                    <div class="inputbox mt-3">
+                                <form className="signup-form" enctype="multipart/form-data" method="post" action="">
+                                    <div className="inputbox mt-3">
                                         <span>Doctor Type</span>
                                         <UncontrolledDropdown className='w-100'>
                                              <DropdownToggle className=' form-control'>
@@ -36,7 +36,7 @@ const index = () => {
                                             </DropdownMenu>
                                         </UncontrolledDropdown>
                                     </div>
-                                    <div class="inputbox mt-3">
+                                    <div className="inputbox mt-3">
                                         <span>Category</span>
                                         <br />
                                         <UncontrolledDropdown className='w-100'>
@@ -51,25 +51,25 @@ const index = () => {
                                             </DropdownMenu>
                                         </UncontrolledDropdown>
                                     </div>
-                                    <div class="inputbox mt-3">
+                                    <div className="inputbox mt-3">
                                         <span> Name</span>
-                                        <input type="text" class="form-control " placeholder="Username" name="clinician_name" value="" required="" />
+                                        <input type="text" className="form-control " placeholder="Username" name="clinician_name" value="" required="" />
                                     </div>
-                                    <div class="inputbox mt-3">
+                                    <div className="inputbox mt-3">
                                         <span>Email</span>
                                         <input type="text" class="form-control " placeholder="email" name="email_id" value="" required="" />
                                     </div>
-                                    <div class="inputbox mt-3">
+                                    <div className="inputbox mt-3">
                                         <span>Password</span>
-                                        <input type="text" class="form-control " placeholder="password" name="password" value="" required="" />
+                                        <input type="text" className="form-control " placeholder="password" name="password" value="" required="" />
                                     </div>
-                                    <div class="inputbox mt-3 mb-3">
+                                    <div className="inputbox mt-3 mb-3">
                                         <span>Phone</span>
-                                        <input type="text" class="form-control " placeholder="phone" name="phone" value="" required="" />
+                                        <input type="text" className="form-control " placeholder="phone" name="phone" value="" required="" />
                                     </div>
-                                    <div class="form-check mt-2 mb-1 ps-0"> <input type="checkbox" value="" id="flexCheckChecked" /> <label class="form-check-label" for="flexCheckChecked"> I agree to the terms and conditions of <a href="" class="login text-pink">Privacy &amp; Policy</a> </label> </div>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <button class="btn bg-pink text-white register btn-block" type="submit" name="submit" style={{width:'200px',height:'50px'}}>Register</button>
+                                    <div className="form-check mt-2 mb-1 ps-0"> <input type="checkbox" value="" id="flexCheckChecked" /> <label className="form-check-label" htmlFor="flexCheckChecked"> I agree to the terms and conditions of <a href="" className="login text-pink">Privacy &amp; Policy</a> </label> </div>
+                                    <div className="d-flex justify-content-between align-items-center">
+                                        <button className="btn bg-pink text-white register btn-block" type="submit" name="submit" style={{width:'200px',height:'50px'}}>Register</button>
                                     </div>
                                 </form>
                             </div>
@@ -85,4 +85,4 @@ const index = () => {
     )
 }
 
-export default index
+export default Index

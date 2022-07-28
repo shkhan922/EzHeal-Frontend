@@ -26,10 +26,10 @@ const index = () => {
 
                                     <div className="inputbox mt-3">
                                         <span>Email</span>
-                                         <input type="text" id="login-username" autofocus="" className="form-control" name="email" placeholder="email" value="" required="" />
+                                         <input type="text" id="login-username" autoFocus="" className="form-control" name="email" placeholder="email" value="" required="" />
                                         <div className="inputbox mt-3">
                                             <span>Password</span>
-                                            <input type="password" name="password" autofocus="" className="form-control" placeholder="Password" value="" required=""/>
+                                            <input type="password" name="password" autoFocus="" className="form-control" placeholder="Password" value="" required=""/>
 
 
                                         </div>
@@ -45,7 +45,7 @@ const index = () => {
                                            </Link>
                                         </div>
 
-                                        <div className="form-check mt-2 ps-0"> <input type="checkbox" value="" id="flexCheckChecked"/> <label className="form-check-label" for="flexCheckChecked"> I agree to the terms and conditions of <a href="/privacypolicy" className="login" style={{color:'#224e77'}}>Privacy &amp; Policy</a> </label> </div>
+                                        <div className="form-check mt-2 ps-0"> <input type="checkbox" value="" id="flexCheckChecked"/> <label className="form-check-label" htmlFor="flexCheckChecked"> I agree to the terms and conditions of <Link href="/privacypolicy"> <a className="login" style={{color:'#224e77'}}>Privacy &amp; Policy</a></Link></label> </div>
                                     </div></form>
                             </div>
 
