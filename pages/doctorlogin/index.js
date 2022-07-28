@@ -26,10 +26,10 @@ const Index = () => {
 
                                     <div className="inputbox mt-3">
                                         <span>Email</span>
-                                         <input type="text" id="login-username" autoFocus="" className="form-control" name="email" placeholder="email" value="" required="" />
+                                         <input type="text" id="login-username"  className="form-control" name="email" placeholder="email" value="" required="" />
                                         <div className="inputbox mt-3">
                                             <span>Password</span>
-                                            <input type="password" name="password" autoFocus="" className="form-control" placeholder="Password" value="" required=""/>
+                                            <input type="password" name="password" className="form-control" placeholder="Password" value="" required=""/>
 
 
                                         </div>
