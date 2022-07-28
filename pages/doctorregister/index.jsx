@@ -22,7 +22,7 @@ const Index = () => {
                         <div className="col-md-6">
                             <div className="form">
                                 <h2>Register</h2>
-                                <form className="signup-form" enctype="multipart/form-data" method="post" action="">
+                                <form className="signup-form" encType="multipart/form-data" method="post" action="">
                                     <div className="inputbox mt-3">
                                         <span>Doctor Type</span>
                                         <UncontrolledDropdown className='w-100'>
@@ -57,7 +57,7 @@ const Index = () => {
                                     </div>
                                     <div className="inputbox mt-3">
                                         <span>Email</span>
-                                        <input type="text" class="form-control " placeholder="email" name="email_id" value="" required="" />
+                                        <input type="text" className="form-control " placeholder="email" name="email_id" value="" required="" />
                                     </div>
                                     <div className="inputbox mt-3">
                                         <span>Password</span>
