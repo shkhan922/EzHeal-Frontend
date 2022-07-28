@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import Footer_copyright from '~/components/ReusableComponent/Footer_copyright';
 import { DashbordPanelHeader } from '~/components/ReusableComponent/DashbordPanelHeader';
+import Link from 'next/link'
 
 const Index = () => {
 
@@ -22,7 +23,7 @@ const Index = () => {
                         <div className="col-md-6">
                             <div className="form">
                                 <h2>Register</h2>
-                                <form className="signup-form" enctype="multipart/form-data" method="post" action="">
+                                <form className="signup-form" encType="multipart/form-data" method="post" action="">
                                     <div className="inputbox mt-3">
                                         <span>Center Name</span>
                                         <input type="text" className="form-control " placeholder="Username" name="clinician_name" value="" required="" />
@@ -57,7 +58,7 @@ const Index = () => {
                                         <span>Category</span>
                                         <br />
                                         <UncontrolledDropdown className='w-100'>
-                                            <DropdownToggle className=' form-control'>
+                                            <DropdownToggle className='form-control'>
                                                 {category}  <input value={category} className='d-none' />
                                             </DropdownToggle>
                                             <DropdownMenu>
@@ -78,7 +79,7 @@ const Index = () => {
                                         <label htmlFor="formFileLg" className="form-label">Large file input example</label>
                                         <input className="form-control form-control-lg" id="formFileLg" type="file" />
                                     </div>
-                                    <div className="form-check mt-2 mb-1 ps-0"> <input type="checkbox" value="" id="flexCheckChecked" /> <label className="form-check-label" for="flexCheckChecked"> I agree to the terms and conditions of <Link href=""><a className="login text-pink">Privacy &amp; Policy</a></Link> </label> </div>
+                                    <div className="form-check mt-2 mb-1 ps-0"> <input type="checkbox" value="" id="flexCheckChecked" /> <label className="form-check-label" htmlFor="flexCheckChecked"> I agree to the terms and conditions of <Link href=""><a className="login text-pink">Privacy &amp; Policy</a></Link> </label> </div>
                                     <div className="d-flex justify-content-between align-items-center">
                                         <button className="btn bg-pink text-white register btn-block" type="submit" name="submit" style={{ width: '200px', height: '50px' }}>Register</button>
                                     </div>
