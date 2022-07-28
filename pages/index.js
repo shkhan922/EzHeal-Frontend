@@ -41,7 +41,7 @@ export default function Home({posts}) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     // Call an external API endpoint to get posts.
     // You can use any data fetching library
     const param = `home-pages?populate=deep`
