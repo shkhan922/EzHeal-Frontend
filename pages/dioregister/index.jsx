@@ -4,7 +4,7 @@ import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from
 import Footer_copyright from '~/components/ReusableComponent/Footer_copyright';
 import { DashbordPanelHeader } from '~/components/ReusableComponent/DashbordPanelHeader';
 
-const index = () => {
+const Index = () => {
 
     const [city, setCity] = useState('select')
     const [category, setCategory] = useState('select')
@@ -96,4 +96,4 @@ const index = () => {
     )
 }
 
-export default index
+export default Index

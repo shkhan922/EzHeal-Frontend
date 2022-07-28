@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Footer_copyright from '~/components/ReusableComponent/Footer_copyright';
 import { DashbordPanelHeader } from '~/components/ReusableComponent/DashbordPanelHeader';
 
-const index = () => {
+const Index = () => {
     return (
         <>
         <div className="main-navbar">
@@ -62,4 +62,4 @@ const index = () => {
     )
 }
 
-export default index
+export default Index
