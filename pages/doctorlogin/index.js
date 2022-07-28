@@ -6,7 +6,7 @@ import { DashbordPanelHeader } from '~/components/ReusableComponent/DashbordPane
 
 const Index = () => {
     return (
-        <>
+   <div>
         <div className="main-navbar">
        <DashbordPanelHeader/>
         </div>
@@ -45,7 +45,7 @@ const Index = () => {
                                            </Link>
                                         </div>
 
-                                        <div className="form-check mt-2 ps-0"> <input type="checkbox" value="" id="flexCheckChecked" /> <label className="form-check-label" htmlFor="flexCheckChecked"> I agree to the terms and conditions of <Link href="/privacypolicy"> <a className="login" style={{color:'#224e77'}}>Privacy &amp; Policy</a></Link></label> </div>
+                                        <div className="form-check mt-2 ps-0"> <input type="checkbox" value="" id="flexCheckChecked" /> <label className="form-check-label" htmlFor="flexCheckChecked"> I agree to the terms and conditions of <Link href="/privacypolicy"><a className="login" style={{color:'#224e77'}}>Privacy &amp; Policy</a></Link></label> </div>
                                     </div></form>
                             </div>
 
@@ -58,7 +58,7 @@ const Index = () => {
                 </div>
             </div>
             <Footer_copyright/>
-        </>
+    </div>
     )
 }
 

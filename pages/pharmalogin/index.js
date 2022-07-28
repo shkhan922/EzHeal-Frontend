@@ -6,7 +6,7 @@ import { DashbordPanelHeader } from '~/components/ReusableComponent/DashbordPane
 
 const Index = () => {
     return (
-        <>
+    <>
         <div className="main-navbar">
        <DashbordPanelHeader/>
         </div>
@@ -58,7 +58,7 @@ const Index = () => {
                 </div>
             </div>
             <Footer_copyright/>
-        </>
+    </>
     )
 }
 
