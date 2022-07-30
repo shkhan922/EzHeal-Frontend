@@ -48,7 +48,7 @@ const PartnerSection = (props) => {
         
         <div className="row">
         {((props.ConsultImages || []).map((data, index) => 
-          <div className="col-lg-2 col-md-2 col-sm-3">
+          <div key={data.id} className="col-lg-2 col-md-2 col-sm-3">
           
             <div className="partner-item" style={{textAlign: "center"}}>
               <a href="#">

@@ -18,7 +18,7 @@ const ServicesSection = (props) => {
             {
               ((props.servicecard || []).map((data, index) => {
                 return (
-                  <div className="col-lg-4 col-md-6">
+                  <div key={data.id} className="col-lg-4 col-md-6">
                     <div className="services-item-two">
                       <div className="icon">
                         <i className={`flaticon-${data.card_icon}`}></i>
