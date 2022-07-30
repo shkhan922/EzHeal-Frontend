@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-import Backpain from '../../public/static/img/partner/BackPain.png'
+//import Backpain from '../../public/static/img/partner/BackPain.png'
 import jointpain from '../../public/static/img/partner/jointpain.png'
 import Kneepain from '../../public/static/img/partner/Kneepain.png'
 import MusclePain from '../../public/static/img/partner/MusclePain.png'
@@ -45,19 +45,23 @@ const PartnerSection = (props) => {
           {props.consult_subh2}
           </p>
         </div>
+        
         <div className="row">
+        {((props.ConsultImages || []).map((data, index) => 
           <div className="col-lg-2 col-md-2 col-sm-3">
+          
             <div className="partner-item" style={{textAlign: "center"}}>
               <a href="#">
-                <Image src={Backpain} alt="image" width= {125}  height= {100}/>
-                <p className="matx mt-2" style={{fontSize: '13px', fontWeight: '600', textAlign: 'center'}}>
-                Joint Pain
-                </p>
+                <Image src={`${baseUrlImage}${data.image.data[0].attributes.url}`} alt="image" width= {125}  height= {100}/>
+                <p className="matx mt-2" style={{fontSize: '13px', fontWeight: '600', textAlign: 'center'}}>{data.name}</p>
                 <h5 style={{fontSize: '15px', textAlign: "center"}}>CONSULT NOW</h5>
               </a>
             </div>
           </div>
-          <div className="col-lg-2 col-md-2 col-sm-3 ">
+          ))
+        }
+      {/*
+           <div className="col-lg-2 col-md-2 col-sm-3 ">
             <div className="partner-item" style={{textAlign: "center"}}>
               <a href="#">
                  <Image src={jointpain} alt="image"  width= {125} height={100} />
@@ -65,10 +69,11 @@ const PartnerSection = (props) => {
                 Knee Pain
               </p>
               <h5 style={{fontSize: '15px' ,textAlign: "center"}}>CONSULT NOW</h5>
-            </a>
+           </a>
               
-            </div>
-          </div>
+           </div>
+           </div>
+          
           <div className="col-lg-2 col-md-2 col-sm-3">
             <div className="partner-item" style={{textAlign: "center"}}>
               <a href="#">
@@ -114,7 +119,7 @@ const PartnerSection = (props) => {
             </a>
               
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

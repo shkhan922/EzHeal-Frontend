@@ -1,6 +1,6 @@
 module.exports = {
   images: {
-    domains: ['ezheal.in'],
+    domains: ['ezheal.in','localhost'],
   },
 };
 

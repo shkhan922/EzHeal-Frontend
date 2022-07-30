@@ -1,36 +1,41 @@
 import React from 'react';
 import Link from 'next/link';
 
-const ServicesSection = () => {
+const ServicesSection = (props) => {
   return (
     <>
-        <section className="services-section bg-f4f6fe pt-100 pb-70">
-      <div className="container">
-        <div className="section-title">
-          <span>Our Services</span>
-          <h2>Our Healthcare Services</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-            ipsum suspendisse
-          </p>
-        </div>
-
-        <div className="row">
-          <div className="col-lg-4 col-md-6">
-            <div className="services-item-two">
-              <div className="icon">
-                <i className="flaticon-bacteria"></i>
-              </div>
-              <Link href="single-services.html">
-                <h3>Instant Video Consultation</h3>
-              </Link>
-              <p>Connect within 60 secs</p>
-              <Link href="#"><a className="read-btn">Read More +</a></Link>
-            </div>
+      <section className="services-section bg-f4f6fe pt-100 pb-70">
+        <div className="container">
+          <div className="section-title">
+            <span>Our Services</span>
+            <h2>{props.serviceh1}</h2>
+            <p>
+              {props.servicepara}
+            </p>
           </div>
+          {/* {props.servicecard.map (card =>)} */}
+          <div className="row">
+            {
+              ((props.servicecard || []).map((data, index) => {
+                return (
+                  <div className="col-lg-4 col-md-6">
+                    <div className="services-item-two">
+                      <div className="icon">
+                        <i className={`flaticon-${data.card_icon}`}></i>
+                      </div>
+                      <Link href="single-services.html">
+                        <h3>{data.cardh1}</h3>
+                      </Link>
+                      <p>{data.cardpara}</p>
+                      <Link href="#"><a className="read-btn">Read More +</a></Link>
+                    </div>
+                  </div>
+                )
+              }))
+            }
 
-          <div className="col-lg-4 col-md-6">
+
+            {/* <div className="col-lg-4 col-md-6">
             <div className="services-item-two">
               <div className="icon">
                 <i className="flaticon-shield"></i>
@@ -93,10 +98,10 @@ const ServicesSection = () => {
               <p>Get it treated by Link trained physiotherapist</p>
               <Link href="#"><a className="read-btn">Read More +</a></Link>
             </div>
+          </div> */}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
     </>
   )
 }

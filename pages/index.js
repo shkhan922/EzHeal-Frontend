@@ -18,18 +18,24 @@ export default function Home({posts}) {
   const bannerpara= posts[0].attributes.bannerdescrip;
   const consulth1= posts[0].attributes.ConsultH1;
   const consult_subh2=posts[0].attributes.Consult_Subh2;
+  const ConsultImages =posts[0].attributes.ConsultImages
   const aboutimg = baseUrlImage+posts[0].attributes.Aboutimg.data[0].attributes.formats.small.url;
   const abouth1 = posts[0].attributes.AboutH1;
   const aboutdescp = posts[0].attributes.Aboutdescp;
+  const serviceh1 =posts[0].attributes.serviceh1
+  const servicepara = posts[0].attributes.servicepara
+  const servicecard = posts[0].attributes.ServiceCard
+  console.log(`${baseUrlImage}${ConsultImages[0].image.data[0].attributes.formats.small.url}`)
+  
   return (
     
     <>
     
      <Header />
-     <MainBanner bannerh1={bannerh1} imgurl={imgurl} bannerpara={bannerpara}/>
-     <PartnerSection consulth1={consulth1} consult_subh2={consult_subh2}/>
+     <MainBanner bannerh1={bannerh1} imgurl={imgurl} bannerpara={bannerpara} />
+     <PartnerSection consulth1={consulth1} consult_subh2={consult_subh2} ConsultImages={ConsultImages}/>
      <AboutSection aboutimg={aboutimg} abouth1={abouth1} aboutdescp={aboutdescp}/>
-     <ServicesSection/>
+     <ServicesSection serviceh1={serviceh1} servicepara={servicepara} servicecard={servicecard} />
      <DoctorArea/>
      <ShopSection/>
      <TestimonialSection/>
