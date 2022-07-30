@@ -5,7 +5,7 @@ import P1 from '../../public/static/img/products/p1.png';
 import P2 from '../../public/static/img/products/p2.png';
 import P3 from '../../public/static/img/products/p3.png'
 
-const ShopSection = () => {
+const ShopSection = (props) => {
     return (
         <>
             <section className="shop-area pb-70">
@@ -13,11 +13,9 @@ const ShopSection = () => {
                     <div className="section-title">
                         <div className="section-title">
                             <span>Our Shop</span>
-                            <h2>Trending Products</h2>
+                            <h2>{props.ShopH1}</h2>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-                                ipsum suspendisse
+                            {props.ShopPara}
                             </p>
                         </div>
                     </div>

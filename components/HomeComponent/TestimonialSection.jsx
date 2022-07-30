@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import React from 'react'
-import TestimonialImg from '../../public/static/img/testimonials.jpg';
+
 
 import TestimonialSwiper from './TestimonialSwiper';
 
-const TestimonialSection = () => {
+const TestimonialSection = (props) => {
     return (
         <>
             <section className="testimonials-area ptb-100">
@@ -13,7 +13,7 @@ const TestimonialSection = () => {
                         <div className="col-lg-6">
                             <div className="testimonials-image">
                                 <div className="image">
-                                    <Image src={TestimonialImg} alt="image" />
+                                    <Image src={props.Testimon_img} alt="image" width={1000} height={800}/>
                                 </div>
                             </div>
                         </div>

@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import React from 'react';
-import MobileImg from '../../public/static/img/mobile.png';
+
 import PlayStoreImg from "../../public/static/img/play-store.png"
 
-const DownloadAppSection = () => {
+const DownloadAppSection = (props) => {
     return (
         <>
             <section className="testimonials-area pb-100">
@@ -12,7 +12,7 @@ const DownloadAppSection = () => {
                         <div className="col-lg-6">
                             <div className="testimonials-image">
                                 <div className="image">
-                                    <Image src={MobileImg} alt="image" />
+                                    <Image src={props.DownloadImg} alt="image" height={1200} width={1600}/>
                                 </div>
                             </div>
                         </div>

@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Carousel } from 'react-bootstrap';
 
 
-const TestimonialSection = () => {
+const TestimonialSection = (props) => {
     return (
 
         <>
