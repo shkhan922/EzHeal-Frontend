@@ -32,9 +32,9 @@ const TestimonialSection = (props) => {
                     {
               ((props.TMsliderCard || []).map((data, index) => 
                 
-                        <Carousel.Item>
+                        <Carousel.Item key={data.id}>
                
-                            <div key={data.id} className="owl-item" style={{}}><div className="testimonials-item">
+                            <div  className="owl-item" style={{}}><div className="testimonials-item">
                                 <div className="content">
                                     <span>Testimonials</span>
                                     <h3>{data.slideH1}</h3>

@@ -7,11 +7,11 @@ import PartnerArea from '~/components/AboutComponent/PartnerArea';
 import ConsultArea from '~/components/AboutComponent/ConsultArea';
 import Footer from '~/components/ReusableComponent/Footer';
 import Hero from '~/components/ReusableComponent/Hero';
-
+import { baseUrl, baseUrlImage } from '~/lib/api'
 
 function Index({posts}) {
 
-  
+
   return (
     <>
      <Header/>
