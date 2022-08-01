@@ -21,7 +21,7 @@ const DownloadAppSection = (props) => {
                             <div className="testimonials-slider owl-carousel owl-theme owl-loaded owl-drag">
                                 <div className="testimonials-item">
                                     <div className="content">
-                                        <h3>Download the EZscan app</h3>
+                                        <h3>{props.DownloadH1}</h3>
 
                                         <p>
                                             Access video consultation with India’s top doctors on the

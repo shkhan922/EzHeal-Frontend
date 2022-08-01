@@ -61,7 +61,7 @@ const Header = () => {
                                     </li>
                                     <li>
                                         <i className="flaticon-paper-plane"></i>
-                                        <Link href="mailto:contact@ezscan.ai">contact@ezheal.ai</Link>
+                                        <Link href="mailto:contact@ezscan.in">contact@ezheal.in</Link>
                                     </li>
                                 </ul>
                             </div>

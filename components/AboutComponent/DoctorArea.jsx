@@ -41,7 +41,7 @@ const DoctorArea = () => {
                                     </li>
                                     <li>
                                         <a href="#" target="_blank">
-                                            <i className="fab fa-pinterest-p"></i>
+                                            <i className="fab fa-linkedin-in"></i>
                                         </a>
                                     </li>
                                     <li>

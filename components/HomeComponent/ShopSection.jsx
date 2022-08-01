@@ -4,7 +4,7 @@ import React from 'react';
 import P1 from '../../public/static/img/products/p1.png';
 import P2 from '../../public/static/img/products/p2.png';
 import P3 from '../../public/static/img/products/p3.png'
-
+import { baseUrlImage } from '../../lib/api'
 const ShopSection = (props) => {
     return (
         <>
@@ -21,11 +21,14 @@ const ShopSection = (props) => {
                     </div>
 
                     <div className="row">
+                    {
+              ((props.ProductCard || []).map((data, index) =>
                         <div className="col-lg-3 col-md-6">
-                            <div className="single-shop">
-                                <div className="product-image">
+                        
+                        <div key={data.id} className="single-shop">  
+                                <div  className="product-image">
                                     <Link href="#">
-                                        <Image src={P1} height={300} width={300} />
+                                        <Image src={`${baseUrlImage}${data.img.data[0].attributes.formats.small.url}`} height={300} width={300} />
                                     </Link>
                                     <ul className="add-to-cart-btn">
                                         <li>
@@ -46,11 +49,11 @@ const ShopSection = (props) => {
                                     </ul>
                                 </div>
 
-                                <div className="product-content">
+                            <div className="product-content">
                                     <h3>
-                                        <Link href="#">abc</Link>
+                                        <Link href="#">{data.title}</Link>
                                     </h3>
-                                    <h3>200</h3>
+                                    
                                     <div className="bar"></div>
                                     <ul className="rating">
                                         <li>
@@ -69,16 +72,19 @@ const ShopSection = (props) => {
                                             <i className="fas fa-star"></i>
                                         </li>
                                     </ul>
-                                    <b>$140.00</b>
+                                    <b>₹{data.price}</b>
                                     <Link href="https://ezheal.in/cart">
                                         <a className="cart-icon"><i className="fa fa-shopping-cart"></i></a>
                                     </Link>
-                                </div>
-                            </div>
-                        </div>
+                                </div>   
+                            </div> 
+                           
+             
+ </div>
+     ))}     
+             
 
-
-                        <div className="col-lg-3 col-md-6">
+                        {/* <div className="col-lg-3 col-md-6">
                             <div className="single-shop">
                                 <div className="product-image">
                                     <Link href="javascript:void(0)">
@@ -189,10 +195,7 @@ const ShopSection = (props) => {
                                     </Link>
                                 </div>
                             </div>
-                        </div>
-
-
-
+                        </div> */}
                     </div>
                 </div>
             </section>

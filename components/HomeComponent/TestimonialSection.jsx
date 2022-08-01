@@ -5,6 +5,8 @@ import React from 'react'
 import TestimonialSwiper from './TestimonialSwiper';
 
 const TestimonialSection = (props) => {
+
+    console.log(props.TMsliderCard)
     return (
         <>
             <section className="testimonials-area ptb-100">
@@ -19,7 +21,7 @@ const TestimonialSection = (props) => {
                         </div>
 
                         <div className="col-lg-6">
-                           <TestimonialSwiper/>
+                           <TestimonialSwiper TMsliderCard={props.TMsliderCard}/>
                         </div>
                     </div>
                 </div>
