@@ -63,13 +63,13 @@ const Header = () => {
 
     return (
         <>
-        
+                  {
+              ((titles || []).map((data, index) => {return(
             <header  className="header-area">
                 <div className="top-header">
                     <div className="container">
                         <div className="row align-items-center">
-                        {
-              ((titles || []).map((data, index) => {return(
+              
                             <div key={data.id} className="col-lg-6">
                             
                                 <ul className="top-list">
@@ -79,34 +79,34 @@ const Header = () => {
                                     </li>
                                     <li>
                                         <i className="flaticon-phone-call"></i>
-                                        <a href="#">{data.attributes.email}</a>
+                                        <a href="#">{data.attributes.phone}</a>
                                     </li>
                                     <li>
                                         <i className="flaticon-paper-plane"></i>
-                                        <a href="#">{data.attributes.phone}</a>
+                                        <a href="#">{data.attributes.email}</a>
                                     </li>
                                 </ul>
                             </div>
-                           )} ))}
+                           
                             <div className="col-lg-6">
                                 <ul className="top-social">
                                     <li>
-                                        <Link href="https://www.facebook.com/EZscan-105588505185824">
+                                        <Link href={data.attributes.facebook}>
                                             <a className="facebook"><i className="fab fa-facebook-f"></i></a>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="https://twitter.com/Aikenist1" >
+                                        <Link href={data.attributes.Twitter} >
                                             <a className="twitter"><i className="fab fa-twitter"></i></a>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="https://www.youtube.com/channel/UCrOAQPYxgg9ZM8wCc83pfUA">
+                                        <Link href={data.attributes.youtube}>
                                             <a className="pinterest"><i className="fab fa-youtube"></i></a>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="https://www.linkedin.com/company/aikenist/">
+                                        <Link href={data.attributes.linkedin}>
                                             <a className="instagram"> <i className="fab fa-linkedin-in"></i></a>
                                         </Link>
                                     </li>
@@ -197,7 +197,7 @@ const Header = () => {
 
 
             </header>
-            
+            )} ))}
         </>
     )
 }

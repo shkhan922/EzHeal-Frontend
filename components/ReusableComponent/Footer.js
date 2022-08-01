@@ -1,11 +1,33 @@
 import Image from 'next/image';
-import React from 'react';
+import {React, useState, useEffect } from 'react';
 import Link from 'next/link'
 import FooterShape from '../../public/static/img/footer-shape.png'
+import { baseUrl, baseUrlImage } from '~/lib/api'
 
 function Footer() {
+
+  const[titles, setTitles]= useState()
+  
+
+  const fetchFooterData = async () => {
+    const param = `footers`
+    const response = await fetch(`${baseUrl}/${param}`)
+    const data = await response.json()
+    const response1 = data
+    setTitles(response1.data)
+    console.log(response1.data)
+  }
+
+  useEffect(() => {
+  
+    fetchFooterData()
+  }, [])
+
+
   return (
-    <>
+    <div>
+      {
+        ((titles || []).map((data, index) => { return( 
       <section className="footer-area pt-100 pb-70">
       <div className="container-fluid">
         <div className="row">
@@ -13,8 +35,8 @@ function Footer() {
             <div className="single-footer-widget">
                                     
                 
-              <h1>EZheal is from the house of Aikenist</h1>
-                  <p></p><p>EZheal providing connected care system to connect physicians, surgeoans, Imaging Centers, Radiologists, Physiotherapists, Dietician on a single app and platform.</p>
+              <h1>{data.attributes.title}</h1>
+                  <p></p><p>{data.attributes.para}</p>
                   <p></p>
             
               
@@ -24,25 +46,25 @@ function Footer() {
               
               <ul className="footer-social">
                 <li>
-                  <a href="https://www.facebook.com/EZscan-105588505185824">
+                  <a href={data.attributes.FB_link}>
                     <i className="fab fa-facebook-f"></i>
                   </a>
                 </li>
 
                 <li>
-                  <a href="https://twitter.com/Aikenist1">
+                  <a href={data.attributes.Twitter_link}>
                     <i className="fab fa-twitter"></i>
                   </a>
                 </li>
 
                 <li>
-                  <a href="https://www.youtube.com/channel/UCrOAQPYxgg9ZM8wCc83pfUA">
+                  <a href={data.attributes.Youtube_link}>
                     <i className="fab fa-youtube"></i>
                   </a>
                 </li>
 
                 <li>
-                  <a href="https://www.linkedin.com/company/aikenist/">
+                  <a href={data.attributes.Linkedin}>
                     <i className="fab fa-linkedin-in"></i>
                   </a>
                 </li>
@@ -84,20 +106,20 @@ function Footer() {
               <div className="footer-info-contact">
                 <i className="flaticon-call"></i>
                 <h3>Phone</h3>
-                <span><a href="tel:+919560933344"> 9560933344</a></span>
+                <span><a href="tel:+919560933344">{data.attributes.phone}</a></span>
               </div>
 
               <div className="footer-info-contact">
                 <i className="flaticon-email"></i>
                 <h3>Email</h3>
                 <span><a href="mailto:contact@ezscan.ai">
-                    contact@ezscan.ai</a></span>
+                {data.attributes.email}</a></span>
               </div>
 
               <div className="footer-info-contact">
                 <i className="flaticon-clock"></i>
                 <h3>Time</h3>
-                <span> Mon-Sun 8:00 to 20:00</span>
+                <span> {data.attributes.time}</span>
               </div>
             </div>
           </div>
@@ -114,6 +136,7 @@ function Footer() {
         <Image src={FooterShape} alt="image"/>
       </div>
     </section>
+    )} ))}
     <div className="copyright-area">
       <div className="container">
         <p>
@@ -126,7 +149,8 @@ function Footer() {
         </p>
       </div>
     </div>
-    </>
+    
+    </div>
   )
 }
 

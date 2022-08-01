@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import About2 from '../../public/static/img/about-2.png'
+
 
 const AboutSection = (props) => {
   return (
