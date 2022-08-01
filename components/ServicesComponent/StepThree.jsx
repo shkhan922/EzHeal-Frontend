@@ -1,8 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
 import stepthreeImg from '../../public/static/img/step-three-image.png'
+import { baseUrlImage } from '~/lib/api'
 
-const StepThree = () => {
+
+const StepThree = (props) => {
   return (
     <>
         <section className="step-three ptb-100">
@@ -10,16 +12,16 @@ const StepThree = () => {
                 <div className="row align-items-center">
                     <div className="col-lg-6">
                         <div className="step-three-image">
-                            <Image src={stepthreeImg} alt="image"/>
+                            <Image src={`${baseUrlImage}${props.stepimg}`} width={1200} height={1000} alt="image"/>
                         </div>
                     </div>
 
                     <div className="col-lg-6">
                         <div className="step-three-content">
                             <span>Step 3</span>
-                            <h3>Pick Up Your Prescription from Your Local Doctor.</h3>
-                            <p>Many healthcare systems around the world together with government agencies and startup companies are building and delivering Telehealth</p>
-                            <b>We can send your prescription directly to your local pharmacy for easy pick-up. Many healthcare systems around the world together with government agencies and startup companies are building and delivering Telehealth</b>
+                            <h3>{props.steph1}</h3>
+                            <p>{props.steppara1}</p>
+                            <b>{props.steppara2}</b>
 
                             <div className="step-btn">
                                 <a href="#" className="default-btn">

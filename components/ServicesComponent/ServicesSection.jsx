@@ -1,31 +1,36 @@
 import React from 'react';
 
-const ServicesSection = () => {
+const ServicesSection = (props) => {
   return (
     <>
         <section className="services-section bg-f4f6fe pt-100 pb-100">
             <div className="container">
                 <div className="section-title">
                     <span>Our Services</span>
-                    <h2>Our Healthcare Services</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse</p>
+                    <h2>{props.ServiceH1}</h2>
+                    <p>{props.servicepara}</p>
                 </div>
 
                 <div className="row">
-                    <div className="col-lg-4 col-md-6">
+                {
+              ((props.ServiceCard || []).map((data, index) => {
+                return (
+                    <div key={data.id} className="col-lg-4 col-md-6">
                         <div className="services-item-two">
                             <div className="icon">
-                                <i className="flaticon-bacteria"></i>
+                                <i className={`flaticon-${data.card_icon}`}></i>
                             </div>
                             <a href="single-services.html">
-                                <h3>COVID-19 Consulting</h3>
+                                <h3>{data.cardh1}</h3>
                             </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore</p>
+                            <p>{data.cardpara}</p>
                             <a href="single-services.html" className="read-btn">Read More +</a>
                         </div>
                     </div>
-
-                    <div className="col-lg-4 col-md-6">
+)
+}))
+}
+                    {/* <div className="col-lg-4 col-md-6">
                         <div className="services-item-two">
                             <div className="icon">
                                 <i className="flaticon-shield"></i>
@@ -103,7 +108,7 @@ const ServicesSection = () => {
                                 <i className="fa fa-chevron-right"></i>
                             </a>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </section>

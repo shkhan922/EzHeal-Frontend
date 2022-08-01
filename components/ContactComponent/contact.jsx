@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Contact = () => {
+const Contact = (props) => {
   return (
     <>
         <section className="contact-area ptb-100">
@@ -13,8 +13,8 @@ const Contact = () => {
                             </div>
 
                             <h3>Email Here</h3>
-                            <p><a href="mailto:contact@ezscan.in">contact@ezscan.in</a></p>
-                            <p><a href="mailto:info@ezscan.com">info@ezscan.com</a></p>
+                            <p><a href="mailto:contact@ezscan.in">{props.email1}</a></p>
+                            <p><a href="mailto:info@ezscan.com">{props.email2}</a></p>
                         </div>
                     </div>
 
@@ -25,7 +25,7 @@ const Contact = () => {
                             </div>
 
                             <h3>Location Here</h3>
-                            <p>2750 Quadra Street Victoria, <br/> New York, Canada</p>
+                            <p>{props.address}</p>
                         </div>
                     </div>
 
@@ -36,16 +36,16 @@ const Contact = () => {
                             </div>
 
                             <h3>Call Here</h3>
-                            <p><a href="tel:+919560933344">+919560933344</a></p>
-                            <p><a href="tel:+919560933344">+919560933344</a></p>
+                            <p><a href="tel:+919560933344">{props.Phone1}</a></p>
+                            <p><a href="tel:+919560933344">{props.Phone2}</a></p>
                         </div>
                     </div>
                 </div>
                 
                 <div className="section-title">
                     <span>Contact Us</span>
-                    <h2>Drop us Message for any Query</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <h2>{props.contactH1}</h2>
+                    <p>{props.contactpara}</p>
                 </div>
                 
                 <div className="contact-form">

@@ -1,11 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import Image1 from '../../public/static/img/doctors/image1.jpg'
-import Image2 from '../../public/static/img/doctors/image2.jpg'
-import Image3 from '../../public/static/img/doctors/image3.jpg'
-import Image4 from '../../public/static/img/doctors/image4.jpg'
-
-const DoctorArea = () => {
+import { baseUrlImage } from '~/lib/api'
+const DoctorArea = (props) => {
   return (
     <>
         <section className="doctor-area pt-100 pb-70">
@@ -13,20 +9,23 @@ const DoctorArea = () => {
                 <div className="section-title">
                     <div className="section-title">
                         <span>Our Doctors</span>
-                        <h2>Specialized Doctors</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse</p>
+                        <h2>{props.DoctorH1}</h2>
+                        <p>{props.DoctorPara}</p>
                     </div>
                 </div>
 
                 <div className="row">
+                {
+              ((props.DoctorCard || []).map((data, index) => 
                     <div className="col-lg-3 col-md-6">
-                        <div className="doctor-item">
+            
+                        <div key={data.id} className="doctor-item">
                             <div className="image">
-                                <Image className='img' src={Image1} alt="image"/>
+                                <Image className='img' src={`${baseUrlImage}${data.img.data.attributes.url}`} width={400} height={480} alt="image"/>
                             </div>
                             <div className="content">
-                                <h3>Dr. James Adult</h3>
-                                <span>Cardiologist</span>
+                                <h3>{data.DoctorName}</h3>
+                                <span>{data.Doc_type}</span>
 
                                 <ul className="social">
                                     <li>
@@ -52,8 +51,10 @@ const DoctorArea = () => {
                                 </ul>
                             </div>
                         </div>
+              
                     </div>
-
+                    ))}
+{/* 
                     <div className="col-lg-3 col-md-6">
                         <div className="doctor-item">
                             <div className="image">
@@ -157,7 +158,7 @@ const DoctorArea = () => {
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </section>

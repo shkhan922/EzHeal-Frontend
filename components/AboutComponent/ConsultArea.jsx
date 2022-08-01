@@ -1,8 +1,9 @@
 import React from 'react';
 import Image from 'next/image';;
 import consultImg from '../../public/static/img/consult.jpg'
+import { baseUrlImage } from '~/lib/api'
 
-const ConsultArea = () => {
+const ConsultArea = (props) => {
   return (
     <>
     <section className="consult-area ptb-100">
@@ -10,22 +11,24 @@ const ConsultArea = () => {
                 <div className="row align-items-center">
                     <div className="col-lg-7">
                         <div className="consult-image">
-                            <Image src={consultImg} alt="image"/>
+                            <Image src={`${baseUrlImage}${props.consultimg}`} width={1000} height={577} alt="image"/>
                         </div>
                     </div>
 
                     <div className="col-lg-5">
                         <div className="consult-content">
                             <span>Online Consult</span>
-                            <h3>Get 24/7 Care Right From Your Phone</h3>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy</p>
-
+                            <h3>{props.consultH1}</h3>
+                            <p>{props.consultpara}</p>
+                            {
+              ((props.ConsultCard || []).map((data, index) =>
                             <ul className="list">
-                                <li>
-                                    <i className="flaticon-check-1"></i>
-                                    Get unlimited 24/7 Video Chat with a provider at no extra cost
+               
+                                <li key={data.id}>
+                                    <i className={`flaticon-${data.icon_class}`}></i>
+                                    {data.title}
                                 </li>
-                                <li>
+                                {/* <li>
                                     <i className="flaticon-check-1"></i>
                                     Easily book appointments and renew prescriptions
                                 </li>
@@ -41,7 +44,9 @@ const ConsultArea = () => {
                                     <i className="flaticon-check-1"></i>
                                     Message with your provider
                                 </li>
+               */}
                             </ul>
+                            ))}
                         </div>
                     </div>
                 </div>

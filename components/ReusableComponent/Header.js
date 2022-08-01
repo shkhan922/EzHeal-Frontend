@@ -1,4 +1,4 @@
-import React from "react"
+import {React, useState, useEffect} from "react"
 import Link from 'next/link'
 import Image from "next/image"
 import Logo from '../../public/static/img/logo-white.png'
@@ -15,7 +15,7 @@ import {
     DropdownMenu,
     DropdownItem
 } from 'reactstrap';
-
+import { baseUrl, baseUrlImage } from '~/lib/api'
 //   stickyElem = document.querySelector(".sticky-div");
      
 //     /* Gets the amount of height
@@ -40,32 +40,54 @@ import {
 
 const Header = () => {
 
-    const [isOpen, setIsOpen] = React.useState(false);
+    const[titles, setTitles]= useState()
+  
+
+  const fetchPromotionBanners = async () => {
+    const param = `headers`
+    const response = await fetch(`${baseUrl}/${param}`)
+    const data = await response.json()
+    const response1 = data
+    setTitles(response1.data)
+    console.log(response1.data)
+  }
+
+  useEffect(() => {
+  
+    fetchPromotionBanners()
+  }, [])
+
+
+    const [isOpen, setIsOpen] = useState(false);
 
 
     return (
         <>
-            <header className="header-area">
+        
+            <header  className="header-area">
                 <div className="top-header">
                     <div className="container">
                         <div className="row align-items-center">
-                            <div className="col-lg-6">
+                        {
+              ((titles || []).map((data, index) => {return(
+                            <div key={data.id} className="col-lg-6">
+                            
                                 <ul className="top-list">
                                     <li>
                                         <i className="flaticon-clock"></i>
-                                        Mon-Sun 8:00 to 20:00
+                                        {data.attributes.timing}
                                     </li>
                                     <li>
                                         <i className="flaticon-phone-call"></i>
-                                        <Link href="tel:+919560933344">Call Us: 9560933344</Link>
+                                        <a href="#">{data.attributes.email}</a>
                                     </li>
                                     <li>
                                         <i className="flaticon-paper-plane"></i>
-                                        <Link href="mailto:contact@ezscan.in">contact@ezheal.in</Link>
+                                        <a href="#">{data.attributes.phone}</a>
                                     </li>
                                 </ul>
                             </div>
-
+                           )} ))}
                             <div className="col-lg-6">
                                 <ul className="top-social">
                                     <li>
@@ -174,7 +196,8 @@ const Header = () => {
 
 
 
-            </header >
+            </header>
+            
         </>
     )
 }
