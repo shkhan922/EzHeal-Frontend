@@ -22,7 +22,7 @@ const ConsultArea = (props) => {
                             <p>{props.consultpara}</p>
                             {
               ((props.ConsultCard || []).map((data, index) =>
-                            <ul className="list">
+                            <ul key={data.id}className="list">
                
                                 <li key={data.id}>
                                     <i className={`flaticon-${data.icon_class}`}></i>

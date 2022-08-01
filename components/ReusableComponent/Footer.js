@@ -28,7 +28,7 @@ function Footer() {
     <div>
       {
         ((titles || []).map((data, index) => { return( 
-      <section className="footer-area pt-100 pb-70">
+      <section key={data.id} className="footer-area pt-100 pb-70">
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-4 col-sm-6">

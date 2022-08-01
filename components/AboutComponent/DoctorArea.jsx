@@ -17,9 +17,9 @@ const DoctorArea = (props) => {
                 <div className="row">
                 {
               ((props.DoctorCard || []).map((data, index) => 
-                    <div className="col-lg-3 col-md-6">
+                    <div key={data.id} className="col-lg-3 col-md-6">
             
-                        <div key={data.id} className="doctor-item">
+                        <div  className="doctor-item">
                             <div className="image">
                                 <Image className='img' src={`${baseUrlImage}${data.img.data.attributes.url}`} width={400} height={480} alt="image"/>
                             </div>

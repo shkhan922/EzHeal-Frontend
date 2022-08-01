@@ -65,7 +65,7 @@ const Header = () => {
         <>
                   {
               ((titles || []).map((data, index) => {return(
-            <header  className="header-area">
+            <header key={data.id} className="header-area">
                 <div className="top-header">
                     <div className="container">
                         <div className="row align-items-center">
