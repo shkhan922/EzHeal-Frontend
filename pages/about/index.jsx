@@ -9,7 +9,9 @@ import Footer from '~/components/ReusableComponent/Footer';
 import Hero from '~/components/ReusableComponent/Hero';
 
 
-function index() {
+function Index({posts}) {
+
+  
   return (
     <>
      <Header/>
@@ -26,4 +28,22 @@ function index() {
   )
 }
 
-export default index
+export default Index
+
+export async function getServerSideProps() {
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  const param = `about-pages?populate=deep`
+  const res = await fetch(`${baseUrl}/${param}`);
+  const posts = await res.json();
+
+  console.log(posts.data)
+  
+  
+  
+  return {
+    props: {
+      posts: posts.data,
+    },
+  }
+}
