@@ -25,7 +25,7 @@ const ShopSection = (props) => {
                         <div  className="single-shop">  
                                 <div  className="product-image">
                                     <Link href="#">
-                                        <Image src={`${baseUrlImage}${data.img.data[0].attributes.formats.small.url}`} height={300} width={300} />
+                                        <Image src={`${baseUrlImage}${data.img.data[0].attributes.url}`} height={300} width={300} />
                                     </Link>
                                     <ul className="add-to-cart-btn">
                                         <li>
