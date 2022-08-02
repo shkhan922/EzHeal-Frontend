@@ -14,7 +14,7 @@ import { baseUrl, baseUrlImage } from '~/lib/api'
 export default function Home({posts}) {
 
   const bannerh1=posts[0].attributes.bannertext;
-  const imgurl= baseUrlImage+posts[0].attributes.bannerimg.data.attributes.formats.large.url;
+  const imgurl= baseUrlImage+posts[0].attributes.bannerimg.data.attributes.url;
   const bannerpara= posts[0].attributes.bannerdescrip;
   const consulth1= posts[0].attributes.ConsultH1;
   const consult_subh2=posts[0].attributes.Consult_Subh2;
