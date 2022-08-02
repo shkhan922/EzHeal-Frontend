@@ -11,7 +11,7 @@ const AboutArea = (props) => {
                     <div className="row align-items-center">
                         <div className="col-lg-6">
                             <div className="about-image">
-                                <Image src={`${baseUrlImage}${props.AboutImg.data.attributes.formats.large.url}`} alt="image" width={1000} height={630}/>
+                                <Image src={`${baseUrlImage}${props.AboutImg.data.attributes.url}`} alt="image" width={1000} height={630}/>
                             </div>
                         </div>
                         <div className="col-lg-6">

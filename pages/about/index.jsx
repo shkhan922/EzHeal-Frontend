@@ -22,7 +22,7 @@ function Index({posts}) {
   const partimgcard = posts[0].attributes.partimgcard
   const consultH1 = posts[0].attributes.consultH1
   const consultpara = posts[0].attributes.consultpara
-  const consultimg = posts[0].attributes.consultimg.data.attributes.formats.large.url
+  const consultimg = posts[0].attributes.consultimg.data.attributes.url
   const ConsultCard = posts[0].attributes.ConsultCard
   console.log(consultimg)
   return (
