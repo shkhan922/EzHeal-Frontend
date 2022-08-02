@@ -19,7 +19,7 @@ export default function Home({posts}) {
   const consulth1= posts[0].attributes.ConsultH1;
   const consult_subh2=posts[0].attributes.Consult_Subh2;
   const ConsultImages =posts[0].attributes.ConsultImages
-  const aboutimg = baseUrlImage+posts[0].attributes.Aboutimg.data[0].attributes.formats.small.url;
+  const aboutimg = baseUrlImage+posts[0].attributes.Aboutimg.data[0].attributes.url;
   const abouth1 = posts[0].attributes.AboutH1;
   const aboutdescp = posts[0].attributes.Aboutdescp;
   const serviceh1 =posts[0].attributes.serviceh1
@@ -30,9 +30,9 @@ export default function Home({posts}) {
   const ShopH1= posts[0].attributes.ShopH1
   const ShopPara = posts[0].attributes.ShopPara
   const servicecard = posts[0].attributes.ServiceCard
-  const Testimon_img = posts[0].attributes.Testimon_img.data[0].attributes.formats.small.url
+  const Testimon_img = posts[0].attributes.Testimon_img.data[0].attributes.url
   const TMsliderCard = posts[0].attributes.TMsliderCard
-  const DownloadImg = posts[0].attributes.DownloadImg.data.attributes.formats.small.url
+  const DownloadImg = posts[0].attributes.DownloadImg.data.attributes.url
   const DownloadH1 = posts[0].attributes.DownloadH1
   console.log(DownloadImg)
   return (
