@@ -17,10 +17,10 @@ const Index = ({posts}) => {
   const steph1 = posts[0].attributes.steph1
   const steppara1 = posts[0].attributes.steppara1
   const steppara2 = posts[0].attributes.steppara2
-  const stepimg = posts[0].attributes.stepimg.data.attributes.formats.large.url
+  const stepimg = posts[0].attributes.stepimg.data.attributes.url
   const consultH1 = posts[0].attributes.consulth1
   const consultpara = posts[0].attributes.consultpara
-  const consultimg = posts[0].attributes.consultimg.data.attributes.formats.large.url
+  const consultimg = posts[0].attributes.consultimg.data.attributes.url
   const ConsultCard = posts[0].attributes.consultcard
 
   return (
