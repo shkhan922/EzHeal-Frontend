@@ -1,7 +1,57 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Link from 'next/link';
+import { FormFeedback, Input, Label,Spinner,Alert } from 'reactstrap';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
+
+// Formik validation
+import * as Yup from "yup";
+import { useFormik } from "formik";
 
 const SignInForm = () => {
+
+    const router = useRouter()
+
+    const [signUpLoading, setSignUpLoading] = useState(false)
+
+    const validation = useFormik({
+        // enableReinitialize : use this flag when initial values needs to be changed
+        enableReinitialize: true,
+
+        initialValues: {
+            identifier: '',
+            password: ''
+        },
+        validationSchema: Yup.object({
+            identifier: Yup.string().required("Please Enter Your username/email"),
+            password: Yup.string().required("Please Enter Your Password"),
+        }),
+        onSubmit: (initialValues) => {
+            setSignUpLoading(true)
+            axios.post('https://ezheal.in/api/auth/local', {
+                identifier: initialValues.identifier,
+                password: initialValues.password,
+            }).then(response => {
+                console.log(response); 
+                setSignUpLoading(false);
+                Cookies.set('jwt',response.jwt);
+                router.push({
+                    pathname: '/',
+                query: { returnUrl: router.asPath }
+                })
+            }).catch(err => {
+                 console.log(err);
+                 setSignUpLoading(false);
+                 <Alert class="alert-primary alert-border-left alert-dismissible fade show" role="alert">
+                    <i class="ri-user-smile-line me-3 align-middle"></i> <strong>Primary</strong> - Left border alert
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </Alert>
+            });
+
+        }
+    });
+
     return (
         <>
             <div className="sign-in-area ptb-100">
@@ -11,22 +61,55 @@ const SignInForm = () => {
                             <h3>Welcome Back!</h3>
                             <p>Please Sign In to your account.</p>
                         </div>
-                        <form className="login-form" method="post" action="">
-                            <div className="row">
-                                <div className="col-lg-12">
-
+                        <form onSubmit={(e) => {
+                            e.preventDefault();
+                            validation.handleSubmit();
+                            return false;
+                        }} action="#">
+                        <div className="col-lg-12">
                                     <div className="form-group">
-                                        <label>Username or Email</label>
-                                        <input type="text" id="login-username" autoFocus="" className="form-control" name="email" placeholder="email" value="" required="" />
+
+                                        <Label htmlFor="identifier" className="form-label">Email/Username</Label>
+                                        <Input
+                                            name="identifier"
+                                            id='identifier'
+                                            className="form-control"
+                                            placeholder="Enter Email/Username"
+                                            type="text"
+                                            onChange={validation.handleChange}
+                                            onBlur={validation.handleBlur}
+                                            value={validation.values.identifier || ""}
+                                            invalid={
+                                                validation.touched.identifier && validation.errors.identifier ? true : false
+                                            }
+                                        />
+                                        {validation.touched.identifier && validation.errors.identifier ? (
+                                            <FormFeedback type="invalid">{validation.errors.identifier}</FormFeedback>
+                                        ) : null}
                                     </div>
                                 </div>
-                            </div>
-                            <div className="col-lg-12">
-                                <div className="form-group">
-                                    <label>Password</label>
-                                    <input type="password" name="password" autoFocus="" className="form-control" placeholder="Password" value="" required="" />
+                                <div className="col-lg-12">
+                                    <div className="form-group">
+
+                                        <Label htmlFor="password" className="form-label">Password</Label>
+                                        <Input
+                                            name="password"
+                                            id='password'
+                                            className="form-control"
+                                            placeholder="Enter Password"
+                                            type="password"
+                                            onChange={validation.handleChange}
+                                            onBlur={validation.handleBlur}
+                                            value={validation.values.password || ""}
+                                            invalid={
+                                                validation.touched.password && validation.errors.password ? true : false
+                                            }
+                                        />
+                                        {validation.touched.password && validation.errors.password ? (
+                                            <FormFeedback type="invalid">{validation.errors.password}</FormFeedback>
+                                        ) : null}
+                                    </div>
                                 </div>
-                            </div>
                             <div className="col-lg-12">
                                 <div className="form-check">
                                     <input type="checkbox" className="form-check-input" id="checkme" />
@@ -41,7 +124,8 @@ const SignInForm = () => {
                             <div className="col-lg-12">
                                 <div className="send-btn">
 
-                                    <button type="submit" name="login" value="Login" className="default-btn">                                        Log In Now
+                                    <button type="submit" name="login" value="Login" className="default-btn"> 
+                                        {signUpLoading ?<> <Spinner size='sm'/> Loading...</>: 'Sign In Now'}
                                     </button>
                                     <br />
                                     <span>Don't have an account? <Link href='/signUp'>Signup!</Link></span>

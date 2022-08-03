@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { FormFeedback, Input, Label } from 'reactstrap';
+import { FormFeedback, Input, Label, Spinner, Alert } from 'reactstrap';
 import axios from 'axios';
-import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
 
 // Formik validation
 import * as Yup from "yup";
@@ -10,7 +10,9 @@ import { useFormik } from "formik";
 
 const SignUpForm = () => {
     const [confirmPassword, setConfirmPassword] = useState();
-    const [initialCpassword, setInitialCpassword] = useState(false)
+    const [initialCpassword, setInitialCpassword] = useState(false);
+    const [signUpLoading, setSignUpLoading] = useState(false);
+    const router = useRouter()
     const validation = useFormik({
         // enableReinitialize : use this flag when initial values needs to be changed
         enableReinitialize: true,
@@ -19,23 +21,38 @@ const SignUpForm = () => {
             username: '',
             email: '',
             password: '',
-            mobile: '',
-            city: '',
-            address: '',
-            age: ''
+            mobile: ''
         },
         validationSchema: Yup.object({
             username: Yup.string().required("Please Enter Your username"),
             email: Yup.string().required("Please Enter Your Email"),
-            password: Yup.string().required("Please Enter Your Password"),
-            mobile: Yup.string().required("Please Enter Your Mobile No."),
-            city: Yup.string().required("Please Enter Your City"),
-            address: Yup.string().required("Please Enter Your Address"),
-            age: Yup.string().required("Please Enter Your Age"),
+            password: Yup.string().required("Please Enter Your Password").matches(
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+                "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+            ),
+            mobile: Yup.number().required("Please Enter Your Mobile No.")
         }),
-        onSubmit: async (values) => {
-            dispatch(loginUser(values, props.history));
-            setSignInLoading(true)
+        onSubmit: (initialValues) => {
+            setSignUpLoading(true)
+            axios.post('https://ezheal.in/api/auth/local/register', {
+                username: initialValues.username,
+                email: initialValues.email,
+                password: initialValues.password,
+                mobile: initialValues.mobile.toString(),
+            }).then(result => {
+                console.log(result);
+                setSignUpLoading(false);
+                
+                router.push({
+                    pathname: '/signIn',
+                    query: { returnUrl: router.asPath }
+                })
+            }).catch(err => {
+                console.log(err);
+                setSignUpLoading(false);
+        
+            });
+
         }
     });
     return (
@@ -93,7 +110,27 @@ const SignUpForm = () => {
                                         ) : null}
                                     </div>
                                 </div>
-                               
+                                <div className="col-lg-12">
+                                    <div className="form-group">
+                                        <Label htmlFor="mobile" className="form-label"><span className='d-flex gap-1'><span>Mobile Number</span><span className="text-danger">*</span></span></Label>
+                                        <Input
+                                            id="mobile"
+                                            name="mobile"
+                                            className="form-control"
+                                            placeholder="Enter Mobile Number"
+                                            type="number"
+                                            onChange={validation.handleChange}
+                                            onBlur={validation.handleBlur}
+                                            value={validation.values.mobile || ""}
+                                            invalid={
+                                                validation.touched.mobile && validation.errors.mobile ? true : false
+                                            }
+                                        />
+                                        {validation.touched.mobile && validation.errors.mobile ? (
+                                            <FormFeedback type="invalid"><div>{validation.errors.mobile}</div></FormFeedback>
+                                        ) : null}
+                                    </div>
+                                </div>
                                 <div className="col-lg-12">
                                     <div className="form-group">
                                         <Label htmlFor="password" className="form-label"><span className='d-flex gap-1'><span>Password</span><span className="text-danger">*</span></span></Label>
@@ -127,94 +164,15 @@ const SignUpForm = () => {
                                         {initialCpassword && ((validation.values.password !== confirmPassword) ? <small className="text-danger">Password does match</small> : '')}
                                     </div>
                                 </div>
-                                <div className="col-lg-12">
-                                    <div className="form-group">
-                                        <Label htmlFor="mobile" className="form-label"><span className='d-flex gap-1'><span>Mobile Number</span><span className="text-danger">*</span></span></Label>
-                                        <Input
-                                            id="mobile"
-                                            name="mobile"
-                                            className="form-control"
-                                            placeholder="Enter Mobile Number"
-                                            type="tel"
-                                            onChange={validation.handleChange}
-                                            onBlur={validation.handleBlur}
-                                            value={validation.values.mobile || ""}
-                                            invalid={
-                                                validation.touched.mobile && validation.errors.mobile ? true : false
-                                            }
-                                        />
-                                        {validation.touched.mobile && validation.errors.mobile ? (
-                                            <FormFeedback type="invalid"><div>{validation.errors.mobile}</div></FormFeedback>
-                                        ) : null}
-                                    </div>
-                                </div>
-                                <div className="col-lg-12">
-                                    <div className="form-group">
-                                        <Label htmlFor="city" className="form-label"><span className='d-flex gap-1'><span>City</span><span className="text-danger">*</span></span></Label>
-                                        <Input
-                                            id="city"
-                                            name="city"
-                                            className="form-control"
-                                            placeholder="Enter City"
-                                            type="text"
-                                            onChange={validation.handleChange}
-                                            onBlur={validation.handleBlur}
-                                            value={validation.values.city || ""}
-                                            invalid={
-                                                validation.touched.city && validation.errors.city ? true : false
-                                            }
-                                        />
-                                        {validation.touched.city && validation.errors.city ? (
-                                            <FormFeedback type="invalid"><div>{validation.errors.city}</div></FormFeedback>
-                                        ) : null}
-                                    </div>
-                                </div>
-                                <div className="col-lg-12">
-                                    <div className="form-group">
-                                        <Label htmlFor="address" className="form-label"><span className='d-flex gap-1'><span>Address</span><span className="text-danger">*</span></span></Label>
-                                        <Input
-                                            id="address"
-                                            name="address"
-                                            className="form-control"
-                                            placeholder="Enter Address"
-                                            type="text"
-                                            onChange={validation.handleChange}
-                                            onBlur={validation.handleBlur}
-                                            value={validation.values.address || ""}
-                                            invalid={
-                                                validation.touched.address && validation.errors.address ? true : false
-                                            }
-                                        />
-                                        {validation.touched.address && validation.errors.address ? (
-                                            <FormFeedback type="invalid"><div>{validation.errors.address}</div></FormFeedback>
-                                        ) : null}
-                                    </div>
-                                </div>
-                                <div className="col-lg-12">
-                                    <div className="form-group">
-                                        <Label htmlFor="age" className="form-label"><span className='d-flex gap-1'><span>Age</span><span className="text-danger">*</span></span></Label>
-                                        <Input
-                                            id="age"
-                                            name="age"
-                                            className="form-control"
-                                            placeholder="Enter Age"
-                                            type="text"
-                                            onChange={validation.handleChange}
-                                            onBlur={validation.handleBlur}
-                                            value={validation.values.age || ""}
-                                            invalid={
-                                                validation.touched.age && validation.errors.age ? true : false
-                                            }
-                                        />
-                                        {validation.touched.age && validation.errors.age ? (
-                                            <FormFeedback type="invalid"><div>{validation.errors.age}</div></FormFeedback>
-                                        ) : null}
-                                    </div>
-                                </div>
 
                                 <div className="col-lg-12">
                                     <div className="send-btn">
-                                        <button type="submit" name="submit" className="default-btn">Sign Up Now</button>
+                                        {
+                                            (validation.values.password !== confirmPassword)
+                                                ? <button type="submit" name="submit" className="default-btn" disabled>Sign Up Now</button>
+                                                : <button type="submit" name="submit" className="default-btn">
+                                                    {signUpLoading ? <> <Spinner size='sm' /> Loading...</> : 'Sign Up Now'}</button>
+                                        }
                                     </div>
                                     <br />
                                     <span>Already a registered user? <Link href="/signIn">Login!</Link></span>
