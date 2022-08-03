@@ -12,6 +12,8 @@ const SignUpForm = () => {
     const [confirmPassword, setConfirmPassword] = useState();
     const [initialCpassword, setInitialCpassword] = useState(false);
     const [signUpLoading, setSignUpLoading] = useState(false);
+    const [loginStatus, setloginStatus] = useState();
+    const [alert, serAlert] = useState(false)
     const router = useRouter()
     const validation = useFormik({
         // enableReinitialize : use this flag when initial values needs to be changed
@@ -33,7 +35,8 @@ const SignUpForm = () => {
             mobile: Yup.number().required("Please Enter Your Mobile No.")
         }),
         onSubmit: (initialValues) => {
-            setSignUpLoading(true)
+            setSignUpLoading(true);
+            serAlert(true)
             axios.post('https://ezheal.in/api/auth/local/register', {
                 username: initialValues.username,
                 email: initialValues.email,
@@ -42,7 +45,7 @@ const SignUpForm = () => {
             }).then(result => {
                 console.log(result);
                 setSignUpLoading(false);
-                
+                setloginStatus(true)
                 router.push({
                     pathname: '/signIn',
                     query: { returnUrl: router.asPath }
@@ -50,13 +53,18 @@ const SignUpForm = () => {
             }).catch(err => {
                 console.log(err);
                 setSignUpLoading(false);
-        
+                setloginStatus(false)
             });
 
         }
     });
     return (
-        <>
+        <>{
+            alert && (
+                loginStatus ? <Alert color='success' className='m-2'>Registration <strong>Success</strong> </Alert> 
+                : <Alert color='danger' className='m-2'>user already <strong>Exist!</strong></Alert>
+            )          
+          }
             <div className="signup-area ptb-100">
                 <div className="container">
                     <div className="signup-form">

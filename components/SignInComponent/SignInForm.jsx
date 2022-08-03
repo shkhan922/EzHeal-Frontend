@@ -11,9 +11,11 @@ import { useFormik } from "formik";
 
 const SignInForm = () => {
 
-    const router = useRouter()
+    const router = useRouter();
 
-    const [signUpLoading, setSignUpLoading] = useState(false)
+    const [signUpLoading, setSignUpLoading] = useState(false);
+    const [loginStatus, setloginStatus] = useState();
+    const [alert, serAlert] = useState(false)
 
     const validation = useFormik({
         // enableReinitialize : use this flag when initial values needs to be changed
@@ -29,6 +31,7 @@ const SignInForm = () => {
         }),
         onSubmit: (initialValues) => {
             setSignUpLoading(true)
+            serAlert(true)
             axios.post('https://ezheal.in/api/auth/local', {
                 identifier: initialValues.identifier,
                 password: initialValues.password,
@@ -36,24 +39,26 @@ const SignInForm = () => {
                 console.log(response); 
                 setSignUpLoading(false);
                 Cookies.set('jwt',response.jwt);
+                setloginStatus(true)
                 router.push({
                     pathname: '/',
-                query: { returnUrl: router.asPath }
+                    query: { returnUrl: router.asPath }
                 })
             }).catch(err => {
+                setloginStatus(false)
                  console.log(err);
                  setSignUpLoading(false);
-                 <Alert class="alert-primary alert-border-left alert-dismissible fade show" role="alert">
-                    <i class="ri-user-smile-line me-3 align-middle"></i> <strong>Primary</strong> - Left border alert
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </Alert>
             });
-
         }
     });
 
     return (
-        <>
+        <>{
+            alert && (
+                loginStatus ? <Alert color='success' className='m-2'>Login <strong>Success</strong> </Alert> 
+                : <Alert color='danger' className='m-2'> <strong>Invalid Credential!</strong></Alert>
+            )          
+          }
             <div className="sign-in-area ptb-100">
                 <div className="container">
                     <div className="sign-in-form">

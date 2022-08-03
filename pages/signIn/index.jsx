@@ -8,7 +8,7 @@ const Index = () => {
   return (
     <>
         <Header/>
-        <Hero title='Sign In' bg='item-bg-2'/>
+        {/* <Hero title='Sign In' bg='item-bg-2'/> */}
         <SignInForm/>
         <Footer/>
     </> 
