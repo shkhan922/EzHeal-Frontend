@@ -38,7 +38,7 @@ const SignInForm = () => {
             }).then(response => {
                 console.log(response); 
                 setSignUpLoading(false);
-                Cookies.set('jwt',response.jwt);
+                Cookies.set('jwt',response.data.jwt);
                 setloginStatus(true)
                 router.push({
                     pathname: '/',

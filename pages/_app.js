@@ -17,6 +17,7 @@ import '../assets/css/responsive.css'
 // import '../assets/css/responsive.css.map'
 import '../assets/css/responsive.scss'
 import '../assets/css/style.css'
+import UserState from '~/context/UserState'
 // import '../assets/css/style.css.map'
 // import '../assets/css/style.scss'
 
@@ -28,7 +29,10 @@ import Image from 'next/image'
 
 function MyApp({ Component, pageProps }) {
 
-  return <><Component {...pageProps} suppressHydrationWarning/>
+  return <>
+  <UserState>
+  <Component {...pageProps} suppressHydrationWarning/>
+  </UserState>
   {/* <div class="dark-version">
 
   <a href="https://web.whatsapp.com/"><Image src="./public/static/img/whatsapp.png" alt="whatsapp" class="round" layout='fill'/></a>
