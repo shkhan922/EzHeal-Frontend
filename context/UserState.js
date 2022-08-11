@@ -18,7 +18,8 @@ const UserState = (props) => {
     // console.log(data)
     setUserData(data);
   }).catch(error => {
-    console.error(error)
+    console.error(error);
+    setUserData()
   })}
 
   useEffect(() => {getUser()}, [jwt])

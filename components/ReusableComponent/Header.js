@@ -17,6 +17,8 @@ import {
 } from 'reactstrap';
 import { baseUrl, baseUrlImage } from '~/lib/api'
 import userContext from "~/context/userContext";
+import Cookies from "js-cookie";
+import Router from "next/router";
 //   stickyElem = document.querySelector(".sticky-div");
 
 //     /* Gets the amount of height
@@ -65,6 +67,10 @@ const Header = () => {
 
     const [isOpen, setIsOpen] = useState(false);
 
+    const handleLogout = () => {
+        Cookies.remove('jwt');
+        Router.push('/')
+    }
 
     return (
         <>
@@ -119,24 +125,22 @@ const Header = () => {
                                                 {user ? 
                                                 (<li><div className="user-dropdown">
                                                     <UncontrolledDropdown nav inNavbar>
-                                                    <DropdownToggle nav caret>
+                                                    <DropdownToggle nav caret className="text-white">
                                                         {user.data.username}
                                                     </DropdownToggle>
                                                     <DropdownMenu right style={{zIndex:'1021'}}>
                                                         <DropdownItem>
-                                                            <Link href="/doctorlogin">
-                                                                <a className="nav-link p-0">Docter Panel</a>
+                                                            <Link href="/dashboard">
+                                                                <a className="p-0">Dashboard</a>
                                                             </Link>
                                                         </DropdownItem>
                                                         <DropdownItem>
-                                                            <Link href="/diologin">
-                                                                <a className="nav-link p-0">Diagnoistic Panel</a>
+                                                            <Link href="/account-setting">
+                                                                <a className="p-0">Account Setting</a>
                                                             </Link>
                                                         </DropdownItem>
                                                         <DropdownItem>
-                                                            <Link href="/pharmalogin">
-                                                                <a className="nav-link p-0">Pharma Panel</a>
-                                                            </Link>
+                                                            <span onClick={()=> handleLogout()}>Logout</span>
                                                         </DropdownItem>
                                                     </DropdownMenu>
                                                 </UncontrolledDropdown>
@@ -182,6 +186,15 @@ const Header = () => {
                                                         <a className="nav-link">About</a>
                                                     </Link>
                                                 </NavItem>
+                                                {
+                                                    user && (
+                                                        <NavItem>
+                                                        <Link href="/diognostic-center">
+                                                            <a className="nav-link">Diognostic Center</a>
+                                                        </Link>
+                                                        </NavItem>  
+                                                    )
+                                                }
                                                 <NavItem>
                                                     <Link href="/services">
                                                         <a className="nav-link"> Services </a>
