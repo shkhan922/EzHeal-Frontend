@@ -126,7 +126,7 @@ const Header = () => {
                                                 (<li><div className="user-dropdown">
                                                     <UncontrolledDropdown nav inNavbar>
                                                     <DropdownToggle nav caret className="text-white">
-                                                        {user.data.username}
+                                                        {user.data.email}
                                                     </DropdownToggle>
                                                     <DropdownMenu right style={{zIndex:'1021'}}>
                                                         <DropdownItem>
@@ -190,7 +190,7 @@ const Header = () => {
                                                     user && (
                                                         <NavItem>
                                                         <Link href="/diognostic-center">
-                                                            <a className="nav-link">Diognostic Center</a>
+                                                            <a className="nav-link">Diagnostic Center</a>
                                                         </Link>
                                                         </NavItem>  
                                                     )
@@ -231,10 +231,10 @@ const Header = () => {
                                                 </UncontrolledDropdown>
                                             </Nav>
                                             <div className="others-options">
-                                                <Link href="/signIn">
+                                                <Link href="/clnbooking">
                                                     <a className="default-btn-two st">Clinician Appointment <span></span></a>
                                                 </Link>
-                                                <Link href="/signIn">
+                                                <Link href="/diabooking">
                                                     <a className="default-btn-two st ms-1">Diagnostic Booking <span></span></a>
                                                 </Link>
                                             </div>

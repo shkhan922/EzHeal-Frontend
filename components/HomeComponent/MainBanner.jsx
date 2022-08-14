@@ -54,7 +54,7 @@ const MainBanner = (props) => {
                  <h1>{props.bannerh1}</h1>
                  <p>{props.bannerpara}</p>            
                </div>
-    
+{/*     
                 <div className="banner-form">
                   <form>
                     <div className="row align-items-center">
@@ -95,7 +95,7 @@ const MainBanner = (props) => {
                       </div>
                     </div>
                   </form>
-                </div>
+                </div> */}
 
                 <div className="banner-btn">
                   <a href="javascript:void(0)" className="default-btn">
