@@ -4,24 +4,33 @@ import Footer from '~/components/ReusableComponent/Footer'
 import Header from '~/components/ReusableComponent/Header'
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button'
+import { baseUrl, baseUrlImage } from '~/lib/api'
 
-const Index = () => {
+const Index = ({posts}) => {
+
+  
+
   return (
     <>
     <Header/>
-    <Hero bg='item-bg-3' title='Diagnostic Centers'/>
+    <Hero bg='item-bg-6' title='Diagnostic Centers'/>
     
     
     <div className='container' style={{ paddingTop:'3rem', paddingBottom:'3rem'}}>
       <div className='row' style={{ display:'flex', justifyContent:'space-evenly', flexDirection:'row'}}>
-         
+       {
+              ((posts || []).map((data, index) => {
+                return (   
       <Card style={{ width: '18rem', paddingRight: '2rem' }}>
       <Card.Body>
-        <Card.Title>Test Name</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">Price </Card.Subtitle>
+      <span>Test Code</span><Card.Title>{data.attributes.Test_Code}</Card.Title>
+      <span>Name</span><Card.Title>{data.attributes.Billing_Name}</Card.Title>
+      <span>MRP</span><Card.Subtitle className="mb-2 text-muted">{data.attributes.MRP} </Card.Subtitle>
+      <span>Discount Price</span>
+      <Card.Subtitle className="mb-2 text-muted">{data.attributes.User_Price}</Card.Subtitle>
+      <span>Modality</span>
         <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          {data.attributes.Modality}
         </Card.Text>
         <Button variant="primary">Pay Now</Button>
         
@@ -29,22 +38,9 @@ const Index = () => {
         
       </Card.Body>
       </Card>
-         
-      
-        
-    <Card style={{ width: '18rem' }}>
-      <Card.Body>
-        <Card.Title>Test Name</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">Price</Card.Subtitle>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        
-        <Button variant="primary">Pay Now</Button>
-      </Card.Body>
-    </Card>
-        
+         )
+        }))
+      }       
     
       </div>
       </div>
@@ -56,3 +52,23 @@ const Index = () => {
 }
 
 export default Index
+
+
+export async function getServerSideProps() {
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  const param = `scans?populate=deep`
+  const res = await fetch(`${baseUrl}/${param}`);
+  const posts = await res.json();
+
+  console.log(posts.data)
+  
+  
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {
+      posts: posts.data,
+    },
+  }
+}
