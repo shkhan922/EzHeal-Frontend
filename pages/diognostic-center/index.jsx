@@ -21,7 +21,7 @@ const Index = ({posts}) => {
        {
               ((posts || []).map((data, index) => {
                 return (   
-      <Card style={{ width: '18rem', paddingRight: '2rem' }}>
+      <Card key={data.id} style={{ width: '18rem', paddingRight: '2rem', marginBottom:'2rem' }}>
       <Card.Body>
       <span>Test Code</span><Card.Title>{data.attributes.Test_Code}</Card.Title>
       <span>Name</span><Card.Title>{data.attributes.Billing_Name}</Card.Title>
