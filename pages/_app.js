@@ -18,6 +18,7 @@ import '../assets/css/responsive.css'
 import '../assets/css/responsive.scss'
 import '../assets/css/style.css'
 import UserState from '~/context/UserState'
+import "react-multi-carousel/lib/styles.css";
 // import '../assets/css/style.css.map'
 // import '../assets/css/style.scss'
 

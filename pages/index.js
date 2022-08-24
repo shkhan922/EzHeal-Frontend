@@ -53,7 +53,9 @@ export default function Home({posts}) {
     </> 
    
   )
+  
 }
+
 
 export async function getServerSideProps() {
     // Call an external API endpoint to get posts.
@@ -73,3 +75,5 @@ export async function getServerSideProps() {
       },
     }
   }
+
+  
