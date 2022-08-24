@@ -144,7 +144,7 @@ const Index = ({posts, diapagedata}) => {
               >
                 {
                 (labsbanners.data || []).map((data, index)=>
-                  <div><Image width={193} height={43} src={baseUrlImage+data.attributes.url} alt='ezheal' /></div>
+                  <div key={data.id}><Image width={193} height={43} src={baseUrlImage+data.attributes.url} alt='ezheal' /></div>
                 )
               }
               </Carousel>
