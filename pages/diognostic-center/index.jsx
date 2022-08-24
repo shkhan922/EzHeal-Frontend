@@ -64,7 +64,7 @@ const Index = ({posts, diapagedata}) => {
           <h2 style={{fontSize:`22px`}}>Lab Test and Scans at the ease of your home</h2>
           <p>50,000+ lab tests booked | 20,00,000+ satisfied customers</p>
           <div>
-            <Image/>
+            {/* s<Image/> */}
           </div>
           </div>
           <div className="col-md-4" style={{ paddingLeft:'4rem' }}>
