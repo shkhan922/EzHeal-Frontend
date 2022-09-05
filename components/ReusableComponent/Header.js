@@ -186,15 +186,14 @@ const Header = () => {
                                                         <a className="nav-link">About</a>
                                                     </Link>
                                                 </NavItem>
-                                                {
-                                                    user && (
+                                                
                                                         <NavItem>
                                                         <Link href="/diognostic-center">
                                                             <a className="nav-link">Diagnostic Center</a>
                                                         </Link>
                                                         </NavItem>  
-                                                    )
-                                                }
+                                                    
+                                            
                                                 <NavItem>
                                                     <Link href="/services">
                                                         <a className="nav-link"> Services </a>
