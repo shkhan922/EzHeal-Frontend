@@ -68,8 +68,8 @@ const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleLogout = () => {
-        Cookies.remove('jwt');
         Router.push('/')
+        Cookies.remove('jwt'); 
     }
 
     return (
@@ -123,10 +123,13 @@ const Header = () => {
                                                     </Link>
                                                 </li>   
                                                 {user ? 
-                                                (<li><div className="user-dropdown">
+
+                                                (<>
+                                                
+                                                <li><div className="user-dropdown">
                                                     <UncontrolledDropdown nav inNavbar>
                                                     <DropdownToggle nav caret className="text-white">
-                                                        {user.data.email}
+                                                    <i class="fa-regular fa-user text-white" style={{background:'none', fontSize:'1.3rem'}}></i>
                                                     </DropdownToggle>
                                                     <DropdownMenu right style={{zIndex:'1021'}}>
                                                         <DropdownItem>
@@ -140,11 +143,32 @@ const Header = () => {
                                                             </Link>
                                                         </DropdownItem>
                                                         <DropdownItem>
+                                                            <Link href="/account-setting">
+                                                                <a className="p-0">Orders</a>
+                                                            </Link>
+                                                        </DropdownItem>
+                                                        <DropdownItem>
+                                                            <Link href="/account-setting">
+                                                                <a className="p-0">Lab Tests</a>
+                                                            </Link>
+                                                        </DropdownItem>
+                                                        <DropdownItem>
+                                                            <Link href="/account-setting">
+                                                                <a className="p-0">Consultations</a>
+                                                            </Link>
+                                                        </DropdownItem>
+                                                        <DropdownItem>
+                                                            <Link href="/account-setting">
+                                                                <a className="p-0">Health Records</a>
+                                                            </Link>
+                                                        </DropdownItem>
+                                                        <DropdownItem>
                                                             <span onClick={()=> handleLogout()}>Logout</span>
                                                         </DropdownItem>
                                                     </DropdownMenu>
                                                 </UncontrolledDropdown>
-                                                    </div></li>) : 
+                                                    </div></li>
+                                                    </>) : 
                                                 (
                                                     <li>
                                                     <li>
@@ -157,8 +181,9 @@ const Header = () => {
                                                         <a className="sign-in">Sign Up</a>
                                                     </Link>
                                                 </li>
-                                                 </li>   
-                                                )}                             
+                                                 </li> 
+                                                )}    
+                                                <li><i class="fa-solid fa-cart-shopping text-white" style={{background:'none', fontSize:'1.3rem'}}></i></li>                         
                                         </ul>
                                        
                                         </div>
@@ -176,14 +201,10 @@ const Header = () => {
                                         <NavbarToggler onClick={() => { setIsOpen(!isOpen) }} />
                                         <Collapse isOpen={isOpen} navbar>
                                             <Nav className="mr-auto" navbar>
-                                                <NavItem>
-                                                    <Link href="/">
-                                                        <a className="nav-link"> Home </a>
-                                                    </Link>
-                                                </NavItem>
+                                                
                                                 <NavItem>
                                                     <Link href="/about">
-                                                        <a className="nav-link">About</a>
+                                                        <a className="nav-link">Doctar Consultaion</a>
                                                     </Link>
                                                 </NavItem>
                                                 
@@ -193,7 +214,11 @@ const Header = () => {
                                                         </Link>
                                                         </NavItem>  
                                                     
-                                            
+                                                        <NavItem>
+                                                    <Link href="/pharmacy">
+                                                        <a className="nav-link"> Pharmacy </a>
+                                                    </Link>
+                                                </NavItem>
                                                 <NavItem>
                                                     <Link href="/services">
                                                         <a className="nav-link"> Services </a>
