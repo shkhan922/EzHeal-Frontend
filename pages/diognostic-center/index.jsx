@@ -140,12 +140,12 @@ const Index = ({ posts, diapagedata, cities }) => {
                 scans ?
                   ((scans || []).map((data, index) => {
                     return (
-                      <div className='col-lg-3 col-md-4 col-sm-6 py-2'>
-                        <Card key={data.id} className='h-100 '>
+                      <div key={data.id} className='col-lg-3 col-md-4 col-sm-6 py-2'>
+                        <Card className='h-100 '>
                           <Card.Body>
                             <p className='fs-6 text-dark'>{data.attributes.Billing_Name}</p>
                             <img src="https://play-lh.googleusercontent.com/bTPyXNJW0JhpmabPrRt1nNATOb0oPXCD4_UQKFYJfDtT8n5QtrgEzXpPhGcMkefueA" width={70} alt="" />
-                            <span className='badge bg-success ms-3'>4.5 <i class="fa-solid fa-star" style={{fontSize:'10px'}}></i></span>
+                            <span className='badge bg-success ms-3'>4.5 <i className="fa-solid fa-star" style={{fontSize:'10px'}}></i></span>
                             <div>
                             <strong>Test Code</strong> : <span>{data.attributes.Test_Code}</span>
                             </div>
