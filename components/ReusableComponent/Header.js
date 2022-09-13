@@ -129,7 +129,7 @@ const Header = () => {
                                                 <li><div className="user-dropdown">
                                                     <UncontrolledDropdown nav inNavbar>
                                                     <DropdownToggle nav caret className="text-white">
-                                                    <i class="fa-regular fa-user text-white" style={{background:'none', fontSize:'1.3rem'}}></i>
+                                                    <i className="fa-regular fa-user text-white" style={{background:'none', fontSize:'1.3rem'}}></i>
                                                     </DropdownToggle>
                                                     <DropdownMenu right style={{zIndex:'1021'}}>
                                                         <DropdownItem>
@@ -183,14 +183,16 @@ const Header = () => {
                                                 </li>
                                                  </li> 
                                                 )}    
+
                                                 <li><Link href='/cart'><a><i class="fa-solid fa-cart-shopping text-white" style={{background:'none', fontSize:'1.3rem'}}></i></a></Link></li>                         
+
                                         </ul>
                                        
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className=" sticky-top">
+                            <div className="sticky-top">
 
 
                                 <div className="main-navbar">
