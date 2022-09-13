@@ -24,6 +24,8 @@ import "react-multi-carousel/lib/styles.css";
 
 import Image from 'next/image'
 // javascript 
+// import store from '~/src/store'
+// import { Provider } from 'react-redux'
 
 
 
@@ -31,9 +33,12 @@ import Image from 'next/image'
 function MyApp({ Component, pageProps }) {
 
   return <>
+  {/* <Provider store={store}> */}
   <UserState>
   <Component {...pageProps} suppressHydrationWarning/>
   </UserState>
+  {/* </Provider> */}
+  
   {/* <div class="dark-version">
 
   <a href="https://web.whatsapp.com/"><Image src="./public/static/img/whatsapp.png" alt="whatsapp" class="round" layout='fill'/></a>

@@ -183,7 +183,7 @@ const Header = () => {
                                                 </li>
                                                  </li> 
                                                 )}    
-                                                <li><i class="fa-solid fa-cart-shopping text-white" style={{background:'none', fontSize:'1.3rem'}}></i></li>                         
+                                                <li><Link href='/cart'><a><i class="fa-solid fa-cart-shopping text-white" style={{background:'none', fontSize:'1.3rem'}}></i></a></Link></li>                         
                                         </ul>
                                        
                                         </div>

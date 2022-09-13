@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import Hero from '~/components/ReusableComponent/Hero'
 import Footer from '~/components/ReusableComponent/Footer'
 import Header from '~/components/ReusableComponent/Header'
@@ -10,15 +10,50 @@ import DownloadAppSection from '~/components/HomeComponent/DownloadAppSection'
 import { DownloadImg, DownloadH1 } from 'pages/index'
 import Image from 'next/image'
 import Select from 'react-select';
+// import { useEffect } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
 
-const Index = ({ posts, diapagedata }) => {
+const Index = ({ posts, diapagedata, cities }) => {
 
-  const [city , setCity] = useState();
+  // const myState = useSelector((state) => state.changeCartNum)
+  // console.log(myState)
+
+  const [city, setCity] = useState();
+  const [dioCenter, setDioCenter] = useState();
+  const [scan, setScan] = useState();
 
   const labsbanners = diapagedata[0].attributes.labsbanners;
   const smallBanners = diapagedata[0].attributes.smallBanners;
-  console.log(labsbanners)
+  const citiesOptions = cities.map((item) => {
+    return { label: item.attributes.Name, value: item.attributes.Name }
+  })
+  let dioOption = [];
+  let dioArray = [];
+  if (city) {
+    for (let i = 0; i < cities.length; i++) {
+      if (city.value == cities[i].attributes.Name) {
+        dioOption = cities[i].attributes.diagnostic_centers.data.map((item, index) => {
+          return { label: item.attributes.Name, value: item.attributes.Name }
+        })
+        dioArray = cities[i].attributes.diagnostic_centers.data
+      }
+    }
+  }
 
+  let scanOptions = []
+  let scans = [];
+  if (dioCenter) {
+    for (let k = 0; k < dioArray.length; k++) {
+      if (dioCenter.value == dioArray[k].attributes.Name) {
+        console.log('matched')
+        scanOptions = dioArray[k].attributes.scans.data.map((item, index) => {
+          return { label: item.attributes.Billing_Name, value: item.attributes.Billing_Name }
+        })
+        scans = dioArray[k].attributes.scans.data
+      }
+    }
+  }
+  console.log(scanOptions)
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -61,7 +96,7 @@ const Index = ({ posts, diapagedata }) => {
 
       <section className="section section-features">
         <div className="container-fluid">
-          <div className='row gx-2 mx-4'>
+          <div className='row gx-2 mx-4 mt-4 gy-2'>
             <div className='col-md-3'>
               <Select
                 className="basic-single"
@@ -69,29 +104,68 @@ const Index = ({ posts, diapagedata }) => {
                 placeholder={'Popular City'}
                 isSearchable={true}
                 name="color"
-                options={[{value : '1', label:'1'}]}
+                value={city}
+                onChange={(e) => setCity(e)}
+                options={citiesOptions}
               />
-              {console.log(city)}
             </div>
             <div className='col-md-3'>
-               <Select
+              <Select
                 className="basic-single"
                 classNamePrefix="select"
                 placeholder={'Top Rated Labs'}
                 isSearchable={true}
                 name="color"
-                options={[{value : '1', label:'1'}]}
+                value={dioCenter}
+                onChange={(e) => setDioCenter(e)}
+                options={dioOption}
               />
             </div>
             <div className='col-md-6'>
-               <Select
+              <Select
                 className="basic-single"
                 classNamePrefix="select"
                 placeholder={'Search For Labs And Scans'}
                 isSearchable={true}
                 name="color"
-                options={[{value : '1', label:'1'}]}
+                value={scan}
+                onChange={(e) => setScan(e)}
+                options={scanOptions}
               />
+            </div>
+          </div>
+          <div className='container' style={{ paddingTop: '4rem', paddingBottom: '3rem' }}>
+            <div className='row'>
+              {
+                scans ?
+                  ((scans || []).map((data, index) => {
+                    return (
+                      <div className='col-lg-3 col-md-4 col-sm-6 py-2'>
+                        <Card key={data.id} className='h-100 '>
+                          <Card.Body>
+                            <p className='fs-6 text-dark'>{data.attributes.Billing_Name}</p>
+                            <img src="https://play-lh.googleusercontent.com/bTPyXNJW0JhpmabPrRt1nNATOb0oPXCD4_UQKFYJfDtT8n5QtrgEzXpPhGcMkefueA" width={70} alt="" />
+                            <span className='badge bg-success ms-3'>4.5 <i class="fa-solid fa-star" style={{fontSize:'10px'}}></i></span>
+                            <div>
+                            <strong>Test Code</strong> : <span>{data.attributes.Test_Code}</span>
+                            </div>
+                            <div>
+                            <strong>Price : </strong><span className="mb-2">₹{data.attributes.User_Price} <strike className='text-muted'> ₹{data.attributes.MRP} </strike> <span className='text-success ps-2'> {((1-(data.attributes.User_Price/data.attributes.MRP)) * 100).toFixed(0)}% Off</span></span>
+                            </div>
+                            <div className='mb-3'>   
+                            <strong>Modality : </strong>
+                            <span>
+                              {data.attributes.Modality}
+                            </span>
+                            </div>                           
+                            <button className='default-btn'>Add to Cart</button>                           
+                          </Card.Body>
+                        </Card>
+                      </div>
+                    )
+                  })) : ''
+              }
+
             </div>
           </div>
           <div className="row">
@@ -195,34 +269,7 @@ const Index = ({ posts, diapagedata }) => {
       </section>
 
 
-      <div className='container' style={{ paddingTop: '4rem', paddingBottom: '3rem' }}>
-        <div className='row' style={{ display: 'flex', justifyContent: 'space-evenly', flexDirection: 'row' }}>
-          {
-            ((posts || []).map((data, index) => {
-              return (
-                <Card key={data.id} style={{ width: '18rem', paddingRight: '2rem', marginBottom: '2rem' }}>
-                  <Card.Body>
-                    <span>Test Code</span><Card.Title>{data.attributes.Test_Code}</Card.Title>
-                    <Card.Title><h3>{data.attributes.Billing_Name}</h3></Card.Title>
-                    <span>MRP</span><Card.Subtitle className="mb-2 text-muted">{data.attributes.MRP} </Card.Subtitle>
-                    <span>Discount Price</span>
-                    <Card.Subtitle className="mb-2 text-muted">{data.attributes.User_Price}</Card.Subtitle>
-                    <span>Modality</span>
-                    <Card.Text>
-                      {data.attributes.Modality}
-                    </Card.Text>
-                    <Button variant="primary">Pay Now</Button>
 
-
-
-                  </Card.Body>
-                </Card>
-              )
-            }))
-          }
-
-        </div>
-      </div>
       {/* <DownloadAppSection DownloadImg={`${baseUrlImage}${DownloadImg}`} DownloadH1={DownloadH1}/> */}
       {/* DownloadImg={`${baseUrlImage}${DownloadImg}`} DownloadH1={DownloadH1} */}
       <Footer />
@@ -245,7 +292,10 @@ export async function getServerSideProps() {
   const data = await fetch(`${baseUrl}/${param2}`);
   const diapage = await data.json();
 
-  console.log(diapage.data)
+  const param3 = `cities?populate=deep`
+  const data3 = await fetch(`${baseUrl}/${param3}`);
+  const res3 = await data3.json();
+
 
 
   // By returning { props: { posts } }, the Blog component
@@ -254,6 +304,7 @@ export async function getServerSideProps() {
     props: {
       posts: posts.data,
       diapagedata: diapage.data,
+      cities: res3.data
     },
   }
 }
