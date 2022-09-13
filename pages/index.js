@@ -9,7 +9,8 @@ import ShopSection from '~/components/HomeComponent/ShopSection'
 import TestimonialSection from '~/components/HomeComponent/TestimonialSection'
 import Footer from '~/components/ReusableComponent/Footer'
 import Header from '../components/ReusableComponent/Header'
-import { baseUrl, baseUrlImage } from '~/lib/api'
+import { baseUrl, baseUrlImage } from '~/lib/api';
+
 
 export default function Home({posts}) {
 
