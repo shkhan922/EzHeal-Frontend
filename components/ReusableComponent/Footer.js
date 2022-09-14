@@ -15,7 +15,7 @@ function Footer() {
     const data = await response.json()
     const response1 = data
     setTitles(response1.data)
-    console.log(response1.data)
+    // console.log(response1.data)
   }
 
   useEffect(() => {
