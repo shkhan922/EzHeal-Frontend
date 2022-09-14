@@ -2,6 +2,7 @@ import { React, useState, useEffect, useContext } from "react"
 import Link from 'next/link'
 import Image from "next/image"
 import Logo from '../../public/static/img/logo-white.png'
+import { useSelector } from "react-redux"
 import {
     Navbar,
     NavItem,
@@ -47,13 +48,15 @@ const Header = () => {
 
     const [titles, setTitles] = useState()
 
+    const {cartItem} = useSelector(state => state.custome)
+
     const fetchPromotionBanners = async () => {
         const param = `headers`
         const response = await fetch(`${baseUrl}/${param}`)
         const data = await response.json()
         const response1 = data
         setTitles(response1.data)
-        console.log(response1.data)
+        // console.log(response1.data)
     }
 
     useEffect(() => {
@@ -184,7 +187,7 @@ const Header = () => {
                                                  </li> 
                                                 )}    
 
-                                                <li><Link href='/cart'><a><i className="fa-solid fa-cart-shopping text-white" style={{background:'none', fontSize:'1.3rem'}}></i></a></Link></li>                         
+                                                <li><Link href='/cart'><a><span className="bg-dark text-white" style={{position:'relative', top:'-10px' ,right:'-31px', zIndex:'2', borderRadius:'50%',padding:'0px 5px'}}>{cartItem.length}</span><i className="fa-solid fa-cart-shopping text-white" style={{background:'none', fontSize:'1.3rem',position:'absolute'}}></i></a></Link></li>                         
 
                                         </ul>
                                        

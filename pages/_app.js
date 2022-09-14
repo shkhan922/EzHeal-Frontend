@@ -24,8 +24,8 @@ import "react-multi-carousel/lib/styles.css";
 
 import Image from 'next/image'
 // javascript 
-// import store from '~/src/store'
-// import { Provider } from 'react-redux'
+import store from '~/src/store'
+import { Provider } from 'react-redux'
 
 
 
@@ -33,11 +33,11 @@ import Image from 'next/image'
 function MyApp({ Component, pageProps }) {
 
   return <>
-  {/* <Provider store={store}> */}
+  <Provider store={store}>
   <UserState>
   <Component {...pageProps} suppressHydrationWarning/>
   </UserState>
-  {/* </Provider> */}
+  </Provider>
   
   {/* <div class="dark-version">
 

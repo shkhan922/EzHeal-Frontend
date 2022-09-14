@@ -1,7 +1,15 @@
-// import {createStore} from 'react-redux';
-// import changeCartNum from './reducers/upDown';
-// import rootReducer from './reducers';
+import { configureStore } from "@reduxjs/toolkit";
+import { customeReducer, getItemsByIds } from "./reducers";
 
-// const store = createStore(changeCartNum());
+const store = configureStore({
+    reducer:{
+        custome: customeReducer,
+        getCartItems: getItemsByIds
+    },
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+})
 
-// export default store
+export default store;

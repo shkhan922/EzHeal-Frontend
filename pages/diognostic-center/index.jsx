@@ -10,13 +10,28 @@ import DownloadAppSection from '~/components/HomeComponent/DownloadAppSection'
 import { DownloadImg, DownloadH1 } from 'pages/index'
 import Image from 'next/image'
 import Select from 'react-select';
-// import { useEffect } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 const Index = ({ posts, diapagedata, cities }) => {
 
   // const myState = useSelector((state) => state.changeCartNum)
   // console.log(myState)
+
+  const dispatch = useDispatch()
+
+  const handleAddToCart = (id) => {
+    dispatch({
+      type:"addToCart",
+      payload:id
+    })
+  }
+
+  const handleRemoveCartItem = (id) => {
+    dispatch({
+      type:"removeFromCart",
+      payload:id
+    })
+  }
 
   const [city, setCity] = useState();
   const [dioCenter, setDioCenter] = useState();
@@ -158,7 +173,8 @@ const Index = ({ posts, diapagedata, cities }) => {
                               {data.attributes.Modality}
                             </span>
                             </div>                           
-                            <button className='default-btn'>Add to Cart</button>                           
+                            <button className='default-btn' onClick={() => handleAddToCart(data.id)}>Add to Cart</button>   
+                            {/* <button className='default-btn' onClick={() => handleRemoveCartItem(data.id)}>Remove</button>                          */}
                           </Card.Body>
                         </Card>
                       </div>
