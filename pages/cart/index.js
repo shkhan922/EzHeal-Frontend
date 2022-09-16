@@ -13,7 +13,7 @@ const Index = () => {
 
   const dispatch = useDispatch()
   console.log(cartItem)
-  
+
   const removeItem = (id) => {
     dispatch({
       type: "removeFromCart",
@@ -42,44 +42,44 @@ const Index = () => {
                 <div className="card mb-4">
                   <div className='card-header'>
                     <div className='d-flex justify-content-between'>
-                      <span>Lab Tests({cartItem.length})</span> <Link href='/diognostic-center'><a> <span className='text-primary'><i className="fa-solid fa-plus pe-2"></i>Add More Test</span></a></Link>
+                      <span>Lab Tests({cartItem ? cartItem.length : 0})</span> <Link href='/diognostic-center'><a> <span className='text-primary'><i className="fa-solid fa-plus pe-2"></i>Add More Test</span></a></Link>
                     </div>
                   </div>
                   <div className="card-body">
                     <div>
-                      
+
                       {
                         (cartItem && cartItem.length > 0) ?
-                        cartItem.map((item, index) => {
-                          return (
-                            <div key={item.id} className='border mb-3 rounded-2'>
-                              <div className='bg-light p-3 '>
-                                <h4>{item.dioCenter.label}</h4>
-                                <span>{item.city.label}</span>
-                              </div>
-                              <div className='px-5 py-3 d-flex justify-content-between'>
-                                <div>
-                                  <h6>{item.Billing_Name}</h6>
-                                  <span>{item.Modality}</span><span className='ps-2'>({item.Test_Code})</span>
+                          cartItem.map((item, index) => {
+                            return (
+                              <div className='border mb-3 rounded-2' key={item.id}>
+                                <div className='bg-light p-3 '>
+                                  <h4>{item.dioCenter.label}</h4>
+                                  <span>{item.city.label}</span>
                                 </div>
-
-                                <div className='d-flex flex-column align-items-end'>
-                                  <div className='mb-3'>
-                                    <strong className='text-center'>₹{item.User_Price}</strong>
-                                    <br />
-                                    <strike>₹{item.MRP}</strike><br />
+                                <div className='px-5 py-3 d-flex justify-content-between'>
+                                  <div>
+                                    <h6>{item.Billing_Name}</h6>
+                                    <span>{item.Modality}</span><span className='ps-2'>({item.Test_Code})</span>
                                   </div>
-                                  <small className='text-danger cursor-pointer' onClick={() => removeItem(item.id)}><i className="fa-solid fa-trash-can pe-2"></i>Remove</small>
+
+                                  <div className='d-flex flex-column align-items-end'>
+                                    <div className='mb-3'>
+                                      <strong className='text-center'>₹{item.User_Price}</strong>
+                                      <br />
+                                      <strike>₹{item.MRP}</strike><br />
+                                    </div>
+                                    <small className='text-danger cursor-pointer' onClick={() => removeItem(item.id)}><i className="fa-solid fa-trash-can pe-2"></i>Remove</small>
+                                  </div>
                                 </div>
+
+
                               </div>
-
-
-                            </div>
-                          )
-                        }) : <><div className='p-5 m-4 d-flex align-items-center justify-content-center flex-column'>
+                            )
+                          }) : <><div className='p-5 m-4 d-flex align-items-center justify-content-center flex-column'>
                             <h5>Your Cart is Empty !</h5>
                             <button className='btn btn-success'>
-                               <Link href='/diognostic-center'><span className='text-white'>Go to Shop</span></Link>
+                              <Link href='/diognostic-center'><span className='text-white'>Go to Shop</span></Link>
                             </button>
                           </div></>
                       }
@@ -138,7 +138,23 @@ const Index = () => {
             className="mb-3"
           >
             <Tab eventKey="patientDetails" title="patient Details">
-
+              <div className='p-3'>
+                <div className="row">
+                  <div className="col-md-6">
+                    <input className='form-control' placeholder='Name' type="text" name="" id="" />
+                  </div>
+                  <div className="col-md-6">
+                    <input className='form-control' placeholder='Age' type="text" name="" id="" />
+                  </div>
+                  <div className="col-md-6 pt-4">
+                    <input className='me-1' type="radio" id="male" name="gender" value="male" />
+                    <label for="male" className='me-3'>Male</label>
+                    <input className='me-1' type="radio" id="female" name="gender" value="female" />
+                    <label for="female">Female</label>
+                  </div>
+                </div>
+                <span className='float-end btn text-primary'>+ ADD New Patient</span>
+              </div>
             </Tab>
             <Tab eventKey="addressDetials" title="Address Details">
               {/* <Sonnet /> */}

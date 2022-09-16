@@ -13,7 +13,7 @@ export const customeReducer = createReducer(initialState, {
         
         var index = state.cartItem.findIndex(x => x.id == action.payload.id);
         index === -1 ? state.cartItem.push( action.payload ) : alert('already Exist in Cart !')
-        localStorage.setItem('item', JSON.stringify(state.cartItem))
+        (typeof window !== 'undefined') ? localStorage.setItem('item', JSON.stringify(state.cartItem)) : ''
     },
 
     removeFromCart: (state, action) => {
@@ -21,7 +21,7 @@ export const customeReducer = createReducer(initialState, {
         state.cartItem = state.cartItem.filter(function( obj ) {
             return obj.id !== action.payload;
         });
-        localStorage.setItem('item', JSON.stringify(state.cartItem))
+        (typeof window !== 'undefined') ? localStorage.setItem('item', JSON.stringify(state.cartItem)) : ''
     },
 
     // ClearCart: (state) => {

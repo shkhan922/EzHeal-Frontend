@@ -187,7 +187,7 @@ const Header = () => {
                                                  </li> 
                                                 )}    
 
-                                                <li><Link href='/cart'><a><span className="bg-dark text-white" style={{position:'relative', top:'-10px' ,right:'-31px', zIndex:'2', borderRadius:'50%',padding:'0px 5px'}}>{cartItem.length}</span><i className="fa-solid fa-cart-shopping text-white" style={{background:'none', fontSize:'1.3rem',position:'absolute'}}></i></a></Link></li>                         
+                                                <li><Link href='/cart'><a><span className="bg-dark text-white" style={{position:'relative', top:'-10px' ,right:'-31px', zIndex:'2', borderRadius:'50%',padding:'0px 5px'}}>{cartItem ? cartItem.length : 0}</span><i className="fa-solid fa-cart-shopping text-white" style={{background:'none', fontSize:'1.3rem',position:'absolute'}}></i></a></Link></li>                         
 
                                         </ul>
                                        
