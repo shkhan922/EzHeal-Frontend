@@ -7990,3 +7990,7 @@ input[type=number] {
     display: block;
     margin-top: 0; 
  }
+
+ .cursor-pointer{
+    cursor: pointer;
+ }

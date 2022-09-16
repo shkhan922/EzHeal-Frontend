@@ -1,36 +1,31 @@
 import { createReducer } from "@reduxjs/toolkit";
-import axios from "axios";
-import { baseUrl } from "~/lib/api";
 
 const initialState = {
-    cartItem: []
+    
+    cartItem: (typeof window !== 'undefined') ? JSON.parse(localStorage.getItem('item')) : []
+      
 }
-const intialCartItems = {
-    cartItems: []
-}
+// const intialCartItems = {
+//     cartItems: []
+// }
 export const customeReducer = createReducer(initialState, {
     addToCart: (state, action) => {
-        state.cartItem.indexOf(action.payload) === -1 ? state.cartItem.push(action.payload) : console.log("This item already exists");
+        
+        var index = state.cartItem.findIndex(x => x.id == action.payload.id);
+        index === -1 ? state.cartItem.push( action.payload ) : alert('already Exist in Cart !')
+        localStorage.setItem('item', JSON.stringify(state.cartItem))
     },
 
     removeFromCart: (state, action) => {
-        state.cartItem = (state.cartItem).filter((item) => item != action.payload)
+        
+        state.cartItem = state.cartItem.filter(function( obj ) {
+            return obj.id !== action.payload;
+        });
+        localStorage.setItem('item', JSON.stringify(state.cartItem))
     },
 
-    ClearCart: (state) => {
-        state.cartItem = [];
-    }
-
-})
-
-export const getItemsByIds = createReducer(intialCartItems, {
-    getCartItemsByIds: (state, action) => {
-        let filterIds = action.payload.map((data , index) => `filters[id][$in][${index}]=${data}`)
-        const func = async () => {
-            let filterEndPoint = filterIds.join('&');
-            await axios(`${baseUrl}/scans?${filterEndPoint}`).then(res => state.cartItems = res.data.data).catch((e) => console.log(e))
-        }
-        func();
-    },
+    // ClearCart: (state) => {
+    //     state.cartItem = [];
+    // }
 
 })
