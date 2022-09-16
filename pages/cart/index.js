@@ -42,7 +42,7 @@ const Index = () => {
                 <div className="card mb-4">
                   <div className='card-header'>
                     <div className='d-flex justify-content-between'>
-                      <span>Lab Tests({cartItem.length})</span> <Link href='/diognostic-center'><a> <span className='text-primary'><i className="fa-solid fa-plus pe-2"></i>Add More Test</span></a></Link>
+                      <span>Lab Tests({cartItem ? cartItem.length : 0})</span> <Link href='/diognostic-center'><a> <span className='text-primary'><i className="fa-solid fa-plus pe-2"></i>Add More Test</span></a></Link>
                     </div>
                   </div>
                   <div className="card-body">
