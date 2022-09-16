@@ -26,12 +26,12 @@ const Index = ({ posts, diapagedata, cities }) => {
     })
   }
 
-  const handleRemoveCartItem = (id) => {
-    dispatch({
-      type:"removeFromCart",
-      payload:id
-    })
-  }
+  // const handleRemoveCartItem = (id) => {
+  //   dispatch({
+  //     type:"removeFromCart",
+  //     payload:id
+  //   })
+  // }
 
   const [city, setCity] = useState();
   const [dioCenter, setDioCenter] = useState();
@@ -173,7 +173,7 @@ const Index = ({ posts, diapagedata, cities }) => {
                               {data.attributes.Modality}
                             </span>
                             </div>                           
-                            <button className='default-btn' onClick={() => handleAddToCart(data.id)}>Add to Cart</button>   
+                            <button className='default-btn' onClick={() => handleAddToCart({id: data.id, Billing_Name:data.attributes.Billing_Name,Test_Code: data.attributes.Test_Code,User_Price:data.attributes.User_Price,MRP:data.attributes.MRP,Modality:data.attributes.Modality, city: city, dioCenter: dioCenter})}>Add to Cart</button>   
                             {/* <button className='default-btn' onClick={() => handleRemoveCartItem(data.id)}>Remove</button>                          */}
                           </Card.Body>
                         </Card>
