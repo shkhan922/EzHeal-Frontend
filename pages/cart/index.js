@@ -52,7 +52,7 @@ const Index = () => {
                         (cartItem && cartItem.length > 0) ?
                         cartItem.map((item, index) => {
                           return (
-                            <div className='border mb-3 rounded-2'>
+                            <div key={item.id} className='border mb-3 rounded-2'>
                               <div className='bg-light p-3 '>
                                 <h4>{item.dioCenter.label}</h4>
                                 <span>{item.city.label}</span>
