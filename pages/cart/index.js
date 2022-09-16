@@ -148,9 +148,9 @@ const Index = () => {
                   </div>
                   <div className="col-md-6 pt-4">
                     <input className='me-1' type="radio" id="male" name="gender" value="male" />
-                    <label for="male" className='me-3'>Male</label>
+                    <label htmlFor="male" className='me-3'>Male</label>
                     <input className='me-1' type="radio" id="female" name="gender" value="female" />
-                    <label for="female">Female</label>
+                    <label htmlFor="female">Female</label>
                   </div>
                 </div>
                 <span className='float-end btn text-primary'>+ ADD New Patient</span>
