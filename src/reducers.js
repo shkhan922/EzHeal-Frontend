@@ -1,19 +1,17 @@
 import { createReducer } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
 const initialState = {
     
-    cartItem: (typeof window !== 'undefined') ? JSON.parse(localStorage.getItem('item')) : []
+    cartItem: Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : []
       
 }
-// const intialCartItems = {
-//     cartItems: []
-// }
+
 export const customeReducer = createReducer(initialState, {
-    addToCart: (state, action) => {
-        
+    addToCart: (state, action) => {      
         var index = state.cartItem.findIndex(x => x.id == action.payload.id);
         index === -1 ? state.cartItem.push( action.payload ) : alert('already Exist in Cart !')
-        (typeof window !== 'undefined') ? localStorage.setItem('item', JSON.stringify(state.cartItem)) : ''
+        Cookies.set('cart', JSON.stringify(state.cartItem))
     },
 
     removeFromCart: (state, action) => {
@@ -21,7 +19,7 @@ export const customeReducer = createReducer(initialState, {
         state.cartItem = state.cartItem.filter(function( obj ) {
             return obj.id !== action.payload;
         });
-        (typeof window !== 'undefined') ? localStorage.setItem('item', JSON.stringify(state.cartItem)) : ''
+        Cookies.set('cart', JSON.stringify(state.cartItem))
     },
 
     // ClearCart: (state) => {
