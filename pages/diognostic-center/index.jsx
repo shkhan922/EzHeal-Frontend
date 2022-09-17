@@ -14,9 +14,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const Index = ({ posts, diapagedata, cities }) => {
 
-  // const myState = useSelector((state) => state.changeCartNum)
-  // console.log(myState)
-
   const dispatch = useDispatch()
 
   const handleAddToCart = (id) => {
@@ -25,13 +22,6 @@ const Index = ({ posts, diapagedata, cities }) => {
       payload:id
     })
   }
-
-  // const handleRemoveCartItem = (id) => {
-  //   dispatch({
-  //     type:"removeFromCart",
-  //     payload:id
-  //   })
-  // }
 
   const [city, setCity] = useState();
   const [dioCenter, setDioCenter] = useState();

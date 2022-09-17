@@ -1,19 +1,27 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Footer from '~/components/ReusableComponent/Footer'
 import Header from '~/components/ReusableComponent/Header';
 import { useSelector, useDispatch } from "react-redux"
 import { Tab, Tabs, Modal } from 'react-bootstrap'
 import { useEffect } from 'react';
 import Link from 'next/link';
+import userContext from '~/context/userContext';
+import { FormFeedback, Input, Label, Spinner, Alert } from 'reactstrap';
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import axios from 'axios';
+import { baseUrl } from '~/lib/api';
+import { useState } from 'react';
 
 const Index = () => {
 
   const { cartItem } = useSelector(state => state.custome);
   const [modalShow, setModalShow] = React.useState(false);
+  const [patients, setPatients] = useState([])
+  const [detialId, setDetailId] = useState();
 
   const dispatch = useDispatch()
-  console.log(cartItem)
-
+  const user = useContext(userContext)
   const removeItem = (id) => {
     dispatch({
       type: "removeFromCart",
@@ -25,6 +33,66 @@ const Index = () => {
   }, 0) : 0;
 
   let collectionCharge = 0;
+
+  const getPateint = async () => {
+    let userId = user.data.id;
+    await axios.get(`${baseUrl}/users/${userId}?populate=deep`).then(res => {setPatients(res.data.detail.Patient); setDetailId(res.data.detail.id)}).catch(e => console.log(e))
+    // console.log(patients) 
+  }
+  
+  useEffect(() => {
+      user && getPateint()  
+  })
+
+  // console.log(detialId)
+
+  const validation = useFormik({
+    // enableReinitialize : use this flag when initial values needs to be changed
+    enableReinitialize: true,
+
+    initialValues: {
+      name: '',
+      age: '',
+      gender: ''
+    },
+    validationSchema: Yup.object({
+      name: Yup.string().required("Please Enter Name"),
+      age: Yup.number().required("Please Enter Age"),
+      gender: Yup.string().required()
+    }),
+    onSubmit: (initialValues) => {
+      console.log(initialValues)
+      if (patients && patients.length > 0 ) {
+        axios.patch(`${baseUrl}/details/${detialId}`, {
+          data:{
+            Patient:[...patients,
+                {
+                    Name:initialValues.name,
+                    Age:initialValues.age,
+                    Gender:initialValues.gender
+                }
+            ],
+            users_permissions_user:user.data.id
+        }
+        })
+      }else{
+        axios.post(`${baseUrl}/details`, {
+          data:{
+            Patient:[
+                {
+                    Name:initialValues.name,
+                    Age:initialValues.age,
+                    Gender:initialValues.gender
+                }
+            ],
+            users_permissions_user:user.data.id
+        }
+        })
+      }
+      
+
+    }
+  });
 
   return (
     <>
@@ -115,7 +183,7 @@ const Index = () => {
               <div className='d-flex mb-2 justify-content-between'><span>Collection Charge</span><span>₹{collectionCharge}</span></div>
               <div className='d-flex mb-2 justify-content-between'><h5>Total Amount</h5><h5>₹{totalPrice + collectionCharge}</h5></div>
             </div>
-            <button className='btn btn-success w-100' onClick={() => setModalShow(true)}>SCHEDULE</button>
+            <button className='btn btn-success w-100' onClick={() => user ? setModalShow(true) : alert("please Login to Schedule")}>SCHEDULE</button>
           </div>
         </div>
       </div>
@@ -139,21 +207,72 @@ const Index = () => {
           >
             <Tab eventKey="patientDetails" title="patient Details">
               <div className='p-3'>
-                <div className="row">
-                  <div className="col-md-6">
-                    <input className='form-control' placeholder='Name' type="text" name="" id="" />
+
+                {
+                  patients && patients.map((item) => {
+                    return (
+                      <>
+                        <div>
+                          <div className="boder p-3">
+                              <span>name</span>: <span>{item.Name}</span>
+                              <span>age</span>: <span>{item.Age}</span>
+                              <span>gender</span>: <span>{item.Gender}</span>
+                          </div>
+                        </div>
+                      </>
+                    )
+                  })
+                }
+                <form onSubmit={(e) => {
+                  e.preventDefault();
+                  validation.handleSubmit();
+                  return false;
+                }} action="#">
+                  <div className="row">
+                    <div className="col-md-6">
+                      <input className='form-control' placeholder='Name' type="text" name="name" id="name"
+                        onChange={validation.handleChange}
+                        onBlur={validation.handleBlur}
+                        value={validation.values.name || ""}
+                        invalid={
+                          validation.touched.name && validation.errors.name ? true : false
+                        } />
+                      {validation.touched.name && validation.errors.name ? (
+                        <FormFeedback type="invalid">{validation.errors.name}</FormFeedback>
+                      ) : null}
+                    </div>
+                    <div className="col-md-6">
+                      <input className='form-control' placeholder='Age' type="number" name="age" id="age"
+                        onChange={validation.handleChange}
+                        onBlur={validation.handleBlur}
+                        value={validation.values.age || ""}
+                        invalid={
+                          validation.touched.age && validation.errors.age ? true : false
+                        } />
+                      {validation.touched.age && validation.errors.age ? (
+                        <FormFeedback type="invalid">{validation.errors.age}</FormFeedback>
+                      ) : null}
+                    </div>
+                    <div className="col-md-6 pt-4">
+                      <input className='me-1' type="radio" id="Male" name="gender" value="Male"
+                        onChange={validation.handleChange}
+                        invalid={
+                          validation.touched.username && validation.errors.username ? true : false
+                        } />
+                      <label htmlFor="male" className='me-3'>Male</label>
+                      <input className='me-1' type="radio" id="Female" name="gender" value="Female"
+                        onChange={validation.handleChange}
+                      // invalid={
+                      //    validation.errors.gender ? true : false
+                      // }
+                      />
+                      <label htmlFor="female">Female</label>
+                    </div>
                   </div>
-                  <div className="col-md-6">
-                    <input className='form-control' placeholder='Age' type="text" name="" id="" />
-                  </div>
-                  <div className="col-md-6 pt-4">
-                    <input className='me-1' type="radio" id="male" name="gender" value="male" />
-                    <label htmlFor="male" className='me-3'>Male</label>
-                    <input className='me-1' type="radio" id="female" name="gender" value="female" />
-                    <label htmlFor="female">Female</label>
-                  </div>
-                </div>
+                  <button type='submit'>submit</button>
+                </form>
                 <span className='float-end btn text-primary'>+ ADD New Patient</span>
+
               </div>
             </Tab>
             <Tab eventKey="addressDetials" title="Address Details">
