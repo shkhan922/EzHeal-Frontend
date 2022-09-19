@@ -17,6 +17,7 @@
     "formik": "^2.2.9",
     "js-cookie": "^3.0.1",
     "next": "^12.1.6",
+    "razorpay": "^2.8.3",
     "react": "^18.2.0",
     "react-bootstrap": "^2.4.0",
     "react-countup": "^6.3.0",
@@ -27,6 +28,7 @@
     "react-visibility-sensor": "^5.1.1",
     "reactstrap": "^9.1.1",
     "sass": "^1.53.0",
+    "shortid": "^2.2.16",
     "swiper": "^8.2.4",
     "webpack": "^5.73.0",
     "yup": "^0.32.11"

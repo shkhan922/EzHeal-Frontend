@@ -43,19 +43,25 @@ const SignUpForm = () => {
                 password: initialValues.password,
                 mobile: initialValues.mobile.toString(),
             }).then(result => {
-                console.log(result);
+                // console.log(result.data.user.id);
                 setSignUpLoading(false);
                 setloginStatus(true)
                 router.push({
                     pathname: '/signIn',
                     query: { returnUrl: router.asPath }
                 })
+                axios.post('https://ezheal.in/api/details', {
+                    data:{
+                        
+                        users_permissions_user:result.data.user.id
+                    }
+                })
             }).catch(err => {
                 console.log(err);
                 setSignUpLoading(false);
                 setloginStatus(false)
             });
-
+           
         }
     });
     return (
