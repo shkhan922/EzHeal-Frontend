@@ -6,7 +6,7 @@ import { Tab, Tabs, Modal } from 'react-bootstrap'
 import { useEffect } from 'react';
 import Link from 'next/link';
 import userContext from '~/context/userContext';
-import { FormFeedback, Input, Label, Spinner, Alert } from 'reactstrap';
+import { span, Input, Label, Spinner, Alert } from 'reactstrap';
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import axios from 'axios';
@@ -17,8 +17,24 @@ const Index = () => {
 
   const { cartItem } = useSelector(state => state.custome);
   const [modalShow, setModalShow] = React.useState(false);
-  const [patients, setPatients] = useState([])
+  const [patients, setPatients] = useState([]);
+  const [address, setAddress] = useState([])
   const [detialId, setDetailId] = useState();
+  const [formDisplay, setFormDisplay] = useState();
+  const [formDisplay1, setFormDisplay1] = useState();
+  const [key, setKey] = useState('patientDetails');
+  const [key1, setKey1] = useState('cart');
+  const [userinfo, setUserInfo] = useState({
+    pateintId: []
+  });
+  const [selectedAddress, setSelectedAddress] = useState();
+  const [selectedDioCenter, setSelectedDioCenter] = useState([]);
+
+
+  // orderRview state
+  let selctedPatients = []
+  let selected_Address = {}
+
 
   const dispatch = useDispatch()
   const user = useContext(userContext)
@@ -36,15 +52,20 @@ const Index = () => {
 
   const getPateint = async () => {
     let userId = user.data.id;
-    await axios.get(`${baseUrl}/users/${userId}?populate=deep`).then(res => {setPatients(res.data.detail.Patient); setDetailId(res.data.detail.id)}).catch(e => console.log(e))
+    await axios.get(`${baseUrl}/users/${userId}?populate=deep`).then(res => { setPatients(res.data.detail.Patient); setAddress(res.data.detail.Address); setDetailId(res.data.detail.id); }).catch(e => console.log(e))
     // console.log(patients) 
   }
-  
-  useEffect(() => {
-      user && getPateint()  
-  })
 
-  // console.log(detialId)
+  useEffect(() => {
+    user && getPateint(); getSelectedDioCenter();
+    patients.length > 0 ? setFormDisplay('d-none') : setFormDisplay('d-block')
+  }, [user])
+
+  let dioQuery = cartItem.map((item) => `filters[Name][$eq]=${item.dioCenter.label}`).join('&')
+  // console.log(selectedDioName)
+  const getSelectedDioCenter = () => {
+    axios.get(`${baseUrl}/diagnostic-centers?${dioQuery}&populate=deep`).then(res => setSelectedDioCenter(res.data.data)).catch(e => console.log(e))
+  }
 
   const validation = useFormik({
     // enableReinitialize : use this flag when initial values needs to be changed
@@ -61,47 +82,102 @@ const Index = () => {
       gender: Yup.string().required()
     }),
     onSubmit: (initialValues) => {
-      console.log(initialValues)
-      if (patients && patients.length > 0 ) {
-        axios.patch(`${baseUrl}/details/${detialId}`, {
-          data:{
-            Patient:[...patients,
-                {
-                    Name:initialValues.name,
-                    Age:initialValues.age,
-                    Gender:initialValues.gender
-                }
-            ],
-            users_permissions_user:user.data.id
+      axios.put(`${baseUrl}/details/${detialId}`, {
+        data: {
+          Patient: [...patients,
+          {
+            Name: initialValues.name,
+            Age: initialValues.age,
+            Gender: initialValues.gender
+          }
+          ]
         }
-        })
-      }else{
-        axios.post(`${baseUrl}/details`, {
-          data:{
-            Patient:[
-                {
-                    Name:initialValues.name,
-                    Age:initialValues.age,
-                    Gender:initialValues.gender
-                }
-            ],
-            users_permissions_user:user.data.id
-        }
-        })
-      }
-      
-
+      }).then(() => { getPateint(); setFormDisplay('d-none') })
     }
   });
 
+  const addressValidation = useFormik({
+    // enableReinitialize : use this flag when initial values needs to be changed
+    enableReinitialize: true,
+
+    initialValues: {
+      address: '',
+      pincode: '',
+      locality: '',
+      landmark: '',
+      city: '',
+      state: '',
+      mobile: '',
+      address_type: ''
+    },
+    validationSchema: Yup.object({
+      address: Yup.string().required("Please Enter Name"),
+      pincode: Yup.number().required("Please Enter Age"),
+      locality: Yup.string().required("please Enter Locality"),
+      landmark: Yup.string().required('Please Enter Landmark'),
+      city: Yup.string().required('Please Enter City'),
+      state: Yup.string().required('Please Enter State'),
+      mobile: Yup.number().required('Please Enter Mobile'),
+      // address_type: Yup.string().required('Please Select Address Type')
+    }),
+    onSubmit: (initialValues) => {
+
+      console.log(initialValues)
+      axios.put(`${baseUrl}/details/${detialId}`, {
+        data: {
+          Address: [...address, initialValues]
+        }
+      }).then(() => { getPateint(); setFormDisplay1('d-none') }).catch(e => console.log(e))
+    }
+  });
+  //for selected value of patients
+  const handleChange = (e) => {
+    // Destructuring
+    const { value, checked } = e.target;
+
+    const { pateintId } = userinfo;
+
+    // Case 1 : The user checks the box
+    if (checked) {
+      setUserInfo({
+        pateintId: [...pateintId, parseInt(value)]
+      });
+    }
+
+    // Case 2  : The user unchecks the box
+    else {
+      setUserInfo({
+        pateintId: pateintId.filter((e) => e !== parseInt(value))
+      });
+    }
+  };
+
+  const setDetailsOnOrderReview = () => {
+    
+    for (let i = 0; i < userinfo.pateintId.length; i++) {
+      patients.map((item) => {
+        if (item.id == userinfo.pateintId[i]) {
+          selctedPatients.push(item)
+        }
+      })
+    }
+    console.log(selctedPatients);
+
+    selected_Address = address.find((item) => {
+      return item.id == selectedAddress
+    });
+    
+  }
+  setDetailsOnOrderReview()
   return (
     <>
       <Header />
       <div className='row p-5'>
         <div className='col-md-8'>
           <Tabs
-            defaultActiveKey="cart"
-            id="uncontrolled-tab-example"
+            id="controlled-tab-example"
+            activeKey={key1}
+            onSelect={(k) => setKey1(k)}
             className="mb-3"
           >
             <Tab eventKey="cart" title="1 Cart">
@@ -168,7 +244,44 @@ const Index = () => {
               </div>
             </Tab>
             <Tab eventKey="orderReview" title="2 Order Review">
-              {/* <Sonnet /> */}
+              <div className='card'>
+                <div className="card-header">
+                  Details
+                </div>
+                <div className="card-body">
+                  <div className='row'>
+                    <div className="col-md-4">
+                    <h6>Patients ({selctedPatients && selctedPatients.length ? selctedPatients.length : 0})</h6>
+                        {
+                          selctedPatients?.map((item, index) => {
+                            return(
+                              <div key={item.id} className='mb-3'>
+                                <div><strong>Name</strong> : <span>{item.Name}</span></div>
+                                <div><strong>Age</strong> : <span>{item.Age}</span></div>
+                                <div><strong>Gender</strong> : <span>{item.Gender}</span></div>
+                              </div>
+                            )
+                          })
+                        }
+                    </div>
+                    <div className="col-md-4">
+                      <h5>Address</h5>
+                      <div>
+                        <p>For Home Sample Collection</p>
+                        {
+                          selected_Address && <>
+                            <p>{selected_Address.address_type} <br />{selected_Address.address} <br /> {selected_Address.locality}, <br /> {selected_Address.city}, {selected_Address.state}, {selected_Address.pincode} </p>
+                          </>
+                        }
+                        
+                      </div>
+                    </div>
+                    <div className="col-md-4">
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
             </Tab>
             <Tab eventKey="payment" title="3 Payment" >
               {/* <Sonnet /> */}
@@ -201,85 +314,251 @@ const Index = () => {
         </Modal.Header>
         <Modal.Body>
           <Tabs
-            defaultActiveKey="patientDetails"
-            id="uncontrolled-tab-example"
+            id="controlled-tab-example"
+            activeKey={key}
+            onSelect={(k) => setKey(k)}
             className="mb-3"
           >
             <Tab eventKey="patientDetails" title="patient Details">
               <div className='p-3'>
 
                 {
-                  patients && patients.map((item) => {
+                  patients?.map((item) => {
                     return (
                       <>
                         <div>
-                          <div className="boder p-3">
-                              <span>name</span>: <span>{item.Name}</span>
-                              <span>age</span>: <span>{item.Age}</span>
-                              <span>gender</span>: <span>{item.Gender}</span>
+                          <div className="boder p-3" key={item.id}>
+                            <div>
+                              <input type="checkbox" name='patient' value={item.id} onChange={handleChange} />
+                              <span className='m-2'><span className='me-1'>name</span>: <span>{item.Name}</span></span>
+                              <span className='m-2'><span className='me-1'>age</span>: <span>{item.Age}</span></span>
+                              <span className='m-2'><span className='me-1'>gender</span>: <span>{item.Gender}</span></span>
+                            </div>
                           </div>
                         </div>
                       </>
                     )
                   })
                 }
-                <form onSubmit={(e) => {
-                  e.preventDefault();
-                  validation.handleSubmit();
-                  return false;
-                }} action="#">
-                  <div className="row">
-                    <div className="col-md-6">
-                      <input className='form-control' placeholder='Name' type="text" name="name" id="name"
-                        onChange={validation.handleChange}
-                        onBlur={validation.handleBlur}
-                        value={validation.values.name || ""}
-                        invalid={
-                          validation.touched.name && validation.errors.name ? true : false
-                        } />
-                      {validation.touched.name && validation.errors.name ? (
-                        <FormFeedback type="invalid">{validation.errors.name}</FormFeedback>
-                      ) : null}
+                <div className={formDisplay}>
+                  <form onSubmit={(e) => {
+                    e.preventDefault();
+                    validation.handleSubmit();
+                    return false;
+                  }} action="#">
+                    <div className="row">
+                      <div className="col-md-6">
+                        <input className='form-control' placeholder='Name' type="text" name="name" id="name"
+                          onChange={validation.handleChange}
+                          onBlur={validation.handleBlur}
+                          value={validation.values.name || ""}
+                          invalid={
+                            validation.touched.name && validation.errors.name ? true : false
+                          } />
+                        {validation.touched.name && validation.errors.name ? (
+                          <span className='text-danger'>{validation.errors.name}</span>
+                        ) : null}
+                      </div>
+                      <div className="col-md-6">
+                        <input className='form-control' placeholder='Age' type="number" name="age" id="age"
+                          onChange={validation.handleChange}
+                          onBlur={validation.handleBlur}
+                          value={validation.values.age || ""}
+                          invalid={
+                            validation.touched.age && validation.errors.age ? true : false
+                          } />
+                        {validation.touched.age && validation.errors.age ? (
+                          <span className='text-danger'>{validation.errors.age}</span>
+                        ) : null}
+                      </div>
+                      <div className="col-md-6 pt-4">
+                        <input className='me-1' type="radio" id="Male" name="gender" value="Male"
+                          onChange={validation.handleChange}
+                          invalid={
+                            validation.touched.username && validation.errors.username ? true : false
+                          }
+                        />
+                        <label htmlFor="male" className='me-3'>Male</label>
+                        <input className='me-1' type="radio" id="Female" name="gender" value="Female"
+                          onChange={validation.handleChange}
+                        // invalid={
+                        //    validation.errors.gender ? true : false
+                        // }
+                        />
+                        <label htmlFor="female">Female</label>
+                      </div>
                     </div>
-                    <div className="col-md-6">
-                      <input className='form-control' placeholder='Age' type="number" name="age" id="age"
-                        onChange={validation.handleChange}
-                        onBlur={validation.handleBlur}
-                        value={validation.values.age || ""}
-                        invalid={
-                          validation.touched.age && validation.errors.age ? true : false
-                        } />
-                      {validation.touched.age && validation.errors.age ? (
-                        <FormFeedback type="invalid">{validation.errors.age}</FormFeedback>
-                      ) : null}
-                    </div>
-                    <div className="col-md-6 pt-4">
-                      <input className='me-1' type="radio" id="Male" name="gender" value="Male"
-                        onChange={validation.handleChange}
-                        invalid={
-                          validation.touched.username && validation.errors.username ? true : false
-                        } />
-                      <label htmlFor="male" className='me-3'>Male</label>
-                      <input className='me-1' type="radio" id="Female" name="gender" value="Female"
-                        onChange={validation.handleChange}
-                      // invalid={
-                      //    validation.errors.gender ? true : false
-                      // }
-                      />
-                      <label htmlFor="female">Female</label>
-                    </div>
-                  </div>
-                  <button type='submit'>submit</button>
-                </form>
-                <span className='float-end btn text-primary'>+ ADD New Patient</span>
+                    <button type='submit'>submit</button>
+                  </form>
+                </div>
 
+                <span className='btn text-primary' onClick={() => setFormDisplay('d-block')}>+ ADD New Patient</span>
+                <button className='float-start' onClick={() => setKey("addressDetials")}>Next</button>
               </div>
             </Tab>
             <Tab eventKey="addressDetials" title="Address Details">
-              {/* <Sonnet /> */}
+              <div className='p-3'>
+
+                {
+                  address?.map((item) => {
+                    return (
+                      <>
+                        <div>
+                          <div className="boder p-3" key={item.id}>
+                            <div>
+                              {/* <input type="checkbox" name='patient' value={item.id} onChange={handleChange} /> */}
+                              <div className='d-flex'>
+                                <span className='me-2'><input type="radio" name='address' value={item.id} onChange={(e) => setSelectedAddress(e.target.value)} /></span>
+                                <div>
+                                  <div><span>{item.address_type}</span></div>
+                                  <span><span>{item.address},{item.locality}, {item.city}, {item.state}, {item.pincode}</span></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    )
+                  })
+                }
+                <div className={formDisplay1}>
+                  <form onSubmit={(e) => {
+                    e.preventDefault();
+                    addressValidation.handleSubmit();
+                    return false;
+                  }} action="#">
+                    <div className="row gy-3">
+                      <div className="col-md-6">
+                        <input className='form-control' placeholder='Address' type="text" name="address" id="address"
+                          onChange={addressValidation.handleChange}
+                          onBlur={addressValidation.handleBlur}
+                          value={addressValidation.values.address || ""}
+                          invalid={
+                            addressValidation.touched.address && addressValidation.errors.address ? true : false
+                          } />
+                        {addressValidation.touched.address && addressValidation.errors.address ? (
+                          <span className='text-danger'>{addressValidation.errors.address}</span>
+                        ) : null}
+                      </div>
+                      <div className="col-md-6">
+                        <input className='form-control' placeholder='Pincode' type="number" name="pincode" id="pincode"
+                          onChange={addressValidation.handleChange}
+                          onBlur={addressValidation.handleBlur}
+                          value={addressValidation.values.pincode || ""}
+                          invalid={
+                            addressValidation.touched.pincode && addressValidation.errors.pincode ? true : false
+                          } />
+                        {addressValidation.touched.pincode && addressValidation.errors.pincode ? (
+                          <span className='text-danger'>{addressValidation.errors.pincode}</span>
+                        ) : null}
+                      </div>
+                      <div className="col-md-6">
+                        <input className='form-control' placeholder='Locality' type="text" name="locality" id="locality"
+                          onChange={addressValidation.handleChange}
+                          onBlur={addressValidation.handleBlur}
+                          value={addressValidation.values.locality || ""}
+                          invalid={
+                            addressValidation.touched.locality && addressValidation.errors.locality ? true : false
+                          } />
+                        {addressValidation.touched.locality && addressValidation.errors.locality ? (
+                          <span className='text-danger'>{addressValidation.errors.locality}</span>
+                        ) : null}
+                      </div>
+                      <div className="col-md-6">
+                        <input className='form-control' placeholder='Landmark' type="text" name="landmark" id="landmark"
+                          onChange={addressValidation.handleChange}
+                          onBlur={addressValidation.handleBlur}
+                          value={addressValidation.values.landmark || ""}
+                          invalid={
+                            addressValidation.touched.landmark && addressValidation.errors.landmark ? true : false
+                          } />
+                        {addressValidation.touched.landmark && addressValidation.errors.landmark ? (
+                          <span className='text-danger'>{addressValidation.errors.landmark}</span>
+                        ) : null}
+                      </div>
+                      <div className="col-md-6">
+                        <input className='form-control' placeholder='City' type="text" name="city" id="city"
+                          onChange={addressValidation.handleChange}
+                          onBlur={addressValidation.handleBlur}
+                          value={addressValidation.values.city || ""}
+                          invalid={
+                            addressValidation.touched.city && addressValidation.errors.city ? true : false
+                          } />
+                        {addressValidation.touched.city && addressValidation.errors.city ? (
+                          <span className='text-danger'>{addressValidation.errors.city}</span>
+                        ) : null}
+                      </div>
+                      <div className="col-md-6">
+                        <input className='form-control' placeholder='State' type="text" name="state" id="state"
+                          onChange={addressValidation.handleChange}
+                          onBlur={addressValidation.handleBlur}
+                          value={addressValidation.values.state || ""}
+                          invalid={
+                            addressValidation.touched.state && addressValidation.errors.state ? true : false
+                          } />
+                        {addressValidation.touched.state && addressValidation.errors.state ? (
+                          <span className='text-danger'>{addressValidation.errors.state}</span>
+                        ) : null}
+                      </div>
+                      <div className="col-md-6">
+                        <input className='form-control' placeholder='Mobile Number' type="number" name="mobile" id="mobile"
+                          onChange={addressValidation.handleChange}
+                          onBlur={addressValidation.handleBlur}
+                          value={addressValidation.values.mobile || ""}
+                          invalid={
+                            addressValidation.touched.mobile && addressValidation.errors.mobile ? true : false
+                          }
+                        />
+                        {addressValidation.touched.mobile && addressValidation.errors.mobile ? (
+                          <span className='text-danger'>{addressValidation.errors.mobile}</span>
+                        ) : null}
+                      </div>
+                      <div className="col-md-6 ">
+                        <input className='me-1' type="radio" id="Home" name="address_type" value="Home"
+                          onChange={addressValidation.handleChange} />
+                        <label htmlFor="Home" className='me-3'>Home</label>
+                        <input className='me-1' type="radio" id="Office" name="address_type" value="Office"
+                          onChange={addressValidation.handleChange}
+                        />
+                        <label htmlFor="Office" className='me-3'>Office</label>
+                        <input className='me-1' type="radio" id="Other" name="address_type" value="Other"
+                          onChange={addressValidation.handleChange}
+                        />
+                        <label htmlFor="Other">Other</label>
+                        {validation.touched.address_type && validation.errors.address_type ? (
+                          <span className='text-danger'>{validation.errors.address_type}</span>
+                        ) : null}
+                      </div>
+                    </div>
+                    <button type='submit'>submit</button>
+                  </form>
+                </div>
+
+                <span className='btn text-primary' onClick={() => setFormDisplay1('d-block')}>+ ADD New Patient</span>
+                <button className='float-start' onClick={() => { setKey("slot"); getSelectedDioCenter() }}>Next</button>
+              </div>
             </Tab>
             <Tab eventKey="slot" title="Slot" >
-              {/* <Sonnet /> */}
+              <div className='p-4'>
+                {
+                  selectedDioCenter?.map((item, index) => {
+                    return (
+                      <div key={item.id}>
+                        <h5>{item.attributes.Name}</h5>
+                        {
+                          (item.attributes.slot).map((data) => {
+                            return (
+                              <div>
+                                <input type="radio" className='me-2' name={index} value={item.attributes.from + " - " + item.attributes.to} />
+                                <span>{data.from} - {data.to}</span>
+                              </div>)
+                          })
+                        }
+                      </div>)
+                  })
+                }
+              </div>
+              <button className='float-end' onClick={() => {setModalShow(false); setKey1('orderReview')}}>Finish</button>
             </Tab>
           </Tabs>
         </Modal.Body>
