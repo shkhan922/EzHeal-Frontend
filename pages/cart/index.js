@@ -8,6 +8,7 @@ import Link from 'next/link';
 import userContext from '~/context/userContext';
 import { span, Input, Label, Spinner, Alert } from 'reactstrap';
 import * as Yup from "yup";
+import Axios from 'axios';
 import { useFormik } from "formik";
 import axios from 'axios';
 import { baseUrl } from '~/lib/api';
@@ -32,6 +33,7 @@ const Index = () => {
 
 
   // orderRview state
+  const [selectSlot, setSelectedSlot] = useState();
   let selctedPatients = []
   let selected_Address = {}
 
@@ -153,7 +155,7 @@ const Index = () => {
   };
 
   const setDetailsOnOrderReview = () => {
-    
+
     for (let i = 0; i < userinfo.pateintId.length; i++) {
       patients.map((item) => {
         if (item.id == userinfo.pateintId[i]) {
@@ -166,9 +168,95 @@ const Index = () => {
     selected_Address = address.find((item) => {
       return item.id == selectedAddress
     });
-    
+
   }
-  setDetailsOnOrderReview()
+  setDetailsOnOrderReview();
+  const makePayment = async (sum) => {
+    console.log("here...");
+
+    const res = await initializeRazorpay();
+
+    if (!res) {
+      alert("Razorpay SDK Failed to load");
+      return;
+    }
+
+    // Make API call to the serverless API
+    const data = await fetch("/api/razorpay", { method: "POST", body: totalPrice }).then((t) =>
+      t.json()
+    );
+    console.log(data);
+    var options = {
+      key: process.env.RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
+      name: "MOMEKZ PVT LTD",
+      currency: data.currency,
+      amount: data.amount,
+      order_id: data.id,
+      description: "Payment for the healt care Product",
+      //   image: "https://manuarora.in/logo.png",
+      handler: function (response) {
+        // Validate payment at server - using webhooks is a better idea.
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature);
+        // Axios.post(`${basePostUrl}/orders`, {
+        //   data: {
+        //     orderId: order__id,
+        //     price: sum,
+        //     email: detail.email,
+        //     mobile: detail.mobile,
+        //     name: detail.full_name,
+        //     users_permissions_user: { id : parseInt(user.data.id)},
+        //     product: postDataArr,
+        //     shippingAddress:{
+        //       address:detail.address,
+        //       pincode:detail.postcode,
+        //       country:detail.country.name,
+        //       state:detail.state.name,
+        //       city:detail.city.name
+        //     },
+        //     billingAddress:{
+        //       address:detail.b_address,
+        //       pincode:detail.b_postcode,
+        //       country:detail.b_country.name,
+        //       state:detail.b_state.name,
+        //       city:detail.b_city.name
+        //     }
+        //   }
+        // }).then(res => {
+        //   console.log(res);
+        //   Router.push({
+        //     pathname: '/account/payment-success',
+        //     query: { data: JSON.stringify(detail), cartItems: JSON.stringify(datas), orderId: JSON.stringify(order__id) }
+        //   })
+        // }).catch(e => console.log(e))
+      },
+      prefill: {
+        name: 'faijan',
+        email: 'abx@email.com',
+        contact: 89893827382,
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
+  const initializeRazorpay = () => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      // document.body.appendChild(script);
+
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+
+      document.body.appendChild(script);
+    });
+  };
   return (
     <>
       <Header />
@@ -244,25 +332,25 @@ const Index = () => {
               </div>
             </Tab>
             <Tab eventKey="orderReview" title="2 Order Review">
-              <div className='card'>
+              <div className='card mb-4'>
                 <div className="card-header">
                   Details
                 </div>
                 <div className="card-body">
                   <div className='row'>
                     <div className="col-md-4">
-                    <h6>Patients ({selctedPatients && selctedPatients.length ? selctedPatients.length : 0})</h6>
-                        {
-                          selctedPatients?.map((item, index) => {
-                            return(
-                              <div key={item.id} className='mb-3'>
-                                <div><strong>Name</strong> : <span>{item.Name}</span></div>
-                                <div><strong>Age</strong> : <span>{item.Age}</span></div>
-                                <div><strong>Gender</strong> : <span>{item.Gender}</span></div>
-                              </div>
-                            )
-                          })
-                        }
+                      <h6>Patients ({selctedPatients && selctedPatients.length ? selctedPatients.length : 0})</h6>
+                      {
+                        selctedPatients?.map((item, index) => {
+                          return (
+                            <div key={item.id} className='mb-3'>
+                              <div><strong>Name</strong> : <span>{item.Name}</span></div>
+                              <div><strong>Age</strong> : <span>{item.Age}</span></div>
+                              <div><strong>Gender</strong> : <span>{item.Gender}</span></div>
+                            </div>
+                          )
+                        })
+                      }
                     </div>
                     <div className="col-md-4">
                       <h5>Address</h5>
@@ -273,15 +361,68 @@ const Index = () => {
                             <p>{selected_Address.address_type} <br />{selected_Address.address} <br /> {selected_Address.locality}, <br /> {selected_Address.city}, {selected_Address.state}, {selected_Address.pincode} </p>
                           </>
                         }
-                        
+
                       </div>
                     </div>
                     <div className="col-md-4">
-                      
+                      {
+                        selectedDioCenter && selectedDioCenter.length > 0 && <>
+                        <h5>{selectedDioCenter[0].attributes.Name}</h5>
+                        <strong>Slot</strong> : <span>{selectSlot}</span>
+                        </>
+                      }
                     </div>
                   </div>
                 </div>
               </div>
+              <div className="card mb-4">
+                  <div className='card-header'>
+                    <div className='d-flex justify-content-between'>
+                      <span>Lab Tests({cartItem ? cartItem.length : 0})</span> <Link href='/diognostic-center'><a> <span className='text-primary'><i className="fa-solid fa-plus pe-2"></i>Add More Test</span></a></Link>
+                    </div>
+                  </div>
+                  <div className="card-body">
+                    <div>
+
+                      {
+                        (cartItem && cartItem.length > 0) ?
+                          cartItem.map((item, index) => {
+                            return (
+                              <div className='border mb-3 rounded-2' key={item.id}>
+                                <div className='bg-light p-3 '>
+                                  <h4>{item.dioCenter.label}</h4>
+                                  <span>{item.city.label}</span>
+                                </div>
+                                <div className='px-5 py-3 d-flex justify-content-between'>
+                                  <div>
+                                    <h6>{item.Billing_Name}</h6>
+                                    <span>{item.Modality}</span><span className='ps-2'>({item.Test_Code})</span>
+                                  </div>
+
+                                  <div className='d-flex flex-column align-items-end'>
+                                    <div className='mb-3'>
+                                      <strong className='text-center'>₹{item.User_Price}</strong>
+                                      <br />
+                                      <strike>₹{item.MRP}</strike><br />
+                                    </div>
+                                    <small className='text-danger cursor-pointer' onClick={() => removeItem(item.id)}><i className="fa-solid fa-trash-can pe-2"></i>Remove</small>
+                                  </div>
+                                </div>
+
+
+                              </div>
+                            )
+                          }) : <><div className='p-5 m-4 d-flex align-items-center justify-content-center flex-column'>
+                            <h5>Your Cart is Empty !</h5>
+                            <button className='btn btn-success'>
+                              <Link href='/diognostic-center'><span className='text-white'>Go to Shop</span></Link>
+                            </button>
+                          </div></>
+                      }
+
+                    </div>
+                  </div>
+                </div>
             </Tab>
             <Tab eventKey="payment" title="3 Payment" >
               {/* <Sonnet /> */}
@@ -296,7 +437,11 @@ const Index = () => {
               <div className='d-flex mb-2 justify-content-between'><span>Collection Charge</span><span>₹{collectionCharge}</span></div>
               <div className='d-flex mb-2 justify-content-between'><h5>Total Amount</h5><h5>₹{totalPrice + collectionCharge}</h5></div>
             </div>
-            <button className='btn btn-success w-100' onClick={() => user ? setModalShow(true) : alert("please Login to Schedule")}>SCHEDULE</button>
+            {
+              key1 == 'orderReview' ? <button className='btn btn-success w-100' onClick={() => makePayment()}>PAYMENT</button> :
+              <button className='btn btn-success w-100' onClick={() => user ? setModalShow(true) : alert("please Login to Schedule")}>SCHEDULE</button>
+            }
+            
           </div>
         </div>
       </div>
@@ -540,25 +685,31 @@ const Index = () => {
             </Tab>
             <Tab eventKey="slot" title="Slot" >
               <div className='p-4'>
+                {console.log(selectedDioCenter)}
                 {
-                  selectedDioCenter?.map((item, index) => {
-                    return (
-                      <div key={item.id}>
-                        <h5>{item.attributes.Name}</h5>
+                  // selectedDioCenter((item, index) => {
+                  // return (
+                  <div>
+                    {
+                      selectedDioCenter && selectedDioCenter.length > 0 && <>
+                        <h5>{selectedDioCenter[0].attributes.Name}</h5>
                         {
-                          (item.attributes.slot).map((data) => {
+                          selectedDioCenter[0].attributes.slot.map((data) => {
                             return (
                               <div>
-                                <input type="radio" className='me-2' name={index} value={item.attributes.from + " - " + item.attributes.to} />
+                                <input type="radio" className='me-2' name='slot' value={data.from + " - " + data.to} onChange={(e) => setSelectedSlot(e.target.value)} />
                                 <span>{data.from} - {data.to}</span>
                               </div>)
                           })
                         }
-                      </div>)
-                  })
+                      </>
+                    }
+
+                  </div>
                 }
+
               </div>
-              <button className='float-end' onClick={() => {setModalShow(false); setKey1('orderReview')}}>Finish</button>
+              <button className='float-end' onClick={() => { setModalShow(false); setKey1('orderReview') }}>Finish</button>
             </Tab>
           </Tabs>
         </Modal.Body>
