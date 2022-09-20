@@ -94,6 +94,7 @@ const Index = ({ posts, diapagedata, cities }) => {
       slidesToSlide: 1 // optional, default to 1.
     }
   };
+  
 
   return (
     <>
