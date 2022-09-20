@@ -334,7 +334,7 @@ const Index = () => {
             <Tab eventKey="orderReview" title="2 Order Review">
               <div className='card mb-4'>
                 <div className="card-header d-flex justify-content-between">
-                  <span>Details</span><span className='cursor-pointer' onClick={() => setModalShow(true)}><i class="fa-solid fa-pen-to-square"></i></span>
+                  <span>Details</span><span className='cursor-pointer' onClick={() => setModalShow(true)}><i className="fa-solid fa-pen-to-square"></i></span>
                 </div>
                 <div className="card-body">
                   <div className='row'>
