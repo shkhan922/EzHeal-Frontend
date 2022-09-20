@@ -194,7 +194,7 @@ const Index = () => {
     console.log(data);
     var options = {
       key: process.env.RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
-      name: "MOMEKZ PVT LTD",
+      name: "Aikenist Pvt Ltd",
       currency: data.currency,
       amount: data.amount,
       order_id: data.id,
@@ -232,9 +232,11 @@ const Index = () => {
         }).catch(e => console.log(e))
       },
       prefill: {
+
         name: user.data.username,
         email: user.data.email,
         contact: user.data.mobile,
+
       },
     };
 
@@ -702,7 +704,7 @@ const Index = () => {
                         {
                           selectedDioCenter[0].attributes.slot.map((data) => {
                             return (
-                              <div>
+                              <div key={data.id}>
                                 <input type="radio" className='me-2' name='slot' value={data.from + " - " + data.to} onChange={(e) => setSelectedSlot(e.target.value)} />
                                 <span>{data.from} - {data.to}</span>
                               </div>)
