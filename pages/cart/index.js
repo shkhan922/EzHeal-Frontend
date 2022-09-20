@@ -37,13 +37,18 @@ const Index = () => {
   let selctedPatients = []
   let selected_Address = {}
 
-
+  const BookingID = 'EZL' + (new Date()).getTime()
   const dispatch = useDispatch()
   const user = useContext(userContext)
   const removeItem = (id) => {
     dispatch({
       type: "removeFromCart",
       payload: id
+    })
+  }
+  const clearCart = () => {
+    dispatch({
+      type: "clearCart"
     })
   }
   let totalPrice = (cartItem && cartItem.length > 0) ? cartItem.reduce((accumulator, object) => {
@@ -61,6 +66,7 @@ const Index = () => {
   useEffect(() => {
     user && getPateint(); getSelectedDioCenter();
     patients.length > 0 ? setFormDisplay('d-none') : setFormDisplay('d-block')
+    address.length > 0 ? setFormDisplay1('d-none') : setFormDisplay1('d-block')
   }, [user])
 
   let dioQuery = cartItem.map((item) => `filters[Name][$eq]=${item.dioCenter.label}`).join('&')
@@ -163,7 +169,6 @@ const Index = () => {
         }
       })
     }
-    console.log(selctedPatients);
 
     selected_Address = address.find((item) => {
       return item.id == selectedAddress
@@ -171,6 +176,7 @@ const Index = () => {
 
   }
   setDetailsOnOrderReview();
+
   const makePayment = async (sum) => {
     console.log("here...");
 
@@ -182,7 +188,7 @@ const Index = () => {
     }
 
     // Make API call to the serverless API
-    const data = await fetch("/api/razorpay", { method: "POST", body: totalPrice }).then((t) =>
+    const data = await fetch("/api/razorpay", { method: "POST", body: (totalPrice * selctedPatients.length) + collectionCharge }).then((t) =>
       t.json()
     );
     console.log(data);
@@ -199,42 +205,38 @@ const Index = () => {
         alert(response.razorpay_payment_id);
         alert(response.razorpay_order_id);
         alert(response.razorpay_signature);
-        // Axios.post(`${basePostUrl}/orders`, {
-        //   data: {
-        //     orderId: order__id,
-        //     price: sum,
-        //     email: detail.email,
-        //     mobile: detail.mobile,
-        //     name: detail.full_name,
-        //     users_permissions_user: { id : parseInt(user.data.id)},
-        //     product: postDataArr,
-        //     shippingAddress:{
-        //       address:detail.address,
-        //       pincode:detail.postcode,
-        //       country:detail.country.name,
-        //       state:detail.state.name,
-        //       city:detail.city.name
-        //     },
-        //     billingAddress:{
-        //       address:detail.b_address,
-        //       pincode:detail.b_postcode,
-        //       country:detail.b_country.name,
-        //       state:detail.b_state.name,
-        //       city:detail.b_city.name
-        //     }
-        //   }
-        // }).then(res => {
-        //   console.log(res);
-        //   Router.push({
-        //     pathname: '/account/payment-success',
-        //     query: { data: JSON.stringify(detail), cartItems: JSON.stringify(datas), orderId: JSON.stringify(order__id) }
-        //   })
-        // }).catch(e => console.log(e))
+        axios.post(`${baseUrl}/bookings`, {
+          data: {
+            lab: selectedDioCenter[0].attributes.Name,
+            slot: selectSlot,
+            scans: cartItem.map(d => { return { scan_code: d.Test_Code } }),
+            Price: (totalPrice * selctedPatients.length) + collectionCharge,
+            PatientDetails: selctedPatients.map((d) => { return { Gender: d.Gender, Age: d.Age, Name: d.Name } }),
+            Address: {
+              pincode: selected_Address.pincode,
+              address: selected_Address.address,
+              locality: selected_Address.locality,
+              landmark: selected_Address.landmark,
+              city: selected_Address.city,
+              state: selected_Address.state,
+              address_type: selected_Address.address_type
+            },
+            users_permissions_user: user.data.id,
+            BookingID: BookingID,
+            razorpay_paymentID:response.razorpay_payment_id 
+          }
+        }).then(res => {
+          console.log(res);
+          setKey1('payment');
+          clearCart();
+        }).catch(e => console.log(e))
       },
       prefill: {
-        name: 'Sahdab',
-        email: 'abx@email.com',
-        contact: 9899771523,
+
+        name: user.data.username,
+        email: user.data.email,
+        contact: user.data.mobile,
+
       },
     };
 
@@ -333,8 +335,8 @@ const Index = () => {
             </Tab>
             <Tab eventKey="orderReview" title="2 Order Review">
               <div className='card mb-4'>
-                <div className="card-header">
-                  Details
+                <div className="card-header d-flex justify-content-between">
+                  <span>Details</span><span className='cursor-pointer' onClick={() => setModalShow(true)}><i class="fa-solid fa-pen-to-square"></i></span>
                 </div>
                 <div className="card-body">
                   <div className='row'>
@@ -367,8 +369,8 @@ const Index = () => {
                     <div className="col-md-4">
                       {
                         selectedDioCenter && selectedDioCenter.length > 0 && <>
-                        <h5>{selectedDioCenter[0].attributes.Name}</h5>
-                        <strong>Slot</strong> : <span>{selectSlot}</span>
+                          <h5>{selectedDioCenter[0].attributes.Name}</h5>
+                          <strong>Slot</strong> : <span>{selectSlot}</span>
                         </>
                       }
                     </div>
@@ -376,56 +378,62 @@ const Index = () => {
                 </div>
               </div>
               <div className="card mb-4">
-                  <div className='card-header'>
-                    <div className='d-flex justify-content-between'>
-                      <span>Lab Tests({cartItem ? cartItem.length : 0})</span> <Link href='/diognostic-center'><a> <span className='text-primary'><i className="fa-solid fa-plus pe-2"></i>Add More Test</span></a></Link>
-                    </div>
-                  </div>
-                  <div className="card-body">
-                    <div>
-
-                      {
-                        (cartItem && cartItem.length > 0) ?
-                          cartItem.map((item, index) => {
-                            return (
-                              <div className='border mb-3 rounded-2' key={item.id}>
-                                <div className='bg-light p-3 '>
-                                  <h4>{item.dioCenter.label}</h4>
-                                  <span>{item.city.label}</span>
-                                </div>
-                                <div className='px-5 py-3 d-flex justify-content-between'>
-                                  <div>
-                                    <h6>{item.Billing_Name}</h6>
-                                    <span>{item.Modality}</span><span className='ps-2'>({item.Test_Code})</span>
-                                  </div>
-
-                                  <div className='d-flex flex-column align-items-end'>
-                                    <div className='mb-3'>
-                                      <strong className='text-center'>₹{item.User_Price}</strong>
-                                      <br />
-                                      <strike>₹{item.MRP}</strike><br />
-                                    </div>
-                                    <small className='text-danger cursor-pointer' onClick={() => removeItem(item.id)}><i className="fa-solid fa-trash-can pe-2"></i>Remove</small>
-                                  </div>
-                                </div>
-
-
-                              </div>
-                            )
-                          }) : <><div className='p-5 m-4 d-flex align-items-center justify-content-center flex-column'>
-                            <h5>Your Cart is Empty !</h5>
-                            <button className='btn btn-success'>
-                              <Link href='/diognostic-center'><span className='text-white'>Go to Shop</span></Link>
-                            </button>
-                          </div></>
-                      }
-
-                    </div>
+                <div className='card-header'>
+                  <div className='d-flex justify-content-between'>
+                    <span>Lab Tests({cartItem ? cartItem.length : 0})</span> <Link href='/diognostic-center'><a> <span className='text-primary'><i className="fa-solid fa-plus pe-2"></i>Add More Test</span></a></Link>
                   </div>
                 </div>
+                <div className="card-body">
+                  <div>
+
+                    {
+                      (cartItem && cartItem.length > 0) ?
+                        cartItem.map((item, index) => {
+                          return (
+                            <div className='border mb-3 rounded-2' key={item.id}>
+                              <div className='bg-light p-3 '>
+                                <h4>{item.dioCenter.label}</h4>
+                                <span>{item.city.label}</span>
+                              </div>
+                              <div className='px-5 py-3 d-flex justify-content-between'>
+                                <div>
+                                  <h6>{item.Billing_Name}</h6>
+                                  <span>{item.Modality}</span><span className='ps-2'>({item.Test_Code})</span>
+                                </div>
+
+                                <div className='d-flex flex-column align-items-end'>
+                                  <div className='mb-3'>
+                                    <strong className='text-center'>₹{item.User_Price}</strong>
+                                    <br />
+                                    <strike>₹{item.MRP}</strike><br />
+                                  </div>
+                                  <small className='text-danger cursor-pointer' onClick={() => removeItem(item.id)}><i className="fa-solid fa-trash-can pe-2"></i>Remove</small>
+                                </div>
+                              </div>
+
+
+                            </div>
+                          )
+                        }) : <><div className='p-5 m-4 d-flex align-items-center justify-content-center flex-column'>
+                          <h5>Your Cart is Empty !</h5>
+                          <button className='btn btn-success'>
+                            <Link href='/diognostic-center'><span className='text-white'>Go to Shop</span></Link>
+                          </button>
+                        </div></>
+                    }
+
+                  </div>
+                </div>
+              </div>
             </Tab>
             <Tab eventKey="payment" title="3 Payment" >
-              {/* <Sonnet /> */}
+              <div className='p-4 d-flex align-items-center justify-content-center flex-column'>
+                <h4>Thank You !</h4>
+                <p>Your Booking is generated successfully. and your booking ID is </p>
+                  <div>
+                    
+                  </div>
+              </div>
             </Tab>
           </Tabs>
         </div>
@@ -435,13 +443,14 @@ const Index = () => {
               <div className='d-flex mb-2 justify-content-between'><span>Total MRP</span><span>₹{totalPrice}</span></div>
               {/* <div className='d-flex mb-2 justify-content-between'><span>Price Discount</span><span>-₹2404</span></div> */}
               <div className='d-flex mb-2 justify-content-between'><span>Collection Charge</span><span>₹{collectionCharge}</span></div>
-              <div className='d-flex mb-2 justify-content-between'><h5>Total Amount</h5><h5>₹{totalPrice + collectionCharge}</h5></div>
+              <div className='d-flex mb-2 justify-content-between'><span>Pateints</span><span>{selctedPatients.length}</span></div>
+              <div className='d-flex mb-2 justify-content-between'><h5>Total Amount</h5><h5>₹{(totalPrice * selctedPatients.length) + collectionCharge}</h5></div>
             </div>
             {
               key1 == 'orderReview' ? <button className='btn btn-success w-100' onClick={() => makePayment()}>PAYMENT</button> :
-              <button className='btn btn-success w-100' onClick={() => user ? setModalShow(true) : alert("please Login to Schedule")}>SCHEDULE</button>
+                <button className='btn btn-success w-100' onClick={() => user ? setModalShow(true) : alert("please Login to Schedule")}>SCHEDULE</button>
             }
-            
+
           </div>
         </div>
       </div>
@@ -538,7 +547,7 @@ const Index = () => {
                 </div>
 
                 <span className='btn text-primary' onClick={() => setFormDisplay('d-block')}>+ ADD New Patient</span>
-                <button className='float-start' onClick={() => setKey("addressDetials")}>Next</button>
+                <button className='float-start' onClick={() => { userinfo.pateintId.length > 0 ? setKey("addressDetials") : alert('please select atleast one patient') }}>Next</button>
               </div>
             </Tab>
             <Tab eventKey="addressDetials" title="Address Details">
@@ -675,17 +684,16 @@ const Index = () => {
                         ) : null}
                       </div>
                     </div>
-                    <button type='submit'>submit</button>
+                    <button type='submit' >submit</button>
                   </form>
                 </div>
 
                 <span className='btn text-primary' onClick={() => setFormDisplay1('d-block')}>+ ADD New Patient</span>
-                <button className='float-start' onClick={() => { setKey("slot"); getSelectedDioCenter() }}>Next</button>
+                <button className='float-start' onClick={() => { selectedAddress ? (setKey("slot"), getSelectedDioCenter()) : alert('please select address') }}>Next</button>
               </div>
             </Tab>
             <Tab eventKey="slot" title="Slot" >
               <div className='p-4'>
-                {console.log(selectedDioCenter)}
                 {
                   // selectedDioCenter((item, index) => {
                   // return (
@@ -709,7 +717,7 @@ const Index = () => {
                 }
 
               </div>
-              <button className='float-end' onClick={() => { setModalShow(false); setKey1('orderReview') }}>Finish</button>
+              <button className='float-end' onClick={() => { selectSlot ? (setKey1('orderReview'), setModalShow(false)) : (alert('Please select slot !')) }}>Finish</button>
             </Tab>
           </Tabs>
         </Modal.Body>
