@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import userContext from '~/context/cartContext';
 
-const index = () => {
+const Index = () => {
   const user = useContext(userContext);
   console.log(user)
   
@@ -76,4 +76,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Index
