@@ -7994,3 +7994,10 @@ input[type=number] {
  .cursor-pointer{
     cursor: pointer;
  }
+ .side-nav .active{
+    color: white !important;
+    background-color: #224e77 !important;
+ }
+ .side-nav a{
+    color: #224e77 !important;
+ }
