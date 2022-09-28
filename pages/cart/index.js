@@ -21,8 +21,8 @@ const Index = () => {
   const [patients, setPatients] = useState([]);
   const [address, setAddress] = useState([])
   const [detialId, setDetailId] = useState();
-  const [formDisplay, setFormDisplay] = useState();
-  const [formDisplay1, setFormDisplay1] = useState();
+  const [formDisplay, setFormDisplay] = useState('d-none');
+  const [formDisplay1, setFormDisplay1] = useState('d-none');
   const [key, setKey] = useState('patientDetails');
   const [key1, setKey1] = useState('cart');
   const [userinfo, setUserInfo] = useState({
@@ -65,9 +65,12 @@ const Index = () => {
 
   useEffect(() => {
     user && getPateint(); getSelectedDioCenter();
+  }, [user])
+
+  useEffect(() => {
     patients.length > 0 ? setFormDisplay('d-none') : setFormDisplay('d-block')
     address.length > 0 ? setFormDisplay1('d-none') : setFormDisplay1('d-block')
-  }, [user])
+  },[patients,address])
 
   let dioQuery = cartItem.map((item) => `filters[Name][$eq]=${item.dioCenter.label}`).join('&')
   // console.log(selectedDioName)
@@ -540,12 +543,12 @@ const Index = () => {
                         <label htmlFor="female">Female</label>
                       </div>
                     </div>
-                    <button type='submit'>submit</button>
+                    <button className='btn default-btn px-3 py-2 rounded' type='submit'>submit</button>
                   </form>
                 </div>
 
-                <span className='btn text-primary' onClick={() => setFormDisplay('d-block')}>+ ADD New Patient</span>
-                <button className='float-start' onClick={() => { userinfo.pateintId.length > 0 ? setKey("addressDetials") : alert('please select atleast one patient') }}>Next</button>
+                <span className={`btn text-primary ${formDisplay == 'd-block' ? 'd-none' : 'd-block'}`} onClick={() => setFormDisplay('d-block')}>+ ADD New Patient</span>
+                <button className='float-end btn default-btn px-3 py-2 rounded' onClick={() => { userinfo.pateintId.length > 0 ? setKey("addressDetials") : alert('please select atleast one patient') }}>Next</button>
               </div>
             </Tab>
             <Tab eventKey="addressDetials" title="Address Details">
@@ -573,13 +576,13 @@ const Index = () => {
                     )
                   })
                 }
-                <div className={formDisplay1}>
+                <div className={formDisplay1 + " mb-3"}>
                   <form onSubmit={(e) => {
                     e.preventDefault();
                     addressValidation.handleSubmit();
                     return false;
                   }} action="#">
-                    <div className="row gy-3">
+                    <div className="row gy-3 mb-3">
                       <div className="col-md-6">
                         <input className='form-control' placeholder='Address' type="text" name="address" id="address"
                           onChange={addressValidation.handleChange}
@@ -682,12 +685,12 @@ const Index = () => {
                         ) : null}
                       </div>
                     </div>
-                    <button type='submit' >submit</button>
+                    <button className='btn default-btn px-3 py-2 rounded' type='submit' >submit</button>
                   </form>
                 </div>
 
-                <span className='btn text-primary' onClick={() => setFormDisplay1('d-block')}>+ ADD New Patient</span>
-                <button className='float-start' onClick={() => { selectedAddress ? (setKey("slot"), getSelectedDioCenter()) : alert('please select address') }}>Next</button>
+                <span className={`btn text-primary ${formDisplay1 == "d-block" ? "d-none" : "d-block"}`} onClick={() => setFormDisplay1('d-block')}>+ ADD New Address</span>
+                <button className='float-end btn default-btn px-3 py-2 rounded' onClick={() => { selectedAddress ? (setKey("slot"), getSelectedDioCenter()) : alert('please select address') }}>Next</button>
               </div>
             </Tab>
             <Tab eventKey="slot" title="Slot" >
@@ -715,12 +718,12 @@ const Index = () => {
                 }
 
               </div>
-              <button className='float-end' onClick={() => { selectSlot ? (setKey1('orderReview'), setModalShow(false)) : (alert('Please select slot !')) }}>Finish</button>
+              <button className='float-end btn default-btn px-3 py-2 rounded' onClick={() => { selectSlot ? (setKey1('orderReview'), setModalShow(false)) : (alert('Please select slot !')) }}>Finish</button>
             </Tab>
           </Tabs>
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={() => setModalShow(false)}>Close</button>
+          <button className='btn btn-danger' onClick={() => setModalShow(false)}>Close</button>
         </Modal.Footer>
       </Modal>
     </>

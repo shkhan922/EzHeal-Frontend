@@ -263,7 +263,7 @@ const Header = () => {
                                                 <Link href="/clnbooking">
                                                     <a className="default-btn-two st">Clinician Appointment <span></span></a>
                                                 </Link>
-                                                <Link href="/diabooking">
+                                                <Link href="/diognostic-center">
                                                     <a className="default-btn-two st ms-1">Diagnostic Booking <span></span></a>
                                                 </Link>
                                             </div>
