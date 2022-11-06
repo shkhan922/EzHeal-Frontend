@@ -209,20 +209,20 @@ const Header = () => {
                                                 
                                                 <NavItem>
                                                     <Link href="/about">
-                                                        <a className="nav-link">Doctar Consultaion</a>
+                                                        <a className="nav-link">Doctor Consultation</a>
                                                     </Link>
                                                 </NavItem>
                                                 
                                                         <NavItem>
-                                                        <Link href="/diognostic-center">
+                                                        <Link href="/diagnostic-center">
                                                             <a className="nav-link">Diagnostic Center</a>
                                                         </Link>
                                                         </NavItem>  
                                                     
                                                         <NavItem>
-                                                    <Link href="/pharmacy">
+                                                    {/* <Link href="/pharmacy">
                                                         <a className="nav-link"> Pharmacy </a>
-                                                    </Link>
+                                                    </Link> */}
                                                 </NavItem>
                                                 <NavItem>
                                                     <Link href="/services">
@@ -243,12 +243,12 @@ const Header = () => {
                                                     <DropdownMenu right>
                                                         <DropdownItem>
                                                             <Link href="/doctorlogin">
-                                                                <a className="nav-link p-0">Docter Panel</a>
+                                                                <a className="nav-link p-0">Doctor Panel</a>
                                                             </Link>
                                                         </DropdownItem>
                                                         <DropdownItem>
                                                             <Link href="/diologin">
-                                                                <a className="nav-link p-0">Diagnoistic Panel</a>
+                                                                <a className="nav-link p-0">Diagnostic Panel</a>
                                                             </Link>
                                                         </DropdownItem>
                                                         <DropdownItem>
